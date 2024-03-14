@@ -3,11 +3,11 @@ import type { Config } from "tailwindcss"
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -24,6 +24,7 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        brand: "#F9A616",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -71,6 +72,18 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in-zoom": "fade-in-zoom 2s ease-in-out forwards",
+        "fade-in-zoom-2": "fade-in-zoom 3s ease-in-out 500ms forwards",
+      },
+      backgroundImage: {
+        "hero-image": "url('/images/curtain.webp')",
+      },
+      dropShadow: {
+        "3xl": "1px 1px 10px rgba(0, 0, 0, 1)",
+        "4xl": [
+          "0 35px 35px rgba(0, 0, 0, 0.25)",
+          "0 45px 65px rgba(0, 0, 0, 0.15)",
+        ],
       },
     },
   },

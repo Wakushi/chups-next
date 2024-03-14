@@ -1,6 +1,6 @@
 import "../styles/globals.css"
 import Header from "../components/header"
-import { neucha } from "../styles/fonts"
+import { inter } from "../styles/fonts"
 
 export default function RootLayout({
   children,
@@ -9,7 +9,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${neucha.className} dark`}>
+      <body className={`${inter.className} dark`}>
         <Header />
         {children}
       </body>
