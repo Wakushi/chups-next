@@ -9,7 +9,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} dark`}>
+      <body
+        className={`${inter.className} dark`}
+        suppressHydrationWarning={true}
+      >
         <Header />
         {children}
       </body>
