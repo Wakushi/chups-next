@@ -1,9 +1,12 @@
 import { playfairDisplay } from "@/styles/fonts"
-import BookingList from "../booking-list"
+import BookingList from "../booking/booking-list"
 import { Button } from "../ui/button"
-import { bookings } from "@/lib/data"
+import { fetchBookings } from "@/lib/data"
+import Link from "next/link"
 
-export default function AgendaSection() {
+export default async function AgendaSection() {
+  const bookings = await fetchBookings()
+
   return (
     <section className="py-20 px-4 flex items-center flex-col gap-2 w-auto min-h-[100vh]">
       <h2
@@ -12,9 +15,9 @@ export default function AgendaSection() {
         Agenda
       </h2>
       <BookingList bookings={bookings} max={2} />
-      <Button className="underline" variant={"ghost"}>
+      <Link href="/calendar" className="underline">
         Voir plus de dates
-      </Button>
+      </Link>
     </section>
   )
 }

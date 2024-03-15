@@ -1,16 +1,14 @@
-import { Booking } from "@/types/booking"
+import { sql } from "@vercel/postgres"
+import { Booking } from "./definitions"
+import { unstable_noStore as noStore } from "next/cache"
 
-const booking: Booking = {
-  id: "1",
-  title: "Mystère au cabaret",
-  date: new Date("2024-05-24"),
-  time: "20h30",
-  image: "/images/poster-cabaret.jpg",
-  adultPrice: 20,
-  childPrice: 10,
-  location: "Espace Culturel Lucien Jean",
-  locationUrl:
-    "https://www.google.com/maps?q=Espace+Culturel+Lucien+Jean+Marly-la-ville",
+export async function fetchBookings() {
+  noStore()
+  try {
+    const data = await sql<Booking>`SELECT * FROM bookings`
+    return data.rows
+  } catch (error) {
+    console.error("Database Error:", error)
+    throw new Error("Failed to fetch bookings data.")
+  }
 }
-
-export const bookings: Booking[] = [booking, booking, booking, booking]

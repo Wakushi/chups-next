@@ -7,11 +7,12 @@ import { IoMdClose } from "react-icons/io"
 import { Separator } from "./ui/separator"
 import clsx from "clsx"
 import Navlink from "./nav-link"
+import Link from "next/link"
 
 export default function Header() {
   return (
     <div className="p-3 flex items-center justify-between gap-2 w-full fixed bg-[#020817] z-10 shadow-2xl">
-      <div className="flex items-center gap-2">
+      <Link href="/" className="flex items-center gap-2">
         <Image
           src="/images/logo/chups_logo.png"
           width={35}
@@ -20,7 +21,7 @@ export default function Header() {
           alt="Chups' logo"
         />
         <span className={`${neucha.className} text-2xl`}>LES CHUP'S</span>
-      </div>
+      </Link>
       <HeaderMenu />
     </div>
   )

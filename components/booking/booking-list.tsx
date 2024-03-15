@@ -1,4 +1,4 @@
-import { Booking } from "@/types/booking"
+import { Booking } from "@/lib/definitions"
 import BookingCard from "./booking-card"
 
 interface BookingListProps {
@@ -13,7 +13,7 @@ export default function BookingList({ bookings, max }: BookingListProps) {
   return (
     <div className="flex flex-col gap-4 mb-4">
       {bookings.map((booking: Booking) => (
-        <BookingCard booking={booking} />
+        <BookingCard key={booking.id} booking={booking} />
       ))}
     </div>
   )

@@ -11,8 +11,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Button } from "./ui/button"
-import { Booking } from "@/types/booking"
+import { Button } from "../ui/button"
+import { Booking } from "@/lib/definitions"
 
 const formSchema = z.object({
   name: z
@@ -53,7 +53,7 @@ export default function BookingForm({ booking }: { booking: Booking }) {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nom*</FormLabel>
+              <FormLabel>Nom *</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -66,7 +66,7 @@ export default function BookingForm({ booking }: { booking: Booking }) {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email*</FormLabel>
+              <FormLabel>Email *</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -79,7 +79,7 @@ export default function BookingForm({ booking }: { booking: Booking }) {
           name="adultTickets"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Places adultes*</FormLabel>
+              <FormLabel>Places adultes *</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -87,7 +87,7 @@ export default function BookingForm({ booking }: { booking: Booking }) {
             </FormItem>
           )}
         />
-        {!!booking.childPrice && (
+        {!!booking.childprice && (
           <FormField
             control={bookingForm.control}
             name="childTickets"
@@ -102,6 +102,9 @@ export default function BookingForm({ booking }: { booking: Booking }) {
             )}
           />
         )}
+        <p className="text-sm text-center text-slate-500">
+          * Champs obligatoires
+        </p>
         <Button type="submit" className="mt-4">
           Réserver
         </Button>
