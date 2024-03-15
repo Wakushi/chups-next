@@ -1,17 +1,12 @@
 "use client"
 import Image from "next/image"
 import { neucha } from "../styles/fonts"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { RxHamburgerMenu } from "react-icons/rx"
 import { useState } from "react"
 import { IoMdClose } from "react-icons/io"
+import { Separator } from "./ui/separator"
+import clsx from "clsx"
+import Navlink from "./nav-link"
 
 export default function Header() {
   return (
@@ -26,27 +21,47 @@ export default function Header() {
         />
         <span className={`${neucha.className} text-2xl`}>LES CHUP'S</span>
       </div>
-      <HeaderDropdown />
+      <HeaderMenu />
     </div>
   )
 }
 
-function HeaderDropdown() {
+function HeaderMenu() {
   const [open, setOpen] = useState(false)
 
+  function toggleMenu() {
+    setOpen((prevState) => !prevState)
+    document.body.style.overflow = open ? "auto" : "hidden"
+  }
+
   return (
-    <DropdownMenu onOpenChange={() => setOpen((prevState) => !prevState)}>
-      <DropdownMenuTrigger>
+    <div>
+      <div className="relative z-10" onClick={toggleMenu}>
         {open ? <IoMdClose size={30} /> : <RxHamburgerMenu size={30} />}
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </div>
+      <div
+        className={clsx(
+          "fixed top-0 left-0 min-w-full min-h-[100vh] bg-slate-950 flex px-8 py-20 transition-transform duration-300",
+          {
+            "transform translate-x-0": open,
+            "transform -translate-x-full": !open,
+          }
+        )}
+      >
+        <nav className="w-full">
+          <ul className="flex flex-col justify-center gap-6">
+            <Navlink title="Accueil" href="/" onClick={toggleMenu} />
+            <Separator />
+            <Navlink title="Calendrier" href="/calendar" onClick={toggleMenu} />
+            <Separator />
+            <Navlink title="Spectacles" href="/shows" onClick={toggleMenu} />
+            <Separator />
+            <Navlink title="Les Chup's" href="/about" onClick={toggleMenu} />
+            <Separator />
+            <Navlink title="Contact" href="/contact" onClick={toggleMenu} />
+          </ul>
+        </nav>
+      </div>
+    </div>
   )
 }

@@ -1,5 +1,4 @@
 import { playfairDisplay } from "@/styles/fonts"
-import Image from "next/image"
 
 export default function Hero() {
   return (
