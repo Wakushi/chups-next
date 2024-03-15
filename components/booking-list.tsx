@@ -1,5 +1,5 @@
 import { Booking } from "@/types/booking"
-import BookingCard from "./calendar-card"
+import BookingCard from "./booking-card"
 
 interface BookingListProps {
   bookings: Booking[]
