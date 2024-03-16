@@ -75,6 +75,17 @@
   }
 }
 
+.show-frame {
+  min-width: 250px;
+  height: 345px;
+  padding: 1rem;
+  flex: 1;
+  background-color: #fff;
+  box-shadow: inset 1px 1px 12px #111;
+  border: 3px ridge #221816;
+  cursor: pointer;
+}
+
 @keyframes fade-in-zoom {
   0% {
     opacity: 0;
