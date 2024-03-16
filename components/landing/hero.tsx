@@ -1,4 +1,8 @@
 import { playfairDisplay } from "@/styles/fonts"
+import Link from "next/link"
+import { FaPhoneAlt } from "react-icons/fa"
+import { MdEmail } from "react-icons/md"
+import Copy from "../ui/copy"
 
 export default function Hero() {
   return (
@@ -25,6 +29,28 @@ export default function Hero() {
         >
           Marly-la-ville
         </h3>
+      </div>
+      <div className="animate-fade-in-zoom mt-2">
+        <div className="flex items-center justify-center gap-2">
+          <Link
+            href="tel:0611846005"
+            className="flex items-center gap-2 text-bold text-center drop-shadow-3xl"
+          >
+            <FaPhoneAlt />
+            <span>06.11.84.60.05</span>
+          </Link>
+          <Copy contentToCopy="0611846005" />
+        </div>
+        <div className="flex items-center justify-center gap-2">
+          <Link
+            href="mailto:leschups@outlook.fr"
+            className="flex items-center justify-center gap-2 text-bold text-center drop-shadow-3xl"
+          >
+            <MdEmail />
+            <span>leschups@outlook.fr</span>
+          </Link>
+          <Copy contentToCopy="leschups@outlook.fr" />
+        </div>
       </div>
     </div>
   )

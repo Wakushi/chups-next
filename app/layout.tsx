@@ -1,6 +1,7 @@
 import "../styles/globals.css"
 import Header from "../components/header"
 import { inter } from "../styles/fonts"
+import { Toaster } from "@/components/ui/toaster"
 
 export default function RootLayout({
   children,
@@ -15,6 +16,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <Toaster />
       </body>
     </html>
   )
