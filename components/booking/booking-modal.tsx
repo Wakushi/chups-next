@@ -19,7 +19,7 @@ export default function BookingModal({ booking }: { booking: Booking }) {
       <DialogTrigger asChild>
         <Button>Réserver</Button>
       </DialogTrigger>
-      <DialogContent className="max-h-[650px] rounded overflow-auto p-4">
+      <DialogContent className="max-h-[100vh] rounded overflow-auto p-4">
         <DialogHeader>
           <DialogTitle className="text-[1.5rem]">
             Réserver vos places

@@ -10,46 +10,43 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { Button } from "../ui/button"
-import { Booking } from "@/lib/definitions"
 
 const formSchema = z.object({
   name: z
     .string()
     .min(2, { message: "Nom trop court, 2 charactères minimum." }),
   email: z.string().email({ message: "Email invalide." }),
-  adultTickets: z
-    .number()
-    .int()
-    .min(1, { message: "Au moins un ticket est requis pour réserver." }),
-  childTickets: z.number().int().min(0, { message: "Nombre invalide." }),
+  subject: z.string(),
+  message: z.string().min(1, { message: "Message trop court." }),
 })
 
-export default function BookingForm({ booking }: { booking: Booking }) {
-  const bookingForm = useForm<z.infer<typeof formSchema>>({
+export default function ContactForm() {
+  const contactForm = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
-      adultTickets: 1,
-      childTickets: 0,
+      subject: "",
+      message: "",
     },
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
-    const { name, email, adultTickets, childTickets } = values
+    const { name, email, subject, message } = values
   }
 
   return (
-    <Form {...bookingForm}>
+    <Form {...contactForm}>
       <form
-        onSubmit={bookingForm.handleSubmit(onSubmit)}
+        onSubmit={contactForm.handleSubmit(onSubmit)}
         className="flex flex-col gap-2"
       >
         <FormField
-          control={bookingForm.control}
+          control={contactForm.control}
           name="name"
           render={({ field }) => (
             <FormItem>
@@ -70,7 +67,7 @@ export default function BookingForm({ booking }: { booking: Booking }) {
           )}
         />
         <FormField
-          control={bookingForm.control}
+          control={contactForm.control}
           name="email"
           render={({ field }) => (
             <FormItem>
@@ -91,11 +88,11 @@ export default function BookingForm({ booking }: { booking: Booking }) {
           )}
         />
         <FormField
-          control={bookingForm.control}
-          name="adultTickets"
+          control={contactForm.control}
+          name="subject"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Places adultes *</FormLabel>
+              <FormLabel>Sujet</FormLabel>
               <FormControl>
                 <Input
                   style={{
@@ -111,34 +108,33 @@ export default function BookingForm({ booking }: { booking: Booking }) {
             </FormItem>
           )}
         />
-        {!!booking.childprice && (
-          <FormField
-            control={bookingForm.control}
-            name="childTickets"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Places enfant</FormLabel>
-                <FormControl>
-                  <Input
-                    style={{
-                      backgroundColor: "transparent",
-                      border: "transparent",
-                      borderBottom: "1px solid #fff",
-                      borderRadius: "0",
-                    }}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        )}
+        <FormField
+          control={contactForm.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Message *</FormLabel>
+              <FormControl>
+                <Textarea
+                  style={{
+                    backgroundColor: "transparent",
+                    border: "transparent",
+                    borderBottom: "1px solid #fff",
+                    borderRadius: "0",
+                    resize: "none",
+                  }}
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <p className="text-sm text-center text-slate-500">
           * Champs obligatoires
         </p>
         <Button type="submit" className="mt-4">
-          Réserver
+          Envoyer
         </Button>
       </form>
     </Form>

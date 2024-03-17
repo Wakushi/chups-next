@@ -60,6 +60,8 @@ function HeaderMenu() {
             <Navlink title="Les Chup's" href="/about" onClick={toggleMenu} />
             <Separator />
             <Navlink title="Contact" href="/contact" onClick={toggleMenu} />
+            <Separator />
+            <Navlink title="FAQ" href="/faq" onClick={toggleMenu} />
           </ul>
         </nav>
       </div>

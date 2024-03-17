@@ -1,4 +1,3 @@
-"use client"
 import { Card } from "@/components/ui/card"
 import { Booking } from "@/lib/definitions"
 import BookingModal from "./booking-modal"

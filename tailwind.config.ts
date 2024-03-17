@@ -78,6 +78,7 @@ const config = {
       backgroundImage: {
         "hero-image": "url('/images/curtain.webp')",
         "about-image": "url('/images/microphone-bg.webp')",
+        "contact-image": "url('/images/backstage-bg.webp')",
       },
       dropShadow: {
         "3xl": "1px 1px 10px rgba(0, 0, 0, 1)",
