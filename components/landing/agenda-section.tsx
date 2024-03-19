@@ -1,6 +1,5 @@
 import { playfairDisplay } from "@/styles/fonts"
 import BookingList from "../booking/booking-list"
-import { Button } from "../ui/button"
 import { fetchBookings } from "@/lib/data"
 import Link from "next/link"
 

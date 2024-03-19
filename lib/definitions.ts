@@ -4,10 +4,10 @@ export type Booking = {
   date: Date
   time: string
   image: string
-  adultprice: number
-  childprice: number
+  adultPrice: number
+  childPrice: number
   location: string
-  locationurl: string
+  locationUrl: string
 }
 
 export type Show = {
@@ -16,4 +16,12 @@ export type Show = {
   image: string
   title: string
   year: number
+}
+
+export type User = {
+  id: string
+  email: string
+  name: string
+  password: string
+  role: "user" | "admin"
 }

@@ -111,7 +111,7 @@ export default function BookingForm({ booking }: { booking: Booking }) {
             </FormItem>
           )}
         />
-        {!!booking.childprice && (
+        {!!booking.childPrice && (
           <FormField
             control={bookingForm.control}
             name="childTickets"

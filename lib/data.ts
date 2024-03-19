@@ -1,25 +1,29 @@
-import { sql } from "@vercel/postgres"
 import { Booking, Show } from "./definitions"
-import { unstable_noStore as noStore } from "next/cache"
+import { db } from "../firebase"
+import { collection, doc, getDoc, getDocs } from "firebase/firestore"
 
 export async function fetchBookings() {
-  noStore()
-  try {
-    const data = await sql<Booking>`SELECT * FROM bookings`
-    return data.rows
-  } catch (error) {
-    console.error("Database Error:", error)
-    throw new Error("Failed to fetch bookings data.")
-  }
+  const bookings: Booking[] = []
+  const querySnapshot = await getDocs(collection(db, "bookings"))
+  querySnapshot.forEach((doc) => {
+    bookings.push({
+      id: doc.id,
+      ...doc.data(),
+      date: new Date(doc.data().date.seconds * 1000),
+    } as Booking)
+  })
+  return bookings
 }
 
 export async function fetchShows() {
-  noStore()
-  try {
-    const data = await sql<Show>`SELECT * FROM shows`
-    return data.rows
-  } catch (error) {
-    console.error("Database Error:", error)
-    throw new Error("Failed to fetch shows data.")
-  }
+  const shows: Show[] = []
+  const querySnapshot = await getDocs(collection(db, "shows"))
+  querySnapshot.forEach((doc) => {
+    shows.push({
+      id: doc.id,
+      ...doc.data(),
+    } as Show)
+  })
+  return shows
 }
+

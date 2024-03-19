@@ -13,7 +13,7 @@ import BookingDate from "./booking-date"
 import BookingPricing from "./booking-pricing"
 
 export default function BookingModal({ booking }: { booking: Booking }) {
-  const { location, title, image, date, time, adultprice, childprice } = booking
+  const { location, title, image, date, time, adultPrice, childPrice } = booking
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -39,7 +39,7 @@ export default function BookingModal({ booking }: { booking: Booking }) {
               <span className="text-xl font-bold">{title}</span>
               <BookingDate date={date} time={time} />
               <p className="text-sm">{location}</p>
-              <BookingPricing adultPrice={adultprice} childPrice={childprice} />
+              <BookingPricing adultPrice={adultPrice} childPrice={childPrice} />
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@ export default function BookingModal({ booking }: { booking: Booking }) {
             * La somme totale des billets sera à régler sur place le jour du
             spectacle.
           </p>
-          {!!childprice && (
+          {!!childPrice && (
             <p className="text-sm text-slate-500 leading-tight font-extralight">
               ** Enfant de moins de 12 ans.
             </p>

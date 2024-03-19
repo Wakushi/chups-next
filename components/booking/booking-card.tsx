@@ -10,7 +10,7 @@ interface BookingCardProps {
 }
 
 export default function BookingCard({ booking }: BookingCardProps) {
-  const { date, location, locationurl, time, title, image } = booking
+  const { date, location, locationUrl, time, title, image } = booking
 
   return (
     <Card className="p-2 w-full bg-slate-900">
@@ -23,7 +23,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
             <p className="text-sm">{location}</p>
           </div>
           <div className="flex gap-2 justify-end">
-            <BookingAccess locationurl={locationurl} />
+            <BookingAccess locationurl={locationUrl} />
             <BookingModal booking={booking} />
           </div>
         </div>
