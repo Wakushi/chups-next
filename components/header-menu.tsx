@@ -5,9 +5,10 @@ import { useState } from "react"
 import { IoMdClose } from "react-icons/io"
 import { RxHamburgerMenu } from "react-icons/rx"
 import Navlink from "./nav-link"
-import { Separator } from "@radix-ui/react-separator"
+import { User } from "@/lib/definitions"
+import { Separator } from "./ui/separator"
 
-export default function HeaderMenu() {
+export default function HeaderMenu({ user }: { user?: User }) {
   const [open, setOpen] = useState(false)
 
   function toggleMenu() {
@@ -40,6 +41,22 @@ export default function HeaderMenu() {
             <Navlink title="Contact" href="/contact" onClick={toggleMenu} />
             <Separator />
             <Navlink title="FAQ" href="/faq" onClick={toggleMenu} />
+            {!user && (
+              <>
+                <Separator />
+                <Navlink title="Login" href="/login" onClick={toggleMenu} />
+              </>
+            )}
+            {user?.role === "admin" && (
+              <>
+                <Separator />
+                <Navlink
+                  title="Admin"
+                  href="/admin/dashboard"
+                  onClick={toggleMenu}
+                />
+              </>
+            )}
           </ul>
         </nav>
       </div>

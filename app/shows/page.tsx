@@ -10,7 +10,7 @@ export default async function ShowsPage() {
       <h1 className={`${playfairDisplay.className} text-3xl mb-6`}>
         Spectacles
       </h1>
-      <div className="flex flex-col justity-center items-center gap-2">
+      <div className="flex flex-col justity-center items-center gap-4">
         {shows.map((show) => (
           <div key={show.id} className="show-frame w-[50%]">
             <Image

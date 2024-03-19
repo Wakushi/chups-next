@@ -26,7 +26,7 @@ export async function createUser(formData: FormData) {
   }
 }
 
-async function getUser(email: string): Promise<User | undefined> {
+export async function getUserByEmail(email: string): Promise<User | undefined> {
   try {
     const docRef = doc(db, "users", email)
     const docSnap = await getDoc(docRef)
@@ -52,10 +52,9 @@ export const { auth, signIn, signOut } = NextAuth({
 
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data
-          const user = await getUser(email)
+          const user = await getUserByEmail(email)
           if (!user) return null
           const passwordsMatch = await bcrypt.compare(password, user.password)
-
           if (passwordsMatch) return user
         }
         console.log("Invalid credentials")
@@ -64,3 +63,10 @@ export const { auth, signIn, signOut } = NextAuth({
     }),
   ],
 })
+
+export async function getLoggedUser(): Promise<User | undefined> {
+  const session = await auth()
+  if (!session?.user) return undefined
+  const user = await getUserByEmail(session?.user?.email ?? "")
+  return user
+}

@@ -21,6 +21,7 @@ export async function authenticate(
     }
     throw error
   } finally {
+    revalidatePath("/admin/dashboard")
     redirect("/admin/dashboard")
   }
 }

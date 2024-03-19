@@ -12,7 +12,7 @@ export async function fetchBookings() {
       date: new Date(doc.data().date.seconds * 1000),
     } as Booking)
   })
-  return bookings
+  return bookings.sort((a, b) => a.date.getTime() - b.date.getTime())
 }
 
 export async function fetchShows() {
@@ -24,6 +24,5 @@ export async function fetchShows() {
       ...doc.data(),
     } as Show)
   })
-  return shows
+  return shows.sort((a, b) => b.year - a.year)
 }
-

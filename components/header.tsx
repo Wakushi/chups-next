@@ -3,8 +3,11 @@ import { neucha } from "../styles/fonts"
 import Link from "next/link"
 import HeaderMenu from "./header-menu"
 import { LogOutButton } from "./buttons"
+import { getLoggedUser } from "@/lib/auth"
 
 export default async function Header() {
+  const user = await getLoggedUser()
+
   return (
     <div className="p-3 flex items-center justify-between gap-2 w-full fixed bg-[#020817] z-10 shadow-2xl">
       <Link href="/" className="flex items-center gap-2">
@@ -19,7 +22,7 @@ export default async function Header() {
       </Link>
       <div className="flex items-center gap-2">
         <LogOutButton />
-        <HeaderMenu />
+        <HeaderMenu user={user} />
       </div>
     </div>
   )
