@@ -34,9 +34,25 @@ export default function ContactForm() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
-    const { name, email, subject, message } = values
+  async function onSubmit(formValues: z.infer<typeof formSchema>) {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/contact` ?? "",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formValues),
+        }
+      )
+      const data = await response.json()
+      if (data.success) {
+        alert("Message envoyé avec succès !")
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (

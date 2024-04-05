@@ -15,15 +15,22 @@ import { Button } from "../ui/button"
 import { Booking } from "@/lib/definitions"
 
 const formSchema = z.object({
-  name: z
-    .string()
-    .min(2, { message: "Nom trop court, 2 charactères minimum." }),
+  name: z.string().min(2, { message: "Nom trop court, 2 caractères minimum." }),
   email: z.string().email({ message: "Email invalide." }),
   adultTickets: z
-    .number()
-    .int()
-    .min(1, { message: "Au moins un ticket est requis pour réserver." }),
-  childTickets: z.number().int().min(0, { message: "Nombre invalide." }),
+    .string()
+    .regex(/^\d+$/, "Doit être un nombre entier.")
+    .transform((val) => parseInt(val, 10))
+    .refine((val) => !isNaN(val) && Number.isInteger(val) && val >= 1, {
+      message: "Au moins un ticket est requis pour réserver.",
+    }),
+  childTickets: z
+    .string()
+    .regex(/^\d+$/, "Doit être un nombre entier.")
+    .transform((val) => parseInt(val, 10))
+    .refine((val) => !isNaN(val) && Number.isInteger(val) && val >= 0, {
+      message: "Nombre invalide.",
+    }),
 })
 
 export default function BookingForm({ booking }: { booking: Booking }) {
@@ -37,9 +44,33 @@ export default function BookingForm({ booking }: { booking: Booking }) {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
-    const { name, email, adultTickets, childTickets } = values
+  async function onSubmit(formValues: z.infer<typeof formSchema>) {
+    try {
+      const { name, email, adultTickets, childTickets } = formValues
+      const payload = {
+        name,
+        email,
+        adultTickets,
+        childTickets,
+        show: booking,
+      }
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/booking` ?? "",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      )
+      const data = await response.json()
+      if (data.success) {
+        alert("Réservation effectuée avec succès !")
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
