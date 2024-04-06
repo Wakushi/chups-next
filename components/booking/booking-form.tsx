@@ -1,4 +1,3 @@
-"use client"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -33,7 +32,17 @@ const formSchema = z.object({
     }),
 })
 
-export default function BookingForm({ booking }: { booking: Booking }) {
+interface BookingFormProps {
+  booking: Booking
+  setIsSuccess: (value: boolean) => void
+  setIsSubmitting: (value: boolean) => void
+}
+
+export default function BookingForm({
+  booking,
+  setIsSuccess,
+  setIsSubmitting,
+}: BookingFormProps) {
   const bookingForm = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,6 +54,7 @@ export default function BookingForm({ booking }: { booking: Booking }) {
   })
 
   async function onSubmit(formValues: z.infer<typeof formSchema>) {
+    setIsSubmitting(true)
     try {
       const { name, email, adultTickets, childTickets } = formValues
       const payload = {
@@ -66,10 +76,14 @@ export default function BookingForm({ booking }: { booking: Booking }) {
       )
       const data = await response.json()
       if (data.success) {
-        alert("Réservation effectuée avec succès !")
+        setIsSuccess(true)
+        bookingForm.reset()
       }
     } catch (error) {
       console.error(error)
+      setIsSuccess(false)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 

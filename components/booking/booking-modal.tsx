@@ -1,3 +1,4 @@
+"use client"
 import {
   Dialog,
   DialogContent,
@@ -11,15 +12,34 @@ import BookingForm from "./booking-form"
 import BookingPoster from "./booking-poster"
 import BookingDate from "./booking-date"
 import BookingPricing from "./booking-pricing"
+import { useState } from "react"
+import LoaderHive from "../ui/loader-hive/loader-hive"
 
-export default function BookingModal({ booking }: { booking: Booking }) {
+interface BookingModalProps {
+  booking: Booking
+}
+
+export default function BookingModal({ booking }: BookingModalProps) {
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [isSuccess, setIsSuccess] = useState<boolean>(true)
+
   const { location, title, image, date, time, adultPrice, childPrice } = booking
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button>Réserver</Button>
-      </DialogTrigger>
-      <DialogContent className="max-h-[100vh] rounded overflow-auto p-4">
+
+  const DialogContentElement = () => {
+    if (isSubmitting) {
+      return <LoaderHive />
+    }
+    if (isSuccess) {
+      return (
+        <div className="flex flex-col gap-4 items-center justify-center">
+          <p className="text-3xl p-4 text-center font-bold">
+            Merci pour votre réservation !
+          </p>
+        </div>
+      )
+    }
+    return (
+      <>
         <DialogHeader>
           <DialogTitle className="text-[1.5rem]">
             Réserver vos places
@@ -54,7 +74,27 @@ export default function BookingModal({ booking }: { booking: Booking }) {
             </p>
           )}
         </div>
-        <BookingForm booking={booking} />
+        <BookingForm
+          booking={booking}
+          setIsSuccess={setIsSuccess}
+          setIsSubmitting={setIsSubmitting}
+        />
+      </>
+    )
+  }
+
+  return (
+    <Dialog
+      onOpenChange={() => {
+        setIsSuccess(false)
+        setIsSubmitting(false)
+      }}
+    >
+      <DialogTrigger asChild>
+        <Button>Réserver</Button>
+      </DialogTrigger>
+      <DialogContent className="h-[100vh] rounded overflow-auto p-4">
+        <DialogContentElement />
       </DialogContent>
     </Dialog>
   )
