@@ -1,12 +1,42 @@
+"use client"
 import ContactForm from "@/components/contact/contact-form"
 import Copy from "@/components/ui/copy"
+import LoaderHive from "@/components/ui/loader-hive/loader-hive"
 import { playfairDisplay } from "@/styles/fonts"
 import Link from "next/link"
+import { useState } from "react"
 import { FaPhoneAlt } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
 import { TbMessageCircleHeart } from "react-icons/tb"
 
 export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [isSuccess, setIsSuccess] = useState<boolean>(false)
+
+  const ContactFormState = () => {
+    if (isSubmitting) {
+      return (
+        <div className="relative h-[300px]">
+          <LoaderHive />
+        </div>
+      )
+    }
+
+    if (isSuccess) {
+      return (
+        <div className="flex flex-col gap-4 items-center justify-center h-[300px]">
+          <p className="text-3xl p-4 text-center">Merci pour votre message !</p>
+        </div>
+      )
+    }
+    return (
+      <ContactForm
+        setIsSubmitting={setIsSubmitting}
+        setIsSuccess={setIsSuccess}
+      />
+    )
+  }
+
   return (
     <div className="py-20 px-4 flex flex-col gap-4 min-h-[100dvh] bg-slate-900">
       <h1 className={`${playfairDisplay.className} text-3xl`}>Contact</h1>
@@ -17,7 +47,7 @@ export default function ContactPage() {
         <span>Laissez nous un message</span>
         <TbMessageCircleHeart />
       </h2>
-      <ContactForm />
+      <ContactFormState />
     </div>
   )
 }

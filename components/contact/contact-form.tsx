@@ -1,4 +1,3 @@
-"use client"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -19,11 +18,19 @@ const formSchema = z.object({
     .string()
     .min(2, { message: "Nom trop court, 2 charactères minimum." }),
   email: z.string().email({ message: "Email invalide." }),
-  subject: z.string(),
+  subject: z.string().optional(),
   message: z.string().min(1, { message: "Message trop court." }),
 })
 
-export default function ContactForm() {
+interface ContactFormProps {
+  setIsSubmitting: (value: boolean) => void
+  setIsSuccess: (value: boolean) => void
+}
+
+export default function ContactForm({
+  setIsSuccess,
+  setIsSubmitting,
+}: ContactFormProps) {
   const contactForm = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,6 +42,7 @@ export default function ContactForm() {
   })
 
   async function onSubmit(formValues: z.infer<typeof formSchema>) {
+    setIsSubmitting(true)
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/contact` ?? "",
@@ -48,10 +56,12 @@ export default function ContactForm() {
       )
       const data = await response.json()
       if (data.success) {
-        alert("Message envoyé avec succès !")
+        setIsSuccess(true)
       }
     } catch (error) {
       console.error(error)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 

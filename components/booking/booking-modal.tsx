@@ -21,7 +21,7 @@ interface BookingModalProps {
 
 export default function BookingModal({ booking }: BookingModalProps) {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
-  const [isSuccess, setIsSuccess] = useState<boolean>(true)
+  const [isSuccess, setIsSuccess] = useState<boolean>(false)
 
   const { location, title, image, date, time, adultPrice, childPrice } = booking
 
