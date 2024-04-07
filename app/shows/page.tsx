@@ -7,9 +7,18 @@ export default async function ShowsPage() {
 
   return (
     <div className="py-20 px-4">
-      <h1 className={`${playfairDisplay.className} text-3xl mb-6`}>
-        Spectacles
-      </h1>
+      <div className="mb-6 md:mb-12 md:p-[1rem]">
+        <h1
+          className={`${playfairDisplay.className} text-3xl md:text-[3rem] md:mb-2`}
+        >
+          Spectacles
+        </h1>
+        <p
+          className={`${playfairDisplay.className} text-xl md:text-2xl opacity-70`}
+        >
+          Nos anciens spectacles
+        </p>
+      </div>
       <ShowList shows={shows} />
     </div>
   )

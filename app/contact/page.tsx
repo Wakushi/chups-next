@@ -38,16 +38,22 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="py-20 px-4 flex flex-col gap-4 min-h-[100dvh] bg-slate-900">
-      <h1 className={`${playfairDisplay.className} text-3xl`}>Contact</h1>
-      <ContactInfo />
-      <h2
-        className={`${playfairDisplay.className} text-2xl drop-shadow-3xl flex items-center gap-2`}
-      >
-        <span>Laissez nous un message</span>
-        <TbMessageCircleHeart />
-      </h2>
-      <ContactFormState />
+    <div className="py-20 md:py-[6rem] px-4 min-h-[100dvh] bg-slate-900">
+      <div className="max-w-[600px] flex flex-col gap-4 m-auto">
+        <h1
+          className={`${playfairDisplay.className} text-3xl md:text-[3rem] md:mb-4`}
+        >
+          Contact
+        </h1>
+        <ContactInfo />
+        <h2
+          className={`${playfairDisplay.className} text-2xl drop-shadow-3xl flex items-center gap-2`}
+        >
+          <span>Laissez nous un message</span>
+          <TbMessageCircleHeart />
+        </h2>
+        <ContactFormState />
+      </div>
     </div>
   )
 }
