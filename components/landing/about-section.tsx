@@ -8,15 +8,15 @@ export default function AboutSection() {
         <WaveSeparator />
         <div className="flex flex-col gap-2 mb-4">
           <h3
-            className={`${playfairDisplay.className} uppercase text-[2rem] text-center leading-[0.9] drop-shadow-3xl`}
+            className={`${playfairDisplay.className} uppercase text-[2rem] md:text-[2.7rem] lg:text-[4rem] lg:mb-2 text-center leading-[0.9] drop-shadow-3xl`}
           >
             Mystère au Cabaret
           </h3>
-          <p className="text-center drop-shadow-3xl text-xl font-bold">
+          <p className="text-center drop-shadow-3xl text-xl md:text-2xl lg:text-3xl font-bold">
             Spectacle musical des Chup's
           </p>
         </div>
-        <p className="text-center drop-shadow-3xl text-slate-200 font-extralight">
+        <p className="text-center md:text-2xl drop-shadow-3xl text-slate-200 font-extralight max-w-[600px] lg:max-w-[700px]">
           Chaque année la troupe des Chup's vous propose une{" "}
           <span className="font-medium text-brand">création originale</span>{" "}
           autour de <span className="font-medium text-brand">chansons</span>{" "}
@@ -24,7 +24,7 @@ export default function AboutSection() {
           <span className="font-medium text-brand">comédie</span>, des{" "}
           <span className="font-medium text-brand">chorégraphies</span>...
         </p>
-        <p className="text-center drop-shadow-3xl font-extralight	">
+        <p className="text-center md:text-2xl drop-shadow-3xl font-extralight max-w-[600px] lg:max-w-[700px]">
           À la veille d'une première qui promet d'être mémorable, des actes
           malveillants menacent le spectacle. Entre{" "}
           <span className="font-medium text-brand">chansons</span>,{" "}

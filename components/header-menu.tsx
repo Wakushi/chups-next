@@ -17,7 +17,7 @@ export default function HeaderMenu({ user }: { user?: User }) {
   }
 
   return (
-    <div>
+    <div className="lg:hidden">
       <div className="relative z-10" onClick={toggleMenu}>
         {open ? <IoMdClose size={30} /> : <RxHamburgerMenu size={30} />}
       </div>

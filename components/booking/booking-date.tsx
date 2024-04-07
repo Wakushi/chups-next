@@ -6,7 +6,7 @@ export default function BookingDate({
   time: string
 }) {
   return (
-    <p className="text-sm font-extralight">
+    <p className="text-sm md:text-lg font-extralight">
       {date.toLocaleDateString("fr-FR", {
         weekday: "short",
         year: "numeric",

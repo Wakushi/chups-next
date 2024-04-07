@@ -15,13 +15,17 @@ export default function BookingPoster({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Image
-          src={image}
-          alt={title}
-          width={posterWidth ?? 100}
-          height={posterHeight ?? 100}
-          className="rounded"
-        />
+        <div className="w-[150px] md:w-[250px]">
+          <Image
+            src={image}
+            alt={title}
+            width={0}
+            height={0}
+            style={{ width: "100%", height: "auto" }}
+            sizes="100vw"
+            className="rounded"
+          />
+        </div>
       </DialogTrigger>
       <DialogContent className="max-h-[100dvh] rounded overflow-auto p-4">
         <div className="flex gap-4">

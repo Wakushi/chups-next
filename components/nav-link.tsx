@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import clsx from "clsx"
@@ -13,17 +14,17 @@ export default function Navlink({ title, href, onClick }: NavlinkProps) {
   const pathname = usePathname()
 
   return (
-    <li onClick={onClick}>
+    <li className="lg:mr-8" onClick={onClick}>
       <Link
         href={href}
         className={clsx(
-          `${playfairDisplay.className} text-[2rem] flex justify-between items-center`,
+          `${playfairDisplay.className} text-[2rem] lg:text-[1.5rem] uppercase flex justify-between items-center`,
           {
             "text-brand": pathname === href,
           }
         )}
       >
-        {title} <MdNavigateNext className="opacity-40" />
+        {title} <MdNavigateNext className="opacity-40 lg:hidden" />
       </Link>
     </li>
   )

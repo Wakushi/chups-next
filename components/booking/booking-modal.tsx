@@ -91,7 +91,7 @@ export default function BookingModal({ booking }: BookingModalProps) {
       }}
     >
       <DialogTrigger asChild>
-        <Button>Réserver</Button>
+        <Button className="md:w-full">Réserver</Button>
       </DialogTrigger>
       <DialogContent className="h-[100dvh] rounded overflow-auto p-4">
         <DialogContentElement />

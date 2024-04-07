@@ -75,6 +75,10 @@
   }
 }
 
+li {
+  list-style: none;
+}
+
 .show-frame {
   min-width: 250px;
   max-width: 250px;
