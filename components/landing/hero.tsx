@@ -6,7 +6,7 @@ import Copy from "../ui/copy"
 
 export default function Hero() {
   return (
-    <div className="p-4 flex items-center justify-center flex-col gap-1 w-auto min-h-[100vh] bg-hero-image bg-cover bg-center">
+    <div className="p-4 flex items-center justify-center flex-col gap-1 w-auto min-h-[100dvh] bg-hero-image bg-cover bg-center">
       <p className="text-center text-lg drop-shadow-3xl leading-[1.2]">
         Les Chup's vous présentent leur nouveau spectacle musical
       </p>

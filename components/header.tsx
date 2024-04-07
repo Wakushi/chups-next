@@ -15,7 +15,6 @@ export default async function Header() {
           src="/images/logo/chups_logo.png"
           width={32}
           height={32}
-          style={{ width: "auto", height: "auto" }}
           alt="Chups' logo"
         />
         <span className={`${neucha.className} text-2xl`}>LES CHUP'S</span>

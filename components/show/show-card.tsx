@@ -20,7 +20,7 @@ export default function ShowCard({ show }: { show: Show }) {
           />
         </div>
       </DialogTrigger>
-      <DialogContent className="min-h-[100vh] max-h-[100vh] rounded overflow-auto p-4">
+      <DialogContent className="min-h-[100dvh] max-h-[100dvh] rounded overflow-auto p-4">
         <div className="flex flex-col items-center gap-4 mt-6">
           <div className="flex flex-col items-center gap-2">
             <h2

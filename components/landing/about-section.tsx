@@ -3,8 +3,8 @@ import WaveSeparator from "../ui/wave-separator"
 
 export default function AboutSection() {
   return (
-    <div className="w-auto bg-about-image bg-cover bg-center min-h-[100vh] ">
-      <div className="bg-[#111111b0] min-h-[100vh] w-auto relative  flex items-center justify-center flex-col gap-2 px-4">
+    <div className="w-auto bg-about-image bg-cover bg-center min-h-[100dvh] ">
+      <div className="bg-[#111111b0] min-h-[100dvh] w-auto relative  flex items-center justify-center flex-col gap-2 px-4">
         <WaveSeparator />
         <div className="flex flex-col gap-2 mb-4">
           <h3

@@ -23,7 +23,7 @@ export default function HeaderMenu({ user }: { user?: User }) {
       </div>
       <div
         className={clsx(
-          "fixed top-0 left-0 min-w-full min-h-[100vh] bg-slate-950 flex px-8 py-20 transition-transform duration-300",
+          "fixed top-0 left-0 min-w-full min-h-[100dvh] bg-slate-950 flex px-8 py-20 transition-transform duration-300",
           {
             "transform translate-x-0": open,
             "transform -translate-x-full": !open,

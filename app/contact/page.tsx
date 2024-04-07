@@ -8,7 +8,7 @@ import { TbMessageCircleHeart } from "react-icons/tb"
 
 export default function ContactPage() {
   return (
-    <div className="py-20 px-4 flex flex-col gap-4 min-h-[100vh] bg-slate-900">
+    <div className="py-20 px-4 flex flex-col gap-4 min-h-[100dvh] bg-slate-900">
       <h1 className={`${playfairDisplay.className} text-3xl`}>Contact</h1>
       <ContactInfo />
       <h2

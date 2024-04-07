@@ -93,7 +93,7 @@ export default function BookingModal({ booking }: BookingModalProps) {
       <DialogTrigger asChild>
         <Button>Réserver</Button>
       </DialogTrigger>
-      <DialogContent className="h-[100vh] rounded overflow-auto p-4">
+      <DialogContent className="h-[100dvh] rounded overflow-auto p-4">
         <DialogContentElement />
       </DialogContent>
     </Dialog>

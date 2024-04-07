@@ -12,24 +12,13 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "../ui/button"
 import { Booking } from "@/lib/definitions"
+import clsx from "clsx"
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Nom trop court, 2 caractères minimum." }),
   email: z.string().email({ message: "Email invalide." }),
-  adultTickets: z
-    .string()
-    .regex(/^\d+$/, "Doit être un nombre entier.")
-    .transform((val) => parseInt(val, 10))
-    .refine((val) => !isNaN(val) && Number.isInteger(val) && val >= 1, {
-      message: "Au moins un ticket est requis pour réserver.",
-    }),
-  childTickets: z
-    .string()
-    .regex(/^\d+$/, "Doit être un nombre entier.")
-    .transform((val) => parseInt(val, 10))
-    .refine((val) => !isNaN(val) && Number.isInteger(val) && val >= 0, {
-      message: "Nombre invalide.",
-    }),
+  adultTickets: z.coerce.number(),
+  childTickets: z.coerce.number(),
 })
 
 interface BookingFormProps {
@@ -182,7 +171,12 @@ export default function BookingForm({
         <p className="text-sm text-center text-slate-500">
           * Champs obligatoires
         </p>
-        <Button type="submit" className="mt-4">
+        <Button
+          type="submit"
+          className={clsx("mt-4", {
+            "opacity-50": !bookingForm.formState.isValid,
+          })}
+        >
           Réserver
         </Button>
       </form>

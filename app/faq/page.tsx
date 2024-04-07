@@ -2,7 +2,7 @@ import { playfairDisplay } from "@/styles/fonts"
 
 export default function FaqPage() {
   return (
-    <div className="py-20 px-4 flex flex-col gap-4 min-h-[100vh]">
+    <div className="py-20 px-4 flex flex-col gap-4 min-h-[100dvh]">
       <h1 className={`${playfairDisplay.className} text-3xl`}>FAQ</h1>
       <h2 className="text-xl leading-tight	">Qui sont les Chup's ? </h2>
       <p className="font-extralight">
