@@ -176,6 +176,7 @@ export default function BookingForm({
           className={clsx("mt-4", {
             "opacity-50": !bookingForm.formState.isValid,
           })}
+          disabled={!bookingForm.formState.isValid}
         >
           Réserver
         </Button>

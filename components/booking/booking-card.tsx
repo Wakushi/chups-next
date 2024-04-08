@@ -13,7 +13,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
   const { date, location, locationUrl, time, title, image } = booking
 
   return (
-    <Card className="p-2 md:p-4 bg-slate-900 max-w-[360px] md:max-w-[500px]">
+    <Card className="p-2 md:p-4 bg-slate-900 w-full max-w-[360px] md:max-w-[500px]">
       <div className="flex gap-4">
         <BookingPoster title={title} image={image} />
         <div className="flex flex-col w-full px-2">

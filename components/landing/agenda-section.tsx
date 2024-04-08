@@ -7,7 +7,7 @@ export default async function AgendaSection() {
   const bookings = await fetchBookings()
 
   return (
-    <section className="py-20 px-4 flex justify-center items-center flex-col gap-2 md:gap-4 w-auto min-h-[100dvh]">
+    <section className="py-20 px-4 flex justify-center items-center flex-col gap-2 md:gap-4 w-auto min-h-[100vh]">
       <h2
         className={`${playfairDisplay.className} uppercase text-[2rem] md:text-[2.5rem] lg:text-[2.8rem] text-center leading-[0.9] my-6 drop-shadow-3xl`}
       >

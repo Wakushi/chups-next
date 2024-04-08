@@ -39,13 +39,13 @@ export default function BookingModal({ booking }: BookingModalProps) {
       )
     }
     return (
-      <>
+      <div className="flex flex-col gap-4">
         <DialogHeader>
           <DialogTitle className="text-[1.5rem]">
             Réserver vos places
           </DialogTitle>
         </DialogHeader>
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           <div>
             <BookingPoster
               title={title}
@@ -79,7 +79,7 @@ export default function BookingModal({ booking }: BookingModalProps) {
           setIsSuccess={setIsSuccess}
           setIsSubmitting={setIsSubmitting}
         />
-      </>
+      </div>
     )
   }
 
@@ -93,7 +93,7 @@ export default function BookingModal({ booking }: BookingModalProps) {
       <DialogTrigger asChild>
         <Button className="md:w-full">Réserver</Button>
       </DialogTrigger>
-      <DialogContent className="h-[100dvh] rounded overflow-auto p-4">
+      <DialogContent className="h-[100vh] rounded overflow-auto p-4">
         <DialogContentElement />
       </DialogContent>
     </Dialog>

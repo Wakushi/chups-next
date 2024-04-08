@@ -38,7 +38,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="py-20 md:py-[6rem] px-4 min-h-[100dvh] bg-slate-900">
+    <div className="py-20 md:py-[6rem] px-4 min-h-[100vh] bg-slate-900">
       <div className="max-w-[600px] flex flex-col gap-4 m-auto">
         <h1
           className={`${playfairDisplay.className} text-3xl md:text-[3rem] md:mb-4`}

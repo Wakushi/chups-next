@@ -27,7 +27,7 @@ export default function BookingPoster({
           />
         </div>
       </DialogTrigger>
-      <DialogContent className="max-h-[100dvh] rounded overflow-auto p-4">
+      <DialogContent className="max-h-[100vh] rounded overflow-auto p-4">
         <div className="flex gap-4">
           <Image
             src={image}

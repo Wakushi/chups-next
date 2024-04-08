@@ -2,7 +2,7 @@ import { playfairDisplay } from "@/styles/fonts"
 
 export default function FaqPage() {
   return (
-    <div className="py-20 px-4 flex flex-col gap-4 min-h-[100dvh] max-w-[600px] m-auto">
+    <div className="py-20 px-4 flex flex-col gap-4 min-h-[100vh] max-w-[600px] m-auto">
       <h1
         className={`${playfairDisplay.className} text-3xl md:text-[3rem] md:mb-2`}
       >
