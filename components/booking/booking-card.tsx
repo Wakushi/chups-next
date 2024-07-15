@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card"
-import { Booking } from "@/lib/definitions"
+import { Booking } from "@/lib/types/Booking"
 import BookingModal from "./booking-modal"
 import BookingPoster from "./booking-poster"
 import BookingDate from "./booking-date"
@@ -10,7 +10,7 @@ interface BookingCardProps {
 }
 
 export default function BookingCard({ booking }: BookingCardProps) {
-  const { date, location, locationUrl, time, title, image } = booking
+  const { date, location, city, locationUrl, time, title, image } = booking
 
   return (
     <Card className="p-2 md:p-4 bg-slate-900 w-full max-w-[360px] md:max-w-[500px]">
@@ -21,6 +21,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
             <span className="text-xl md:text-[1.8rem] font-bold">{title}</span>
             <BookingDate date={date} time={time} />
             <p className="text-sm md:text-xl">{location}</p>
+            <p className="text-sm md:text-xl">à {city}</p>
           </div>
           <div className="flex gap-2 justify-end">
             <BookingAccess locationurl={locationUrl} />

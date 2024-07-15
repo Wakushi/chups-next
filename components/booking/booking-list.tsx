@@ -1,4 +1,4 @@
-import { Booking } from "@/lib/definitions"
+import { Booking } from "@/lib/types/Booking"
 import BookingCard from "./booking-card"
 
 interface BookingListProps {

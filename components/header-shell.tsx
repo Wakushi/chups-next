@@ -22,9 +22,10 @@ export default function HeaderShell({
   return (
     <div
       className={clsx(
-        "p-3 flex items-center justify-between gap-2 w-full fixed bg-[#020817] z-10 shadow-2xl transition-all duration-300",
+        "p-3 flex items-center justify-between gap-2 w-full fixed bg-white bg-opacity-[0.02] shadow-sm backdrop-blur-sm  z-10 shadow-2xl transition-all duration-300",
         {
-          "bg-opacity-10": !isHeaderScrolled,
+          "bg-transparent shadow-none backdrop-blur-none bg-opacity-[0]":
+            !isHeaderScrolled,
         }
       )}
     >

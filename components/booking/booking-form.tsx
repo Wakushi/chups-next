@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "../ui/button"
-import { Booking } from "@/lib/definitions"
+import { Booking } from "@/lib/types/Booking"
 import clsx from "clsx"
 
 const formSchema = z.object({

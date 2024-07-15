@@ -7,7 +7,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from "../ui/button"
-import { Booking } from "@/lib/definitions"
+import { Booking } from "@/lib/types/Booking"
 import BookingForm from "./booking-form"
 import BookingPoster from "./booking-poster"
 import BookingDate from "./booking-date"
@@ -23,7 +23,8 @@ export default function BookingModal({ booking }: BookingModalProps) {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
 
-  const { location, title, image, date, time, adultPrice, childPrice } = booking
+  const { location, city, title, image, date, time, adultPrice, childPrice } =
+    booking
 
   const DialogContentElement = () => {
     if (isSubmitting) {
@@ -59,6 +60,7 @@ export default function BookingModal({ booking }: BookingModalProps) {
               <span className="text-xl font-bold">{title}</span>
               <BookingDate date={date} time={time} />
               <p className="text-sm">{location}</p>
+              <p className="text-sm">{city}</p>
               <BookingPricing adultPrice={adultPrice} childPrice={childPrice} />
             </div>
           </div>

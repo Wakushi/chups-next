@@ -1,11 +1,9 @@
 import { playfairDisplay } from "@/styles/fonts"
 import BookingList from "../booking/booking-list"
-import { fetchBookings } from "@/lib/data"
 import Link from "next/link"
+import { Booking } from "@/lib/types/Booking"
 
-export default async function AgendaSection() {
-  const bookings = await fetchBookings()
-
+export default function AgendaSection({ bookings }: { bookings: Booking[] }) {
   return (
     <section className="py-20 px-4 flex justify-center items-center flex-col gap-2 md:gap-4 w-auto min-h-[100vh]">
       <h2
