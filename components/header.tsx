@@ -3,12 +3,9 @@ import { neucha } from "../styles/fonts"
 import Link from "next/link"
 import HeaderMenu from "./header-menu"
 import { LogOutButton } from "./buttons"
-import { getLoggedUser } from "@/lib/auth"
 import Navlink from "./nav-link"
 
 export default async function Header() {
-  const user = await getLoggedUser()
-
   return (
     <>
       <Link href="/" className="flex items-center gap-2">
@@ -32,13 +29,11 @@ export default async function Header() {
           <Navlink title="Spectacles" href="/shows" />
           <Navlink title="Contact" href="/contact" />
           <Navlink title="FAQ" href="/faq" />
-          {!user && <Navlink title="Login" href="/login" />}
-          {user?.role === "admin" && (
-            <Navlink title="Admin" href="/admin/dashboard" />
-          )}
+          <Navlink title="Login" href="/login" />
+          <Navlink title="Admin" href="/admin/dashboard" />
         </div>
         <LogOutButton />
-        <HeaderMenu user={user} />
+        <HeaderMenu />
       </div>
     </>
   )

@@ -5,14 +5,11 @@ import { MdAlternateEmail, MdKey } from "react-icons/md"
 import { FaCircleExclamation } from "react-icons/fa6"
 import { Button } from "../ui/button"
 import { FaArrowAltCircleRight } from "react-icons/fa"
-import { authenticate } from "@/lib/actions"
 
 export default function LoginForm() {
-  const [errorMessage, dispatch] = useFormState(authenticate, undefined)
-
   return (
     <>
-      <form action={dispatch} className="space-y-3 h-full">
+      <form className="space-y-3 h-full">
         <div className="flex-1 rounded-lg px-6 pb-4 pt-8 h-full">
           <h1 className={`${playfairDisplay.className} mb-3 text-2xl`}>
             Please log in to continue.
@@ -64,7 +61,7 @@ export default function LoginForm() {
             aria-live="polite"
             aria-atomic="true"
           >
-            {errorMessage && (
+            {false && (
               <>
                 <FaCircleExclamation className="h-5 w-5 text-red-500" />
                 <p className="text-sm text-red-500">

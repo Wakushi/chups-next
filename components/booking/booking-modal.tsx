@@ -36,6 +36,17 @@ export default function BookingModal({ booking }: BookingModalProps) {
           <p className="text-3xl p-4 text-center font-bold">
             Merci pour votre réservation !
           </p>
+          <p className="px-4 text-center text-lg">
+            Un email de confirmation vous a été envoyé.
+          </p>
+          <p className="px-4 text-center text-lg">
+            Veuillez cliquer sur le lien dans l'email afin de finaliser votre
+            réservation.
+          </p>
+          <p className="px-4 text-center text-sm">
+            ( Nous vous recommendons également de vérifier le dossier spam de
+            votre boîte mail si vous ne trouvez pas l'email. )
+          </p>
         </div>
       )
     }
@@ -95,7 +106,7 @@ export default function BookingModal({ booking }: BookingModalProps) {
       <DialogTrigger asChild>
         <Button className="md:w-full">Réserver</Button>
       </DialogTrigger>
-      <DialogContent className="h-[100dvh] rounded overflow-auto p-4">
+      <DialogContent className="h-[100dvh] md:max-h-[80%] rounded overflow-auto p-4">
         <DialogContentElement />
       </DialogContent>
     </Dialog>

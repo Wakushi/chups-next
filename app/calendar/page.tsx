@@ -1,5 +1,5 @@
 import BookingList from "@/components/booking/booking-list"
-import { fetchBookings } from "@/lib/data"
+import { fetchBookings } from "@/lib/data/bookings-data"
 import { playfairDisplay } from "@/styles/fonts"
 
 export default async function CalendarPage() {

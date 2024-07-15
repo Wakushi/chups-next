@@ -1,31 +1,7 @@
 "use server"
-import { revalidatePath } from "next/cache"
-import { redirect } from "next/navigation"
-import { AuthError } from "next-auth"
-import { signIn } from "./auth"
-import { sendMail } from "./mailer"
-
-export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData
-) {
-  try {
-    await signIn("credentials", formData)
-  } catch (error) {
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case "CredentialsSignin":
-          return "Invalid credentials."
-        default:
-          return "Something went wrong."
-      }
-    }
-    throw error
-  } finally {
-    revalidatePath("/admin/dashboard")
-    redirect("/admin/dashboard")
-  }
-}
+import { getBookingTemplate, sendMail } from "./mailer"
+import { CONTACT_EMAIL } from "./constants"
+import { Booking } from "./types/Booking"
 
 export async function sendContactMessage(body: any) {
   const { email, message, name, subject } = body
@@ -43,7 +19,7 @@ export async function sendContactMessage(body: any) {
   `
 
     await sendMail(
-      "chupscontact@gmail.com",
+      CONTACT_EMAIL,
       `Formulaire de contact: ${subject}`,
       emailContent
     )
@@ -55,9 +31,19 @@ export async function sendContactMessage(body: any) {
   }
 }
 
-export async function bookShow(body: any) {
-  const { email, name, adultTickets, childTickets, show } = body
-
+export async function bookShow({
+  email,
+  name,
+  adultTickets,
+  childTickets,
+  show,
+}: {
+  email: string
+  name: string
+  adultTickets: number
+  childTickets: number
+  show: Booking
+}) {
   try {
     if (!name || !email || !adultTickets) {
       throw new Error("Missing required fields")
@@ -86,9 +72,9 @@ export async function bookShow(body: any) {
       `
 
     await sendMail(
-      "chupscontact@gmail.com",
-      `Réservation: ${show.title} - ${name}`,
-      emailContent
+      email,
+      `Confirmation: Réservation pour le spectacle "${show.title}" du ${formattedDate} à ${show.city}`,
+      getBookingTemplate({ show, formattedDate, totalPrice })
     )
 
     return { success: true }
