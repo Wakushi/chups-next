@@ -5,8 +5,8 @@ import { useState } from "react"
 import { IoMdClose } from "react-icons/io"
 import { RxHamburgerMenu } from "react-icons/rx"
 import Navlink from "./nav-link"
-import { User } from "@/lib/definitions"
 import { Separator } from "./ui/separator"
+import { User } from "@/lib/types/User"
 
 export default function HeaderMenu({ user }: { user?: User }) {
   const [open, setOpen] = useState(false)

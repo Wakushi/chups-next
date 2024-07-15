@@ -1,4 +1,4 @@
-import { Show } from "@/lib/definitions"
+import { Show } from "@/lib/types/Show"
 import Image from "next/image"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { playfairDisplay } from "@/styles/fonts"

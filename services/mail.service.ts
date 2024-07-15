@@ -1,7 +1,7 @@
+import { CONTACT_EMAIL } from "@/lib/constants"
+import { Booking } from "@/lib/types/Booking"
 import nodemailer from "nodemailer"
-import { CONTACT_EMAIL } from "./constants"
 import Mail from "nodemailer/lib/mailer"
-import { Booking } from "./types/Booking"
 
 const transporter = nodemailer.createTransport({
   host: "smtp.sendgrid.net",

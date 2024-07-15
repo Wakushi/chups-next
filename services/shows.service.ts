@@ -1,5 +1,5 @@
-import { Show } from "../definitions"
-import { db } from "../../firebase"
+import { Show } from "@/lib/types/Show"
+import { db } from "../firebase"
 import { collection, getDocs } from "firebase/firestore"
 
 export async function fetchShows() {

@@ -1,6 +1,6 @@
-import { db } from "../../firebase"
+import { Booking } from "@/lib/types/Booking"
+import { db } from "../firebase"
 import { collection, getDocs } from "firebase/firestore"
-import { Booking } from "../types/Booking"
 
 export async function fetchBookings() {
   const bookings: Booking[] = []

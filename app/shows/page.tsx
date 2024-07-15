@@ -1,5 +1,5 @@
 import ShowList from "@/components/show/shows-list"
-import { fetchShows } from "@/lib/data/shows-data"
+import { fetchShows } from "@/services/shows.service"
 import { playfairDisplay } from "@/styles/fonts"
 
 export default async function ShowsPage() {

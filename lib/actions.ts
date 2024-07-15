@@ -1,5 +1,5 @@
 "use server"
-import { getBookingTemplate, sendMail } from "./mailer"
+import { getBookingTemplate, sendMail } from "@/services/mail.service"
 import { CONTACT_EMAIL } from "./constants"
 import { Booking } from "./types/Booking"
 
