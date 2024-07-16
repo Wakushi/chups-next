@@ -1,4 +1,4 @@
-import { bookShow } from "@/lib/actions"
+import { bookShow } from "@/services/bookings.service"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(req: NextRequest, res: NextResponse) {

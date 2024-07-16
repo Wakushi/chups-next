@@ -3,13 +3,16 @@ import { playfairDisplay } from "@/styles/fonts"
 import { MdAlternateEmail, MdKey } from "react-icons/md"
 import { Button } from "../ui/button"
 import { FaArrowAltCircleRight } from "react-icons/fa"
-import { FormEvent, useState } from "react"
+import { FormEvent, useContext, useState } from "react"
 import { useToast } from "../ui/use-toast"
-import LoaderSmall from "../ui/loader-small/loader-small"
 import { useRouter } from "next/navigation"
+import { STORAGE_ACCESS_TOKEN } from "@/lib/constants"
+import { UserContext } from "@/providers/UserContext"
+import LoaderSmall from "../ui/loader-small/loader-small"
 
 export default function LoginForm() {
   const { toast } = useToast()
+  const { setUser } = useContext(UserContext)
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -21,7 +24,7 @@ export default function LoginForm() {
     const { email, password } = Object.fromEntries(formData.entries())
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/api/auth/signin` ?? "",
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/signin` ?? "",
       {
         method: "POST",
         headers: {
@@ -49,8 +52,9 @@ export default function LoginForm() {
       return
     }
 
-    const { token } = await response.json()
-    localStorage.setItem("access_token", token)
+    const { token, user } = await response.json()
+    localStorage.setItem(STORAGE_ACCESS_TOKEN, token)
+    setUser(user)
     router.push("/admin/dashboard")
     setLoading(false)
   }

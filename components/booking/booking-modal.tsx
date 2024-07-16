@@ -1,11 +1,5 @@
 "use client"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "../ui/button"
 import { Booking } from "@/lib/types/Booking"
 import BookingForm from "./booking-form"
@@ -51,12 +45,7 @@ export default function BookingModal({ booking }: BookingModalProps) {
       )
     }
     return (
-      <div className="flex flex-col gap-4">
-        <DialogHeader>
-          <DialogTitle className="text-[1.5rem]">
-            Réserver vos places
-          </DialogTitle>
-        </DialogHeader>
+      <div className="flex flex-col gap-4 pt-6">
         <div className="flex gap-2">
           <div>
             <BookingPoster

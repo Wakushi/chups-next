@@ -2,6 +2,13 @@ import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import { User } from "./types/User"
 
+type JWTPayload = {
+  email: string
+  exp: number
+  iat: number
+  userType: "admin" | "user"
+}
+
 type CryptoOptions = {
   jwtSecret: string
   jwtTokenDuration: string
@@ -49,4 +56,9 @@ function createUserJwtToken(
   )
 }
 
-export { checkPassword, createUserJwtToken, hashPassword }
+function verifyJWT(token: string): JWTPayload {
+  const payload = jwt.verify(token, CRYPTO_CONFIG.jwtSecret) as JWTPayload
+  return payload
+}
+
+export { checkPassword, createUserJwtToken, hashPassword, verifyJWT }

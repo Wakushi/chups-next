@@ -1,11 +1,16 @@
+"use client"
 import Image from "next/image"
 import { neucha } from "../styles/fonts"
 import Link from "next/link"
 import HeaderMenu from "./header-menu"
-import { LogOutButton } from "./buttons"
 import Navlink from "./nav-link"
+import { useContext } from "react"
+import { UserContext } from "@/providers/UserContext"
+import { User } from "@/lib/types/User"
 
-export default async function Header() {
+export default function Header() {
+  const { user } = useContext(UserContext)
+
   return (
     <>
       <Link href="/" className="flex items-center gap-2">
@@ -19,22 +24,45 @@ export default async function Header() {
             sizes="100vw"
           />
         </div>
-        <div className={`${neucha.className} text-2xl md:text-3xl`}>
+        <div
+          className={`${neucha.className} text-2xl md:text-3xl leading-none`}
+        >
           LES CHUP'S
         </div>
       </Link>
-      <div className="flex items-center gap-2">
-        <div className="hidden lg:flex">
-          <Navlink title="Calendrier" href="/calendar" />
-          <Navlink title="Spectacles" href="/shows" />
-          <Navlink title="Contact" href="/contact" />
-          <Navlink title="FAQ" href="/faq" />
-          <Navlink title="Login" href="/login" />
-          <Navlink title="Admin" href="/admin/dashboard" />
-        </div>
-        <LogOutButton />
-        <HeaderMenu />
-      </div>
+      {user && user.role === "admin" ? (
+        <AdminNavigation user={user} />
+      ) : (
+        <GuestNavigation />
+      )}
     </>
+  )
+}
+
+function GuestNavigation() {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="hidden lg:flex">
+        <Navlink title="Calendrier" href="/calendar" />
+        <Navlink title="Spectacles" href="/shows" />
+        <Navlink title="Contact" href="/contact" />
+        <Navlink title="FAQ" href="/faq" />
+        <Navlink title="Login" href="/login" />
+        <Navlink title="Admin" href="/admin/dashboard" />
+      </div>
+      <HeaderMenu />
+    </div>
+  )
+}
+
+function AdminNavigation({ user }: { user: User }) {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="hidden lg:flex">
+        <Navlink title="Admin" href="/admin/dashboard" />
+        <Navlink title="Calendrier" href="/calendar" />
+      </div>
+      <HeaderMenu user={user} />
+    </div>
   )
 }

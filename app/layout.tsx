@@ -3,6 +3,7 @@ import Header from "../components/header"
 import { inter } from "../styles/fonts"
 import { Toaster } from "@/components/ui/toaster"
 import HeaderShell from "@/components/header-shell"
+import Providers from "@/providers/providers"
 
 export default function RootLayout({
   children,
@@ -64,8 +65,10 @@ export default function RootLayout({
         className={`${inter.className} dark`}
         suppressHydrationWarning={true}
       >
-        <HeaderShell headerContent={<Header />} />
-        {children}
+        <Providers>
+          <HeaderShell headerContent={<Header />} />
+          {children}
+        </Providers>
         <Toaster />
       </body>
     </html>

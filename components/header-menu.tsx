@@ -1,19 +1,27 @@
 "use client"
 
 import clsx from "clsx"
-import { useState } from "react"
-import { IoMdClose } from "react-icons/io"
-import { RxHamburgerMenu } from "react-icons/rx"
 import Navlink from "./nav-link"
+import { useContext, useState } from "react"
+import { IoIosLogOut, IoMdClose } from "react-icons/io"
+import { RxHamburgerMenu } from "react-icons/rx"
 import { Separator } from "./ui/separator"
 import { User } from "@/lib/types/User"
+import { UserContext } from "@/providers/UserContext"
+import { playfairDisplay } from "@/styles/fonts"
 
 export default function HeaderMenu({ user }: { user?: User }) {
+  const { logOut } = useContext(UserContext)
   const [open, setOpen] = useState(false)
 
   function toggleMenu() {
     setOpen((prevState) => !prevState)
     document.body.style.overflow = open ? "auto" : "hidden"
+  }
+
+  function onLogOut() {
+    toggleMenu()
+    logOut()
   }
 
   return (
@@ -32,17 +40,25 @@ export default function HeaderMenu({ user }: { user?: User }) {
       >
         <nav className="w-full">
           <ul className="flex flex-col justify-center gap-6">
-            <Navlink title="Accueil" href="/" onClick={toggleMenu} />
-            <Separator />
-            <Navlink title="Calendrier" href="/calendar" onClick={toggleMenu} />
-            <Separator />
-            <Navlink title="Spectacles" href="/shows" onClick={toggleMenu} />
-            <Separator />
-            <Navlink title="Contact" href="/contact" onClick={toggleMenu} />
-            <Separator />
-            <Navlink title="FAQ" href="/faq" onClick={toggleMenu} />
             {!user && (
               <>
+                <Navlink title="Accueil" href="/" onClick={toggleMenu} />
+                <Separator />
+                <Navlink
+                  title="Calendrier"
+                  href="/calendar"
+                  onClick={toggleMenu}
+                />
+                <Separator />
+                <Navlink
+                  title="Spectacles"
+                  href="/shows"
+                  onClick={toggleMenu}
+                />
+                <Separator />
+                <Navlink title="Contact" href="/contact" onClick={toggleMenu} />
+                <Separator />
+                <Navlink title="FAQ" href="/faq" onClick={toggleMenu} />
                 <Separator />
                 <Navlink title="Login" href="/login" onClick={toggleMenu} />
               </>
@@ -55,11 +71,27 @@ export default function HeaderMenu({ user }: { user?: User }) {
                   href="/admin/dashboard"
                   onClick={toggleMenu}
                 />
+                <Separator />
+                <LogoutButton logOut={onLogOut} />
               </>
             )}
           </ul>
         </nav>
       </div>
     </div>
+  )
+}
+
+function LogoutButton({ logOut }: { logOut: () => void }) {
+  return (
+    <li
+      className={clsx(
+        `${playfairDisplay.className} text-[2rem] lg:text-[1.5rem] uppercase flex justify-between items-center`
+      )}
+      onClick={logOut}
+    >
+      Déconnexion
+      <IoIosLogOut className="opacity-40" />
+    </li>
   )
 }

@@ -46,7 +46,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     const token = createUserJwtToken(user)
 
-    return NextResponse.json({ token })
+    return NextResponse.json({ token, user })
   } catch (error) {
     console.log(error)
     return NextResponse.json({ error: error })
