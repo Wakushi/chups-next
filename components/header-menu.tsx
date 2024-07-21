@@ -3,12 +3,12 @@
 import clsx from "clsx"
 import Navlink from "./nav-link"
 import { useContext, useState } from "react"
-import { IoIosLogOut, IoMdClose } from "react-icons/io"
+import { IoMdClose } from "react-icons/io"
 import { RxHamburgerMenu } from "react-icons/rx"
 import { Separator } from "./ui/separator"
 import { User } from "@/lib/types/User"
 import { UserContext } from "@/providers/UserContext"
-import { playfairDisplay } from "@/styles/fonts"
+import { LogoutButton } from "./buttons"
 
 export default function HeaderMenu({ user }: { user?: User }) {
   const { logOut } = useContext(UserContext)
@@ -79,19 +79,5 @@ export default function HeaderMenu({ user }: { user?: User }) {
         </nav>
       </div>
     </div>
-  )
-}
-
-function LogoutButton({ logOut }: { logOut: () => void }) {
-  return (
-    <li
-      className={clsx(
-        `${playfairDisplay.className} text-[2rem] lg:text-[1.5rem] uppercase flex justify-between items-center`
-      )}
-      onClick={logOut}
-    >
-      Déconnexion
-      <IoIosLogOut className="opacity-40" />
-    </li>
   )
 }

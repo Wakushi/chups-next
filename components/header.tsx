@@ -7,6 +7,7 @@ import Navlink from "./nav-link"
 import { useContext } from "react"
 import { UserContext } from "@/providers/UserContext"
 import { User } from "@/lib/types/User"
+import { LogoutButton } from "./buttons"
 
 export default function Header() {
   const { user } = useContext(UserContext)
@@ -48,7 +49,6 @@ function GuestNavigation() {
         <Navlink title="Contact" href="/contact" />
         <Navlink title="FAQ" href="/faq" />
         <Navlink title="Login" href="/login" />
-        <Navlink title="Admin" href="/admin/dashboard" />
       </div>
       <HeaderMenu />
     </div>
@@ -56,11 +56,12 @@ function GuestNavigation() {
 }
 
 function AdminNavigation({ user }: { user: User }) {
+  const { logOut } = useContext(UserContext)
   return (
     <div className="flex items-center gap-2">
       <div className="hidden lg:flex">
         <Navlink title="Admin" href="/admin/dashboard" />
-        <Navlink title="Calendrier" href="/calendar" />
+        <LogoutButton logOut={logOut} />
       </div>
       <HeaderMenu user={user} />
     </div>

@@ -1,4 +1,6 @@
+import { playfairDisplay } from "@/styles/fonts"
 import Link from "next/link"
+import { IoIosLogOut } from "react-icons/io"
 
 function BookButton() {
   return (
@@ -14,4 +16,16 @@ function BookButton() {
   )
 }
 
-export { BookButton }
+function LogoutButton({ logOut }: { logOut: () => void }) {
+  return (
+    <li
+      className={`${playfairDisplay.className} text-[2rem] lg:text-[1.5rem] uppercase flex justify-between items-center gap-2`}
+      onClick={logOut}
+    >
+      <span>Déconnexion</span>
+      <IoIosLogOut className="opacity-40" />
+    </li>
+  )
+}
+
+export { BookButton, LogoutButton }
