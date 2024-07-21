@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from "clsx"
+import { Timestamp } from "firebase/firestore"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -15,4 +16,13 @@ export function toReadableDate(date: Date): string {
 
   const formattedDate = date.toLocaleDateString("fr-FR", options)
   return formattedDate.charAt(0).toUpperCase() + formattedDate.substring(1)
+}
+
+export function timestampToReadableDate(timestamp: Timestamp): string {
+  const date = new Timestamp(timestamp.seconds, timestamp.nanoseconds)
+  return date.toDate().toLocaleDateString("fr-FR", {
+    year: "2-digit",
+    month: "numeric",
+    day: "numeric",
+  })
 }

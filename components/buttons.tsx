@@ -19,7 +19,7 @@ function BookButton() {
 function LogoutButton({ logOut }: { logOut: () => void }) {
   return (
     <li
-      className={`${playfairDisplay.className} text-[2rem] lg:text-[1.5rem] uppercase flex justify-between items-center gap-2`}
+      className={`${playfairDisplay.className} text-[2rem] lg:text-[1.5rem] uppercase flex justify-between items-center gap-2 cursor-pointer`}
       onClick={logOut}
     >
       <span>Déconnexion</span>

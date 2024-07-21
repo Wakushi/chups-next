@@ -38,7 +38,7 @@ export default function UserContextProvider(props: UserContextProviderProps) {
     if (!token) return
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/signin-with-token` ?? "",
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/signin-with-token`,
       {
         method: "POST",
         headers: {

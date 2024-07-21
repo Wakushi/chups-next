@@ -1,11 +1,24 @@
 import { Booking } from "@/lib/types/Booking"
 import { db } from "../firebase"
-import { collection, getDocs } from "firebase/firestore"
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  Timestamp,
+} from "firebase/firestore"
 import { getBookingTemplate, sendMail } from "./mail.service"
+import { UserBooking, UserBookingStatus } from "@/lib/types/UserBooking"
 
-export async function fetchBookings() {
+const BOOKING_COLLECTION = "bookings"
+const USER_BOOKING_COLLECTION = "user-bookings"
+
+export async function fetchBookings(): Promise<Booking[]> {
   const bookings: Booking[] = []
-  const querySnapshot = await getDocs(collection(db, "bookings"))
+  const querySnapshot = await getDocs(collection(db, BOOKING_COLLECTION))
   querySnapshot.forEach((doc) => {
     bookings.push({
       id: doc.id,
@@ -28,7 +41,7 @@ export async function bookShow({
   adultTickets: number
   childTickets: number
   show: Booking
-}) {
+}): Promise<{ success: boolean }> {
   try {
     if (!name || !email || !adultTickets) {
       throw new Error("Missing required fields")
@@ -45,15 +58,79 @@ export async function bookShow({
     const showDate = new Date(show.date)
     const formattedDate = showDate.toLocaleDateString("fr-FR", dateOptions)
 
-    await sendMail(
+    // await sendMail(
+    //   email,
+    //   `Confirmation: Réservation pour le spectacle "${show.title}" du ${formattedDate} à ${show.city}`,
+    //   getBookingTemplate({ show, formattedDate, totalPrice })
+    // )
+
+    await createUserBooking({
       email,
-      `Confirmation: Réservation pour le spectacle "${show.title}" du ${formattedDate} à ${show.city}`,
-      getBookingTemplate({ show, formattedDate, totalPrice })
-    )
+      name,
+      adultTickets,
+      childTickets,
+      show,
+      totalPrice,
+      date: Timestamp.fromDate(new Date()),
+      status: UserBookingStatus.PENDING,
+    })
 
     return { success: true }
   } catch (error) {
     console.log(error)
+    return { success: false }
+  }
+}
+
+export async function fetchUserBookings(): Promise<UserBooking[]> {
+  const userBookings: UserBooking[] = []
+  const querySnapshot = await getDocs(collection(db, USER_BOOKING_COLLECTION))
+  querySnapshot.forEach((doc) => {
+    userBookings.push({
+      id: doc.id,
+      ...doc.data(),
+    } as UserBooking)
+  })
+  return userBookings.sort((a, b) => a.date.seconds - b.date.seconds)
+}
+
+export async function createUserBooking(
+  userBooking: Omit<UserBooking, "id">
+): Promise<void> {
+  try {
+    await addDoc(collection(db, USER_BOOKING_COLLECTION), userBooking)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function updateUserBooking(
+  userBooking: UserBooking
+): Promise<{ success: boolean; data?: UserBooking; error?: any }> {
+  try {
+    const docRef = doc(db, USER_BOOKING_COLLECTION, userBooking.id)
+    await setDoc(docRef, { ...userBooking })
+
+    const updatedDoc = await getDoc(docRef)
+    if (updatedDoc.exists()) {
+      return { success: true, data: updatedDoc.data() as UserBooking }
+    } else {
+      throw new Error("Document not found after update.")
+    }
+  } catch (error) {
+    console.error(error)
+    return { success: false, error }
+  }
+}
+
+export async function deleteUserBooking(
+  userBookingId: string
+): Promise<{ success: boolean; error?: any }> {
+  try {
+    await deleteDoc(doc(db, USER_BOOKING_COLLECTION, userBookingId))
+    return { success: true }
+  } catch (error) {
+    console.error(error)
     return { success: false }
   }
 }

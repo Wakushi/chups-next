@@ -65,10 +65,15 @@ export default function HeaderMenu({ user }: { user?: User }) {
             )}
             {user?.role === "admin" && (
               <>
+                <Navlink
+                  title="Réservations"
+                  href="/admin/user-bookings"
+                  onClick={toggleMenu}
+                />
                 <Separator />
                 <Navlink
-                  title="Admin"
-                  href="/admin/dashboard"
+                  title="Calendrier"
+                  href="/calendar"
                   onClick={toggleMenu}
                 />
                 <Separator />

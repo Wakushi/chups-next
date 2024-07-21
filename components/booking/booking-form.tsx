@@ -54,7 +54,7 @@ export default function BookingForm({
         show: booking,
       }
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/booking` ?? "",
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/booking`,
         {
           method: "POST",
           headers: {

@@ -24,7 +24,7 @@ export default function LoginForm() {
     const { email, password } = Object.fromEntries(formData.entries())
 
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/signin` ?? "",
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/signin`,
       {
         method: "POST",
         headers: {
