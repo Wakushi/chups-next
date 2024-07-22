@@ -55,7 +55,7 @@ export default function LoginForm() {
     const { token, user } = await response.json()
     localStorage.setItem(STORAGE_ACCESS_TOKEN, token)
     setUser(user)
-    router.push("/admin/dashboard")
+    router.push("/admin/user-bookings")
     setLoading(false)
   }
 

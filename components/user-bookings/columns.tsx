@@ -40,6 +40,7 @@ import { FaInfoCircle, FaTrash } from "react-icons/fa"
 import { Checkbox } from "../ui/checkbox"
 import { Booking } from "@/lib/types/Booking"
 import BookingPoster from "../booking/booking-poster"
+import { Separator } from "../ui/separator"
 
 export const columns: ColumnDef<UserBooking>[] = [
   {
@@ -80,7 +81,7 @@ export const columns: ColumnDef<UserBooking>[] = [
     cell: ({ row }) => {
       const name: string = row.getValue("name")
       return (
-        <div className="text-left font-medium flex items-center gap-2">
+        <div className="pl-4 font-medium flex items-center gap-2">
           <span>{name}</span>
           <Copy contentToCopy={name} />
         </div>
@@ -103,7 +104,7 @@ export const columns: ColumnDef<UserBooking>[] = [
     cell: ({ row }) => {
       const email: string = row.getValue("email")
       return (
-        <div className="text-left font-medium flex items-center gap-2">
+        <div className="pl-4 font-medium flex items-center gap-2">
           <span>{email}</span>
           <Copy contentToCopy={email} />
         </div>
@@ -112,13 +113,13 @@ export const columns: ColumnDef<UserBooking>[] = [
   },
   {
     accessorKey: "show",
-    header: () => <div className="text-left">Date spectacle</div>,
+    header: () => <div className="pl-4">Date spectacle</div>,
     cell: ({ row }) => {
       const show = row.getValue("show") as Booking
       show.date = new Date(show.date)
       const { title, image } = show
       return (
-        <div className="text-left font-medium flex items-center gap-2">
+        <div className="pl-4 font-medium flex items-center gap-2">
           <span>{toReadableDate(show.date, "short")}</span>
 
           <HoverCard>
@@ -149,7 +150,7 @@ export const columns: ColumnDef<UserBooking>[] = [
     cell: ({ row }) => {
       const adultTickets: string = row.getValue("adultTickets")
       return (
-        <div className="text-left font-medium flex items-center gap-2">
+        <div className="justify-center font-medium flex items-center gap-2">
           <span>{adultTickets}</span>
         </div>
       )
@@ -171,7 +172,7 @@ export const columns: ColumnDef<UserBooking>[] = [
     cell: ({ row }) => {
       const childTickets: string = row.getValue("childTickets")
       return (
-        <div className="text-left font-medium flex items-center gap-2">
+        <div className="justify-center font-medium flex items-center gap-2">
           <span>{childTickets}</span>
         </div>
       )
@@ -193,7 +194,7 @@ export const columns: ColumnDef<UserBooking>[] = [
     cell: ({ row }) => {
       const totalPrice: string = row.getValue("totalPrice")
       return (
-        <div className="text-left font-medium flex items-center gap-2">
+        <div className="justify-center font-medium flex items-center gap-2">
           <span>
             {totalPrice}
             <span className="opacity-60">€</span>{" "}
@@ -218,7 +219,7 @@ export const columns: ColumnDef<UserBooking>[] = [
     cell: ({ row }) => {
       const date: Timestamp = row.getValue("date")
       return (
-        <div className="text-left font-medium flex items-center gap-2">
+        <div className="pl-4 font-medium flex items-center gap-2">
           <span>{timestampToReadableDate(date)}</span>
         </div>
       )
@@ -226,11 +227,11 @@ export const columns: ColumnDef<UserBooking>[] = [
   },
   {
     accessorKey: "status",
-    header: () => <div className="text-left">Statut</div>,
+    header: () => <div className="pl-4">Statut</div>,
     cell: ({ row }) => {
       const status: UserBookingStatus = row.getValue("status")
       return (
-        <div className="text-left font-medium flex items-center gap-2">
+        <div className="pl-4 font-medium flex items-center gap-2">
           <span>{UserBookingStatusLabel[status]}</span>
           <div
             className={clsx("w-2 h-2 rounded-full", {
@@ -318,7 +319,7 @@ export const columns: ColumnDef<UserBooking>[] = [
             >
               {userBooking.status === UserBookingStatus.DONE && (
                 <DropdownMenuItem
-                  className="cursor-pointer"
+                  className="cursor-pointer p-2"
                   onClick={() => updateStatus(UserBookingStatus.PENDING)}
                 >
                   Marquer comme "À traiter"
@@ -326,15 +327,16 @@ export const columns: ColumnDef<UserBooking>[] = [
               )}
               {userBooking.status === UserBookingStatus.PENDING && (
                 <DropdownMenuItem
-                  className="cursor-pointer"
+                  className="cursor-pointer p-2"
                   onClick={() => updateStatus(UserBookingStatus.DONE)}
                 >
                   Marquer comme "Traitée"
                 </DropdownMenuItem>
               )}
+              <Separator />
               <AlertDialogTrigger asChild>
                 <DropdownMenuItem
-                  className="text-red-600 cursor-pointer"
+                  className="text-red-600 cursor-pointer p-2"
                   onSelect={(event) => {
                     event.preventDefault()
                     setIsDeleteDialogOpen(true)

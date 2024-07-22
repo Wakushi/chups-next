@@ -91,6 +91,10 @@ li {
   cursor: pointer;
 }
 
+.fade-in-top {
+  animation: fade-in-top 500ms ease-in-out forwards;
+}
+
 @keyframes fade-in-zoom {
   0% {
     opacity: 0;
@@ -99,5 +103,16 @@ li {
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes fade-in-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }

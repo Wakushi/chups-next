@@ -10,7 +10,7 @@ import { User } from "@/lib/types/User"
 import { LogoutButton } from "./buttons"
 
 export default function Header() {
-  const { user } = useContext(UserContext)
+  const { user, loadingUser } = useContext(UserContext)
 
   return (
     <>
@@ -31,10 +31,14 @@ export default function Header() {
           LES CHUP'S
         </div>
       </Link>
-      {user && user.role === "admin" ? (
-        <AdminNavigation user={user} />
-      ) : (
-        <GuestNavigation />
+      {!loadingUser && (
+        <div className="flex fade-in-top">
+          {user && user.role === "admin" ? (
+            <AdminNavigation user={user} />
+          ) : (
+            <GuestNavigation />
+          )}
+        </div>
       )}
     </>
   )

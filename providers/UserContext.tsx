@@ -10,6 +10,7 @@ interface UserContextProviderProps {
 
 interface UserContextProps {
   user: User | null
+  loadingUser: boolean
   setUser: (user: User) => void
   logOut: () => void
   loginWithToken: () => Promise<void>
@@ -17,6 +18,7 @@ interface UserContextProps {
 
 const UserContext = createContext<UserContextProps>({
   user: null,
+  loadingUser: true,
   setUser: (user: User) => {},
   logOut: () => {},
   loginWithToken: () => {
@@ -27,29 +29,37 @@ const UserContext = createContext<UserContextProps>({
 export default function UserContextProvider(props: UserContextProviderProps) {
   const router = useRouter()
   const [user, setUser] = useState<User | null>(null)
+  const [loadingUser, setLoadingUser] = useState<boolean>(true)
 
   useEffect(() => {
     loginWithToken()
   }, [])
 
   async function loginWithToken() {
-    const token = localStorage.getItem(STORAGE_ACCESS_TOKEN)
+    setLoadingUser(true)
+    try {
+      const token = localStorage.getItem(STORAGE_ACCESS_TOKEN)
 
-    if (!token) return
+      if (!token) return
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/signin-with-token`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token: token }),
-      }
-    )
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/signin-with-token`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token: token }),
+        }
+      )
 
-    const user: User = await response.json()
-    setUser(user)
+      const user: User = await response.json()
+      setUser(user)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setLoadingUser(false)
+    }
   }
 
   function logOut(): void {
@@ -60,6 +70,7 @@ export default function UserContextProvider(props: UserContextProviderProps) {
 
   const context: UserContextProps = {
     user,
+    loadingUser,
     setUser,
     logOut,
     loginWithToken,
