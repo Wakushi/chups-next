@@ -24,19 +24,59 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
 import { Button } from "../ui/button"
-import { MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import LoaderSmall from "../ui/loader-small/loader-small"
 import { Timestamp } from "firebase/firestore"
-import { timestampToReadableDate } from "@/lib/utils"
-import { FaTrash } from "react-icons/fa"
+import { timestampToReadableDate, toReadableDate } from "@/lib/utils"
+import { FaInfoCircle, FaTrash } from "react-icons/fa"
+import { Checkbox } from "../ui/checkbox"
+import { Booking } from "@/lib/types/Booking"
+import BookingPoster from "../booking/booking-poster"
 
 export const columns: ColumnDef<UserBooking>[] = [
   {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
     accessorKey: "name",
-    header: () => <div className="text-left">Nom</div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Nom
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     cell: ({ row }) => {
       const name: string = row.getValue("name")
       return (
@@ -49,7 +89,17 @@ export const columns: ColumnDef<UserBooking>[] = [
   },
   {
     accessorKey: "email",
-    header: () => <div className="text-left">Email</div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Email
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     cell: ({ row }) => {
       const email: string = row.getValue("email")
       return (
@@ -61,8 +111,41 @@ export const columns: ColumnDef<UserBooking>[] = [
     },
   },
   {
+    accessorKey: "show",
+    header: () => <div className="text-left">Date spectacle</div>,
+    cell: ({ row }) => {
+      const show = row.getValue("show") as Booking
+      show.date = new Date(show.date)
+      const { title, image } = show
+      return (
+        <div className="text-left font-medium flex items-center gap-2">
+          <span>{toReadableDate(show.date, "short")}</span>
+
+          <HoverCard>
+            <HoverCardTrigger>
+              <FaInfoCircle className="cursor-pointer" />
+            </HoverCardTrigger>
+            <HoverCardContent className="flex justify-center items-center">
+              <BookingPoster title={title} image={image} />
+            </HoverCardContent>
+          </HoverCard>
+        </div>
+      )
+    },
+  },
+  {
     accessorKey: "adultTickets",
-    header: () => <div className="text-left">Places adulte</div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Places adulte
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     cell: ({ row }) => {
       const adultTickets: string = row.getValue("adultTickets")
       return (
@@ -74,7 +157,17 @@ export const columns: ColumnDef<UserBooking>[] = [
   },
   {
     accessorKey: "childTickets",
-    header: () => <div className="text-left">Places enfant</div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Places enfant
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     cell: ({ row }) => {
       const childTickets: string = row.getValue("childTickets")
       return (
@@ -86,7 +179,17 @@ export const columns: ColumnDef<UserBooking>[] = [
   },
   {
     accessorKey: "totalPrice",
-    header: () => <div className="text-left">Prix total</div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Prix total
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     cell: ({ row }) => {
       const totalPrice: string = row.getValue("totalPrice")
       return (
@@ -101,7 +204,17 @@ export const columns: ColumnDef<UserBooking>[] = [
   },
   {
     accessorKey: "date",
-    header: () => <div className="text-left">Réservé le</div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Réservé le
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     cell: ({ row }) => {
       const date: Timestamp = row.getValue("date")
       return (

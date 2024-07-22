@@ -37,9 +37,12 @@ import { useState } from "react"
 import { Input } from "../ui/input"
 import { DataTablePagination } from "../ui/data-table-pagination"
 import {
+  UserBooking,
   UserBookingStatus,
   UserBookingStatusLabel,
 } from "@/lib/types/UserBooking"
+import { useRouter } from "next/navigation"
+import LoaderSmall from "../ui/loader-small/loader-small"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -50,6 +53,8 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const router = useRouter()
+  const [loading, setLoading] = useState<boolean>(false)
   const [sorting, setSorting] = useState<SortingState>([
     {
       id: "date",
@@ -58,6 +63,7 @@ export function DataTable<TData, TValue>({
   ])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+  const [rowSelection, setRowSelection] = useState({})
 
   const bookingStatus = Object.values(UserBookingStatus)
 
@@ -71,12 +77,49 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnFilters,
       columnVisibility,
+      rowSelection,
     },
   })
+
+  async function updateManyStatus(newStatus: UserBookingStatus): Promise<void> {
+    setLoading(true)
+
+    const selectedUserBookings = table
+      .getFilteredSelectedRowModel()
+      .rows.map((r) => r.original as UserBooking)
+      .filter((r) => r.status !== newStatus)
+
+    if (!selectedUserBookings.length) {
+      setLoading(false)
+      return
+    }
+
+    try {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/booking/user-booking/status`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userBookings: selectedUserBookings,
+            status: newStatus,
+          }),
+        }
+      )
+      router.refresh()
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <>
@@ -115,6 +158,28 @@ export function DataTable<TData, TValue>({
         </div>
 
         <div className="flex items-center gap-2">
+          {loading ? (
+            <div className="w-[400px] flex justify-center">
+              <LoaderSmall />
+            </div>
+          ) : (
+            <>
+              <Button
+                variant="outline"
+                disabled={!!!table.getFilteredSelectedRowModel().rows.length}
+                onClick={() => updateManyStatus(UserBookingStatus.DONE)}
+              >
+                Marquer comme "Traitée"
+              </Button>
+              <Button
+                variant="outline"
+                disabled={!!!table.getFilteredSelectedRowModel().rows.length}
+                onClick={() => updateManyStatus(UserBookingStatus.PENDING)}
+              >
+                Marquer comme "À traiter"
+              </Button>
+            </>
+          )}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
@@ -126,6 +191,7 @@ export function DataTable<TData, TValue>({
                 .getAllColumns()
                 .filter((column) => column.getCanHide())
                 .map((column) => {
+                  if (column.id === "actions") return null
                   return (
                     <DropdownMenuCheckboxItem
                       key={column.id}

@@ -9,6 +9,7 @@ import {
   getDocs,
   setDoc,
   Timestamp,
+  writeBatch,
 } from "firebase/firestore"
 import { getBookingTemplate, sendMail } from "./mail.service"
 import { UserBooking, UserBookingStatus } from "@/lib/types/UserBooking"
@@ -119,6 +120,26 @@ export async function updateUserBooking(
     }
   } catch (error) {
     console.error(error)
+    return { success: false, error }
+  }
+}
+
+export async function updateManyUserBookingsStatus(
+  userBookings: UserBooking[],
+  status: UserBookingStatus
+): Promise<{ success: boolean; error?: any }> {
+  const batch = writeBatch(db)
+
+  userBookings.forEach((userBooking) => {
+    const userBookingRef = doc(db, USER_BOOKING_COLLECTION, userBooking.id)
+    batch.update(userBookingRef, { status })
+  })
+
+  try {
+    await batch.commit()
+    return { success: true }
+  } catch (error) {
+    console.error("Failed to update user booking status: ", error)
     return { success: false, error }
   }
 }
