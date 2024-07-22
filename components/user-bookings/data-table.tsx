@@ -123,6 +123,43 @@ export function DataTable<TData, TValue>({
     }
   }
 
+  function MarkAsButtons() {
+    const selected = table
+      .getFilteredSelectedRowModel()
+      .rows.map((r) => r.original as UserBooking)
+
+    const hasUntreated = selected.some(
+      (userBooking) => userBooking.status === UserBookingStatus.PENDING
+    )
+
+    const hasTreated = selected.some(
+      (userBooking) => userBooking.status === UserBookingStatus.DONE
+    )
+
+    return (
+      <>
+        {hasUntreated && (
+          <Button
+            variant="outline"
+            onClick={() => updateManyStatus(UserBookingStatus.DONE)}
+          >
+            Marquer {selectedRowsAmount ? selectedRowsAmount : ""} comme
+            "Traitée"
+          </Button>
+        )}
+        {hasTreated && (
+          <Button
+            variant="outline"
+            onClick={() => updateManyStatus(UserBookingStatus.PENDING)}
+          >
+            Marquer {selectedRowsAmount ? selectedRowsAmount : ""} comme "À
+            traiter"
+          </Button>
+        )}
+      </>
+    )
+  }
+
   return (
     <>
       <h3 className="px-2 text-lg opacity-70">Filtres</h3>
@@ -190,26 +227,7 @@ export function DataTable<TData, TValue>({
               <LoaderSmall />
             </div>
           ) : (
-            <>
-              {!!selectedRowsAmount && (
-                <Button
-                  variant="outline"
-                  onClick={() => updateManyStatus(UserBookingStatus.DONE)}
-                >
-                  Marquer {selectedRowsAmount ? selectedRowsAmount : ""} comme
-                  "Traitée"
-                </Button>
-              )}
-              {!!selectedRowsAmount && (
-                <Button
-                  variant="outline"
-                  onClick={() => updateManyStatus(UserBookingStatus.PENDING)}
-                >
-                  Marquer {selectedRowsAmount ? selectedRowsAmount : ""} comme
-                  "À traiter"
-                </Button>
-              )}
-            </>
+            <MarkAsButtons />
           )}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
