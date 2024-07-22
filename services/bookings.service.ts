@@ -13,6 +13,7 @@ import {
 } from "firebase/firestore"
 import { getBookingTemplate, sendMail } from "./mail.service"
 import { UserBooking, UserBookingStatus } from "@/lib/types/UserBooking"
+import { timestampToReadableDate } from "@/lib/utils"
 
 const BOOKING_COLLECTION = "bookings"
 const USER_BOOKING_COLLECTION = "user-bookings"
@@ -24,10 +25,9 @@ export async function fetchBookings(): Promise<Booking[]> {
     bookings.push({
       id: doc.id,
       ...doc.data(),
-      date: new Date(doc.data().date.seconds * 1000),
     } as Booking)
   })
-  return bookings.sort((a, b) => a.date.getTime() - b.date.getTime())
+  return bookings.sort((a, b) => a.date.seconds - b.date.seconds)
 }
 
 export async function bookShow({
@@ -56,8 +56,7 @@ export async function bookShow({
       year: "numeric",
     }
 
-    const showDate = new Date(show.date)
-    const formattedDate = showDate.toLocaleDateString("fr-FR", dateOptions)
+    const formattedDate = timestampToReadableDate(show.date)
 
     // await sendMail(
     //   email,
@@ -65,14 +64,34 @@ export async function bookShow({
     //   getBookingTemplate({ show, formattedDate, totalPrice })
     // )
 
+    const {
+      date,
+      location,
+      city,
+      locationUrl,
+      time,
+      title,
+      image,
+      adultPrice,
+      childPrice,
+    } = show
+
     await createUserBooking({
+      date,
+      location,
+      city,
+      adultPrice,
+      childPrice,
+      locationUrl,
+      time,
+      title,
+      image,
       email,
       name,
       adultTickets,
       childTickets,
-      show,
       totalPrice,
-      date: Timestamp.fromDate(new Date()),
+      bookingDate: Timestamp.fromDate(new Date()),
       status: UserBookingStatus.PENDING,
     })
 

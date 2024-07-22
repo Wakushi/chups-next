@@ -1,19 +1,16 @@
+import { timestampToReadableDate } from "@/lib/utils"
+import { Timestamp } from "firebase/firestore"
+
 export default function BookingDate({
   date,
   time,
 }: {
-  date: Date
+  date: Timestamp
   time: string
 }) {
   return (
     <p className="text-sm md:text-lg font-extralight">
-      {date.toLocaleDateString("fr-FR", {
-        weekday: "short",
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-      })}{" "}
-      à {time}
+      {timestampToReadableDate(date, "long")} à {time}
     </p>
   )
 }

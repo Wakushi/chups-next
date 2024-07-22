@@ -86,6 +86,8 @@ export function DataTable<TData, TValue>({
     },
   })
 
+  const selectedRowsAmount = table.getFilteredSelectedRowModel().rows.length
+
   async function updateManyStatus(newStatus: UserBookingStatus): Promise<void> {
     setLoading(true)
 
@@ -123,6 +125,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
+      <h3 className="px-2 text-lg opacity-70">Filtres</h3>
       <div className="flex items-center justify-between p-2">
         <div className="flex items-center w-full gap-2">
           <Input
@@ -138,6 +141,22 @@ export function DataTable<TData, TValue>({
             value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("email")?.setFilterValue(event.target.value)
+            }
+            className="max-w-[200px]"
+          />
+          <Input
+            placeholder="Spectacle"
+            value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("title")?.setFilterValue(event.target.value)
+            }
+            className="max-w-[200px]"
+          />
+          <Input
+            placeholder="Salle"
+            value={(table.getColumn("city")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("city")?.setFilterValue(event.target.value)
             }
             className="max-w-[200px]"
           />
@@ -172,20 +191,24 @@ export function DataTable<TData, TValue>({
             </div>
           ) : (
             <>
-              <Button
-                variant="outline"
-                disabled={!!!table.getFilteredSelectedRowModel().rows.length}
-                onClick={() => updateManyStatus(UserBookingStatus.DONE)}
-              >
-                Marquer comme "Traitée"
-              </Button>
-              <Button
-                variant="outline"
-                disabled={!!!table.getFilteredSelectedRowModel().rows.length}
-                onClick={() => updateManyStatus(UserBookingStatus.PENDING)}
-              >
-                Marquer comme "À traiter"
-              </Button>
+              {!!selectedRowsAmount && (
+                <Button
+                  variant="outline"
+                  onClick={() => updateManyStatus(UserBookingStatus.DONE)}
+                >
+                  Marquer {selectedRowsAmount ? selectedRowsAmount : ""} comme
+                  "Traitée"
+                </Button>
+              )}
+              {!!selectedRowsAmount && (
+                <Button
+                  variant="outline"
+                  onClick={() => updateManyStatus(UserBookingStatus.PENDING)}
+                >
+                  Marquer {selectedRowsAmount ? selectedRowsAmount : ""} comme
+                  "À traiter"
+                </Button>
+              )}
             </>
           )}
           <DropdownMenu>
@@ -245,7 +268,10 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell
+                      key={cell.id}
+                      className="justify-center max-w-[200px]"
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

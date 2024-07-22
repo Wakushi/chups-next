@@ -1,15 +1,13 @@
 import { Timestamp } from "firebase/firestore"
 import { Booking } from "./Booking"
 
-export type UserBooking = {
-  id: string
+export type UserBooking = Booking & {
   email: string
   name: string
   adultTickets: number
   childTickets: number
   totalPrice: number
-  show: Booking
-  date: Timestamp
+  bookingDate: Timestamp
   status: UserBookingStatus
 }
 

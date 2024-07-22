@@ -18,7 +18,6 @@ export function toReadableDate(
           day: "numeric",
         }
       : {
-          weekday: "long",
           year: "numeric",
           month: "long",
           day: "numeric",
@@ -28,11 +27,22 @@ export function toReadableDate(
   return formattedDate.charAt(0).toUpperCase() + formattedDate.substring(1)
 }
 
-export function timestampToReadableDate(timestamp: Timestamp): string {
+export function timestampToReadableDate(
+  timestamp: Timestamp,
+  format: "short" | "long" = "long"
+): string {
   const date = new Date(timestamp.seconds * 1000)
-  return date.toLocaleDateString("fr-FR", {
-    year: "2-digit",
-    month: "numeric",
-    day: "numeric",
-  })
+  const options: Intl.DateTimeFormatOptions =
+    format === "short"
+      ? {
+          year: "2-digit",
+          month: "numeric",
+          day: "numeric",
+        }
+      : {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }
+  return date.toLocaleDateString("fr-FR", options)
 }

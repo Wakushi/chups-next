@@ -1,7 +1,9 @@
+import { Timestamp } from "firebase/firestore"
+
 export type Booking = {
   id: string
   title: string
-  date: Date
+  date: Timestamp
   time: string
   image: string
   adultPrice: number

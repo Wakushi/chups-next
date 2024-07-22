@@ -35,10 +35,9 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import LoaderSmall from "../ui/loader-small/loader-small"
 import { Timestamp } from "firebase/firestore"
-import { timestampToReadableDate, toReadableDate } from "@/lib/utils"
+import { timestampToReadableDate } from "@/lib/utils"
 import { FaInfoCircle, FaTrash } from "react-icons/fa"
 import { Checkbox } from "../ui/checkbox"
-import { Booking } from "@/lib/types/Booking"
 import BookingPoster from "../booking/booking-poster"
 import { Separator } from "../ui/separator"
 
@@ -66,6 +65,50 @@ export const columns: ColumnDef<UserBooking>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: "title",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Spectacle
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const title: string = row.getValue("title")
+      return (
+        <div className="pl-4 font-medium flex items-center gap-2">
+          <span>{title}</span>
+        </div>
+      )
+    },
+  },
+  {
+    accessorKey: "city",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Salle
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const city: string = row.getValue("city")
+      return (
+        <div className="pl-4 font-medium flex items-center gap-2">
+          <span>{city}</span>
+        </div>
+      )
+    },
+  },
+  {
     accessorKey: "name",
     header: ({ column }) => {
       return (
@@ -88,6 +131,7 @@ export const columns: ColumnDef<UserBooking>[] = [
       )
     },
   },
+
   {
     accessorKey: "email",
     header: ({ column }) => {
@@ -112,22 +156,34 @@ export const columns: ColumnDef<UserBooking>[] = [
     },
   },
   {
-    accessorKey: "show",
-    header: () => <div className="pl-4">Date spectacle</div>,
+    accessorKey: "date",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date spectacle
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     cell: ({ row }) => {
-      const show = row.getValue("show") as Booking
-      show.date = new Date(show.date)
-      const { title, image } = show
+      const userBooking = row.original
+      const date: Timestamp = row.getValue("date")
       return (
         <div className="pl-4 font-medium flex items-center gap-2">
-          <span>{toReadableDate(show.date, "short")}</span>
+          <span>{timestampToReadableDate(date, "short")}</span>
 
           <HoverCard>
             <HoverCardTrigger>
               <FaInfoCircle className="cursor-pointer" />
             </HoverCardTrigger>
             <HoverCardContent className="flex justify-center items-center">
-              <BookingPoster title={title} image={image} />
+              <BookingPoster
+                title={userBooking.title}
+                image={userBooking.image}
+              />
             </HoverCardContent>
           </HoverCard>
         </div>
@@ -140,6 +196,7 @@ export const columns: ColumnDef<UserBooking>[] = [
       return (
         <Button
           variant="ghost"
+          className="max-w-[200px] text-wrap"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Places adulte
@@ -150,7 +207,7 @@ export const columns: ColumnDef<UserBooking>[] = [
     cell: ({ row }) => {
       const adultTickets: string = row.getValue("adultTickets")
       return (
-        <div className="justify-center font-medium flex items-center gap-2">
+        <div className="justify-center font-medium flex items-center gap-2 max-w-[40px] m-auto">
           <span>{adultTickets}</span>
         </div>
       )
@@ -162,6 +219,7 @@ export const columns: ColumnDef<UserBooking>[] = [
       return (
         <Button
           variant="ghost"
+          className="max-w-[200px] text-wrap"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Places enfant
@@ -172,7 +230,7 @@ export const columns: ColumnDef<UserBooking>[] = [
     cell: ({ row }) => {
       const childTickets: string = row.getValue("childTickets")
       return (
-        <div className="justify-center font-medium flex items-center gap-2">
+        <div className="justify-center font-medium flex items-center gap-2 max-w-[40px] m-auto">
           <span>{childTickets}</span>
         </div>
       )
@@ -204,7 +262,7 @@ export const columns: ColumnDef<UserBooking>[] = [
     },
   },
   {
-    accessorKey: "date",
+    accessorKey: "bookingDate",
     header: ({ column }) => {
       return (
         <Button
@@ -217,10 +275,10 @@ export const columns: ColumnDef<UserBooking>[] = [
       )
     },
     cell: ({ row }) => {
-      const date: Timestamp = row.getValue("date")
+      const bookingDate: Timestamp = row.getValue("bookingDate")
       return (
         <div className="pl-4 font-medium flex items-center gap-2">
-          <span>{timestampToReadableDate(date)}</span>
+          <span>{timestampToReadableDate(bookingDate, "short")}</span>
         </div>
       )
     },
@@ -242,13 +300,14 @@ export const columns: ColumnDef<UserBooking>[] = [
       const status: UserBookingStatus = row.getValue("status")
       return (
         <div className="pl-4 font-medium flex items-center gap-2">
-          <span>{UserBookingStatusLabel[status]}</span>
           <div
             className={clsx("w-2 h-2 rounded-full", {
-              "bg-red-600": status === UserBookingStatus.PENDING,
-              "bg-green-600": status === UserBookingStatus.DONE,
+              "bg-red-600 shadow-red-dot": status === UserBookingStatus.PENDING,
+              "bg-green-600 shadow-green-dot":
+                status === UserBookingStatus.DONE,
             })}
           ></div>
+          <span>{UserBookingStatusLabel[status]}</span>
         </div>
       )
     },
