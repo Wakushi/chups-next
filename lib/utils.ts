@@ -29,8 +29,8 @@ export function toReadableDate(
 }
 
 export function timestampToReadableDate(timestamp: Timestamp): string {
-  const date = new Timestamp(timestamp.seconds, timestamp.nanoseconds)
-  return date.toDate().toLocaleDateString("fr-FR", {
+  const date = new Date(timestamp.seconds * 1000)
+  return date.toLocaleDateString("fr-FR", {
     year: "2-digit",
     month: "numeric",
     day: "numeric",

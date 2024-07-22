@@ -92,7 +92,15 @@ export async function fetchUserBookings(): Promise<UserBooking[]> {
       ...doc.data(),
     } as UserBooking)
   })
-  return userBookings.sort((a, b) => a.date.seconds - b.date.seconds)
+  return userBookings.sort((a, b) => {
+    if (
+      a.status === UserBookingStatus.DONE &&
+      b.status === UserBookingStatus.PENDING
+    ) {
+      return 1
+    }
+    return -1
+  })
 }
 
 export async function createUserBooking(
