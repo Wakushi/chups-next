@@ -65,7 +65,7 @@ function AdminNavigation({ user }: { user: User }) {
     <div className="flex items-center gap-2">
       <div className="hidden lg:flex">
         <Navlink title="Réservations" href="/admin/user-bookings" />
-        <Navlink title="Calendrier" href="/calendar" />
+        <Navlink title="Dates" href="/admin/bookings" />
         <LogoutButton logOut={logOut} />
       </div>
       <HeaderMenu user={user} />

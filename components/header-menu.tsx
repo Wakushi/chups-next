@@ -72,8 +72,8 @@ export default function HeaderMenu({ user }: { user?: User }) {
                 />
                 <Separator />
                 <Navlink
-                  title="Calendrier"
-                  href="/calendar"
+                  title="Dates"
+                  href="/admin/bookings"
                   onClick={toggleMenu}
                 />
                 <Separator />
