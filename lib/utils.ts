@@ -46,3 +46,13 @@ export function timestampToReadableDate(
         }
   return date.toLocaleDateString("fr-FR", options)
 }
+
+export function convertTimestampToObject(timestamp: Timestamp): {
+  seconds: number
+  nanoseconds: number
+} {
+  return {
+    seconds: timestamp.seconds,
+    nanoseconds: timestamp.nanoseconds,
+  }
+}

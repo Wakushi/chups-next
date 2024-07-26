@@ -7,7 +7,7 @@ export type UserBooking = Booking & {
   adultTickets: number
   childTickets: number
   totalPrice: number
-  bookingDate: Timestamp
+  bookingDate: { seconds: number; nanoseconds: number }
   status: UserBookingStatus
   confirmationId?: string
 }

@@ -84,7 +84,7 @@ export async function bookShow({
     } = show
 
     const totalPrice = adultTickets * adultPrice + childTickets * childPrice
-    const formattedDate = timestampToReadableDate(date)
+    const formattedDate = timestampToReadableDate(date as Timestamp)
     const confirmationId = uuidv4()
 
     await createUnconfirmedUserBooking({

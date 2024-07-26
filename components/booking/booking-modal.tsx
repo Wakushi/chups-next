@@ -9,6 +9,7 @@ import BookingPricing from "./booking-pricing"
 import { useState } from "react"
 import LoaderHive from "../ui/loader-hive/loader-hive"
 import clsx from "clsx"
+import { Timestamp } from "firebase/firestore"
 
 interface BookingModalProps {
   booking: Booking
@@ -59,7 +60,7 @@ export default function BookingModal({ booking }: BookingModalProps) {
           <div className="flex flex-col w-full px-2">
             <div className="flex flex-col w-full h-full">
               <span className="text-xl font-bold">{title}</span>
-              <BookingDate date={date} time={time} />
+              <BookingDate date={date as Timestamp} time={time} />
               <p className="text-sm">{location}</p>
               <p className="text-sm">{city}</p>
               <BookingPricing adultPrice={adultPrice} childPrice={childPrice} />
