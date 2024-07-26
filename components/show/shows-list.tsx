@@ -1,4 +1,4 @@
-import { Show } from "@/lib/definitions"
+import { Show } from "@/lib/types/Show"
 import ShowCard from "./show-card"
 
 export default function ShowList({ shows }: { shows: Show[] }) {

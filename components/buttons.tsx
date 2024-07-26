@@ -1,6 +1,6 @@
-import { auth, signOut } from "@/lib/auth"
+import { playfairDisplay } from "@/styles/fonts"
 import Link from "next/link"
-import { AiOutlinePoweroff } from "react-icons/ai"
+import { IoIosLogOut } from "react-icons/io"
 
 function BookButton() {
   return (
@@ -16,22 +16,16 @@ function BookButton() {
   )
 }
 
-async function LogOutButton() {
-  const session = await auth()
-  if (!session?.user) return null
+function LogoutButton({ logOut }: { logOut: () => void }) {
   return (
-    <form
-      action={async () => {
-        "use server"
-        await signOut()
-      }}
+    <li
+      className={`${playfairDisplay.className} text-[2rem] lg:text-[1.5rem] uppercase flex justify-between items-center gap-2 cursor-pointer`}
+      onClick={logOut}
     >
-      <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
-        <AiOutlinePoweroff className="w-6 h-6" />
-        <div className="hidden md:block">Sign Out</div>
-      </button>
-    </form>
+      <span>Déconnexion</span>
+      <IoIosLogOut className="opacity-40" />
+    </li>
   )
 }
 
-export { BookButton, LogOutButton }
+export { BookButton, LogoutButton }

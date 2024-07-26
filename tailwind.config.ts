@@ -84,6 +84,10 @@ const config = {
         "3xl": "1px 1px 10px rgba(0, 0, 0, 1)",
         "4xl": "1px 1px 15px rgba(0, 0, 0, 1)",
       },
+      boxShadow: {
+        "green-dot": "0 0 2px 2px #00e9003d",
+        "red-dot": "0 0 2px 2px #e100003d",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

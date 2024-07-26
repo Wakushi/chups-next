@@ -1,13 +1,16 @@
+"use client"
 import Image from "next/image"
 import { neucha } from "../styles/fonts"
 import Link from "next/link"
 import HeaderMenu from "./header-menu"
-import { LogOutButton } from "./buttons"
-import { getLoggedUser } from "@/lib/auth"
 import Navlink from "./nav-link"
+import { useContext } from "react"
+import { UserContext } from "@/providers/UserContext"
+import { User } from "@/lib/types/User"
+import { LogoutButton } from "./buttons"
 
-export default async function Header() {
-  const user = await getLoggedUser()
+export default function Header() {
+  const { user, loadingUser } = useContext(UserContext)
 
   return (
     <>
@@ -22,24 +25,49 @@ export default async function Header() {
             sizes="100vw"
           />
         </div>
-        <div className={`${neucha.className} text-2xl md:text-3xl`}>
+        <div
+          className={`${neucha.className} text-2xl md:text-3xl leading-none`}
+        >
           LES CHUP'S
         </div>
       </Link>
-      <div className="flex items-center gap-2">
-        <div className="hidden lg:flex">
-          <Navlink title="Calendrier" href="/calendar" />
-          <Navlink title="Spectacles" href="/shows" />
-          <Navlink title="Contact" href="/contact" />
-          <Navlink title="FAQ" href="/faq" />
-          {!user && <Navlink title="Login" href="/login" />}
-          {user?.role === "admin" && (
-            <Navlink title="Admin" href="/admin/dashboard" />
+      {!loadingUser && (
+        <div className="flex fade-in-top">
+          {user && user.role === "admin" ? (
+            <AdminNavigation user={user} />
+          ) : (
+            <GuestNavigation />
           )}
         </div>
-        <LogOutButton />
-        <HeaderMenu user={user} />
-      </div>
+      )}
     </>
+  )
+}
+
+function GuestNavigation() {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="hidden lg:flex">
+        <Navlink title="Calendrier" href="/calendar" />
+        <Navlink title="Spectacles" href="/shows" />
+        <Navlink title="Contact" href="/contact" />
+        <Navlink title="FAQ" href="/faq" />
+      </div>
+      <HeaderMenu />
+    </div>
+  )
+}
+
+function AdminNavigation({ user }: { user: User }) {
+  const { logOut } = useContext(UserContext)
+  return (
+    <div className="flex items-center gap-2">
+      <div className="hidden lg:flex">
+        <Navlink title="Réservations" href="/admin/user-bookings" />
+        <Navlink title="Dates" href="/admin/bookings" />
+        <LogoutButton logOut={logOut} />
+      </div>
+      <HeaderMenu user={user} />
+    </div>
   )
 }

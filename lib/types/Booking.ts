@@ -1,7 +1,10 @@
+import { Timestamp } from "firebase/firestore"
+import { Auditorium } from "./Auditorium"
+
 export type Booking = {
-  id: string
+  id?: string
   title: string
-  date: Date
+  date: Timestamp
   time: string
   image: string
   adultPrice: number
@@ -9,4 +12,5 @@ export type Booking = {
   location: string
   city: string
   locationUrl: string
+  auditorium?: Auditorium
 }

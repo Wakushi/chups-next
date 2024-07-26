@@ -1,16 +1,16 @@
 import { playfairDisplay } from "@/styles/fonts"
-import Link from "next/link"
 import { FaPhoneAlt } from "react-icons/fa"
 import { MdEmail } from "react-icons/md"
-import Copy from "../ui/copy"
 import { Booking } from "@/lib/types/Booking"
-import { toReadableDate } from "@/lib/utils"
+import { timestampToReadableDate } from "@/lib/utils"
+import Link from "next/link"
+import Copy from "../ui/copy"
 
 export default function Hero({ bookings }: { bookings: Booking[] }) {
   const now = new Date()
 
   const incommingShows = bookings.filter((booking) => {
-    return booking.date > now
+    return booking.date.seconds * 1000 > now.getTime()
   })
 
   if (!incommingShows || !incommingShows.length) {
@@ -39,7 +39,7 @@ export default function Hero({ bookings }: { bookings: Booking[] }) {
         {title}
       </h2>
       <p className="text-center md:text-xl lg:text-[2rem] lg:mb-4 drop-shadow-3xl">
-        {toReadableDate(date)} à {time}
+        {timestampToReadableDate(date)} à {time}
       </p>
       <div className="flex flex-col lg:gap-2">
         <h3
