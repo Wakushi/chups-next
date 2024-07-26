@@ -4,6 +4,7 @@ import BookingModal from "./booking-modal"
 import BookingPoster from "./booking-poster"
 import BookingDate from "./booking-date"
 import BookingAccess from "./booking-access"
+import { Timestamp } from "firebase/firestore"
 
 interface BookingCardProps {
   booking: Booking
@@ -19,7 +20,7 @@ export default function BookingCard({ booking }: BookingCardProps) {
         <div className="flex flex-col w-full px-2">
           <div className="flex flex-col w-full h-full md:gap-2">
             <span className="text-xl md:text-[1.8rem] font-bold">{title}</span>
-            <BookingDate date={date} time={time} />
+            <BookingDate date={date as Timestamp} time={time} />
             <p className="text-sm md:text-xl">{location}</p>
             <p className="text-sm md:text-xl">à {city}</p>
           </div>

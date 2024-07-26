@@ -2,11 +2,11 @@ import { verifyJWT } from "@/lib/crypto"
 import { getUserByEmail } from "@/services/user.service"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(req: NextRequest, res: NextResponse) {
-  try {
-    const cookie = req.cookies.get(process.env.TOKEN_COOKIE as string)
-    const token = cookie?.value
+export async function GET(req: NextRequest) {
+  const cookie = req.cookies.get(process.env.TOKEN_COOKIE as string)
+  const token = cookie?.value
 
+  try {
     if (!token) {
       return NextResponse.json(
         {

@@ -60,6 +60,7 @@ export async function fetchUserBookings(): Promise<UserBooking[]> {
       ...doc.data(),
     } as UserBooking)
   })
+  console.log("Fetched user bookings: ", userBookings)
   return userBookings.sort((a, b) => {
     if (
       a.status === UserBookingStatus.DONE &&

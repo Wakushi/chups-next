@@ -5,6 +5,7 @@ import { Booking } from "@/lib/types/Booking"
 import { timestampToReadableDate } from "@/lib/utils"
 import Link from "next/link"
 import Copy from "../ui/copy"
+import { Timestamp } from "firebase/firestore"
 
 export default function Hero({ bookings }: { bookings: Booking[] }) {
   const now = new Date()
@@ -39,7 +40,7 @@ export default function Hero({ bookings }: { bookings: Booking[] }) {
         {title}
       </h2>
       <p className="text-center md:text-xl lg:text-[2rem] lg:mb-4 drop-shadow-3xl">
-        {timestampToReadableDate(date)} à {time}
+        {timestampToReadableDate(date as Timestamp)} à {time}
       </p>
       <div className="flex flex-col lg:gap-2">
         <h3
