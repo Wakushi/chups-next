@@ -2,7 +2,7 @@ import { Timestamp } from "firebase/firestore"
 import { Auditorium } from "./Auditorium"
 
 export type Booking = {
-  id: string
+  id?: string
   title: string
   date: Timestamp
   time: string

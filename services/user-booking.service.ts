@@ -88,7 +88,7 @@ export async function updateUserBookingStatus(
   newStatus: UserBookingStatus
 ): Promise<{ success: boolean; data?: UserBooking; error?: any }> {
   try {
-    const docRef = doc(db, USER_BOOKING_COLLECTION, userBooking.id)
+    const docRef = doc(db, USER_BOOKING_COLLECTION, userBooking.id!)
     await updateDoc(docRef, {
       status: newStatus,
     })
@@ -112,7 +112,7 @@ export async function updateManyUserBookingsStatus(
   const batch = writeBatch(db)
 
   userBookings.forEach((userBooking) => {
-    const userBookingRef = doc(db, USER_BOOKING_COLLECTION, userBooking.id)
+    const userBookingRef = doc(db, USER_BOOKING_COLLECTION, userBooking.id!)
     batch.update(userBookingRef, { status })
   })
 

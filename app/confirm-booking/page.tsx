@@ -28,7 +28,8 @@ export default async function ConfirmBookingPage({
       return { success: false }
     }
 
-    await deleteUnconfirmedUserBooking(unconfirmedUserBooking.id)
+    await deleteUnconfirmedUserBooking(unconfirmedUserBooking.id!)
+    delete unconfirmedUserBooking.id
     await createUserBooking(unconfirmedUserBooking)
     return { success: true }
   }
