@@ -332,7 +332,7 @@ export const columns: ColumnDef<UserBooking>[] = [
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                ...userBooking,
+                userBooking,
                 status: newStatus,
               }),
             }

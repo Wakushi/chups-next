@@ -25,14 +25,20 @@ export async function sendMail(to: string, subject: string, template: string) {
 }
 
 export function getBookingTemplate({
+  confirmationId,
+  email,
   show,
   formattedDate,
   totalPrice,
 }: {
+  confirmationId: string
+  email: string
   show: Booking
   formattedDate: string
   totalPrice: number
 }): string {
+  const confirmUrl = `${process.env.NEXT_PUBLIC_APP_URL}/confirm-booking?id=${confirmationId}&email=${email}`
+
   return `
   <html>
     <body>
@@ -42,7 +48,7 @@ export function getBookingTemplate({
         <p><strong>${show.title}</strong> du <strong>${formattedDate}</strong> à <strong>${show.city}</strong> (<strong>${show.location}</strong>).</p>
         <p>Nous vous rappelons que le montant (total <strong>${totalPrice}€</strong>) des places sera à régler sur place, en espèces ou chèque.</p>
         <p>Veuillez cliquer sur le bouton ci-dessous pour confirmer votre réservation :</p>
-        <a href="https://www.leschups.fr/" style="background-color: #1E90FF; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px;">Confirmer la Réservation</a>
+        <a href=${confirmUrl} style="background-color: #1E90FF; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px;">Confirmer la Réservation</a>
         <p>À bientôt,</p>
         <p>La troupe de comédie musicale des Chups</p>
       </div>

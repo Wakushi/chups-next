@@ -1,8 +1,8 @@
+import { bookShow } from "@/services/bookings.service"
 import {
-  bookShow,
   deleteUserBooking,
-  updateUserBooking,
-} from "@/services/bookings.service"
+  updateUserBookingStatus,
+} from "@/services/user-booking.service"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(req: NextRequest, res: NextResponse) {
@@ -19,7 +19,11 @@ export async function POST(req: NextRequest, res: NextResponse) {
 export async function PUT(req: NextRequest, res: NextResponse) {
   try {
     const body = await req.json()
-    const { success, data, error } = await updateUserBooking(body)
+    const { userBooking, status } = body
+    const { success, data, error } = await updateUserBookingStatus(
+      userBooking,
+      status
+    )
 
     if (success && data) {
       return NextResponse.json(data)

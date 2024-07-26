@@ -9,6 +9,7 @@ export type UserBooking = Booking & {
   totalPrice: number
   bookingDate: Timestamp
   status: UserBookingStatus
+  confirmationId?: string
 }
 
 export enum UserBookingStatus {

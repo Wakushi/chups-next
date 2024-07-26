@@ -1,5 +1,5 @@
 import UserBookingList from "@/components/user-bookings/user-booking-list"
-import { fetchUserBookings } from "@/services/bookings.service"
+import { fetchUserBookings } from "@/services/user-booking.service"
 import { playfairDisplay } from "@/styles/fonts"
 
 export default async function UserBookingsPage() {

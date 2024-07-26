@@ -1,4 +1,4 @@
-import { updateManyUserBookingsStatus } from "@/services/bookings.service"
+import { updateManyUserBookingsStatus } from "@/services/user-booking.service"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function PUT(req: NextRequest, res: NextResponse) {

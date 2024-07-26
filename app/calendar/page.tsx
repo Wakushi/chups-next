@@ -14,7 +14,7 @@ export default async function CalendarPage() {
           Agenda
         </h1>
         <p
-          className={`${playfairDisplay.className} text-xl md:text-2xl opacity-70`}
+          className={`${playfairDisplay.className} text-xl md:text-2xl bg-gradient-to-t from-[#020917] via-white to-white bg-clip-text font-display tracking-tight text-transparent`}
         >
           Découvrez toutes nos dates
         </p>
