@@ -1,4 +1,5 @@
 import { Timestamp } from "firebase/firestore"
+import { Auditorium } from "./Auditorium"
 
 export type Booking = {
   id: string
@@ -11,4 +12,5 @@ export type Booking = {
   location: string
   city: string
   locationUrl: string
+  auditorium?: Auditorium
 }

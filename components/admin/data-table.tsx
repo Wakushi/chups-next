@@ -29,7 +29,6 @@ import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { Input } from "../ui/input"
 import { DataTablePagination } from "../ui/data-table-pagination"
-import { useRouter } from "next/navigation"
 import CreateBookingModal from "./create-booking-modal"
 
 interface DataTableProps<TData, TValue> {
@@ -41,8 +40,6 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const router = useRouter()
-  const [loading, setLoading] = useState<boolean>(false)
   const [sorting, setSorting] = useState<SortingState>([
     {
       id: "date",

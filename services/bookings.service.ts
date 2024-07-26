@@ -30,6 +30,18 @@ export async function fetchBookings(): Promise<Booking[]> {
   return bookings.sort((a, b) => a.date.seconds - b.date.seconds)
 }
 
+export async function createBooking(
+  booking: Omit<Booking, "id">
+): Promise<{ success: boolean; error?: any }> {
+  try {
+    await addDoc(collection(db, BOOKING_COLLECTION), booking)
+    return { success: true }
+  } catch (error) {
+    console.log(error)
+    return { success: false, error }
+  }
+}
+
 export async function bookShow({
   email,
   name,
@@ -124,11 +136,13 @@ export async function fetchUserBookings(): Promise<UserBooking[]> {
 
 export async function createUserBooking(
   userBooking: Omit<UserBooking, "id">
-): Promise<void> {
+): Promise<{ success: boolean; error?: any }> {
   try {
     await addDoc(collection(db, USER_BOOKING_COLLECTION), userBooking)
+    return { success: true }
   } catch (error) {
     console.log(error)
+    return { success: false, error }
   }
 }
 
