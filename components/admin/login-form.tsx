@@ -4,17 +4,12 @@ import { MdAlternateEmail, MdKey } from "react-icons/md"
 import { Button } from "../ui/button"
 import { FaArrowAltCircleRight } from "react-icons/fa"
 import { FormEvent, useContext, useState } from "react"
-import { useToast } from "../ui/use-toast"
-import { useRouter } from "next/navigation"
-import { STORAGE_ACCESS_TOKEN } from "@/lib/constants"
 import { UserContext } from "@/providers/UserContext"
 import LoaderSmall from "../ui/loader-small/loader-small"
 
 export default function LoginForm() {
-  const { toast } = useToast()
-  const { setUser } = useContext(UserContext)
-  const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
+  const { login } = useContext(UserContext)
 
   async function signIn(e: FormEvent) {
     e.preventDefault()
@@ -22,40 +17,7 @@ export default function LoginForm() {
 
     const formData = new FormData(e.target as HTMLFormElement)
     const { email, password } = Object.fromEntries(formData.entries())
-
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/signin`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email.toString(),
-          password: password.toString(),
-        }),
-      }
-    )
-
-    if (!response.ok) {
-      const { message } = await response.json()
-      toast({
-        title: "Erreur de connexion",
-        description: message,
-        type: "background",
-        style: {
-          backgroundColor: "red",
-          color: "#fff",
-        },
-      })
-      setLoading(false)
-      return
-    }
-
-    const { token, user } = await response.json()
-    localStorage.setItem(STORAGE_ACCESS_TOKEN, token)
-    setUser(user)
-    router.push("/admin/user-bookings")
+    login(email.toString(), password.toString())
   }
 
   return (

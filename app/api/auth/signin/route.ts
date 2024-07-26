@@ -46,7 +46,16 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     const token = createUserJwtToken(user)
 
-    return NextResponse.json({ token, user })
+    const response = NextResponse.json({ user })
+    response.cookies.set({
+      name: process.env.TOKEN_COOKIE as string,
+      value: token,
+      httpOnly: true,
+      maxAge: 60 * 60 * 24 * 7, // 1 week
+      path: "/",
+    })
+
+    return response
   } catch (error) {
     console.log(error)
     return NextResponse.json({ error: error })
