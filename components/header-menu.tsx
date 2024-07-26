@@ -1,5 +1,4 @@
 "use client"
-
 import clsx from "clsx"
 import Navlink from "./nav-link"
 import { useContext, useState } from "react"
@@ -33,8 +32,8 @@ export default function HeaderMenu({ user }: { user?: User }) {
         className={clsx(
           "fixed top-0 left-0 min-w-full min-h-[100vh] bg-slate-950 flex px-8 py-20 transition-transform duration-300",
           {
-            "transform translate-x-0": open,
-            "transform -translate-x-full": !open,
+            "transform translate-x-0 opacity-100": open,
+            "transform -translate-x-full opacity-0": !open,
           }
         )}
       >
@@ -59,8 +58,6 @@ export default function HeaderMenu({ user }: { user?: User }) {
                 <Navlink title="Contact" href="/contact" onClick={toggleMenu} />
                 <Separator />
                 <Navlink title="FAQ" href="/faq" onClick={toggleMenu} />
-                <Separator />
-                <Navlink title="Login" href="/login" onClick={toggleMenu} />
               </>
             )}
             {user?.role === "admin" && (

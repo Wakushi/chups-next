@@ -92,7 +92,7 @@ li {
 }
 
 .fade-in-top {
-  animation: fade-in-top 500ms ease-in-out forwards;
+  animation: fade-in-top 500ms ease-in-out;
 }
 
 @keyframes fade-in-zoom {

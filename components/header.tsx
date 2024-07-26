@@ -52,7 +52,6 @@ function GuestNavigation() {
         <Navlink title="Spectacles" href="/shows" />
         <Navlink title="Contact" href="/contact" />
         <Navlink title="FAQ" href="/faq" />
-        <Navlink title="Login" href="/login" />
       </div>
       <HeaderMenu />
     </div>

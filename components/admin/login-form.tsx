@@ -56,7 +56,6 @@ export default function LoginForm() {
     localStorage.setItem(STORAGE_ACCESS_TOKEN, token)
     setUser(user)
     router.push("/admin/user-bookings")
-    setLoading(false)
   }
 
   return (
