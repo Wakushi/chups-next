@@ -8,6 +8,7 @@ import BookingDate from "./booking-date"
 import BookingPricing from "./booking-pricing"
 import { useState } from "react"
 import LoaderHive from "../ui/loader-hive/loader-hive"
+import clsx from "clsx"
 
 interface BookingModalProps {
   booking: Booking
@@ -95,7 +96,11 @@ export default function BookingModal({ booking }: BookingModalProps) {
       <DialogTrigger asChild>
         <Button className="md:w-full">Réserver</Button>
       </DialogTrigger>
-      <DialogContent className="h-[100dvh] md:max-h-[80%] rounded overflow-auto p-4">
+      <DialogContent
+        className={clsx("h-[100dvh] md:max-h-[80%] rounded overflow-auto p-4", {
+          "md:max-h-[400px]": isSuccess,
+        })}
+      >
         <DialogContentElement />
       </DialogContent>
     </Dialog>

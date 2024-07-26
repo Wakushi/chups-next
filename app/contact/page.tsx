@@ -6,7 +6,7 @@ import { playfairDisplay } from "@/styles/fonts"
 import Link from "next/link"
 import { useState } from "react"
 import { FaPhoneAlt } from "react-icons/fa"
-import { MdEmail } from "react-icons/md"
+import { MdEmail, MdNavigateNext } from "react-icons/md"
 import { TbMessageCircleHeart } from "react-icons/tb"
 
 export default function ContactPage() {
@@ -26,6 +26,12 @@ export default function ContactPage() {
       return (
         <div className="flex flex-col gap-4 items-center justify-center h-[300px]">
           <p className="text-3xl p-4 text-center">Merci pour votre message !</p>
+          <Link
+            href="/"
+            className="text-[1rem] lg:text-[1rem] border border-white rounded px-4 py-2 flex items-center gap-2 opacity-70 hover:opacity-100"
+          >
+            Retour à l'accueil <MdNavigateNext />
+          </Link>
         </div>
       )
     }
