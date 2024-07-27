@@ -93,8 +93,7 @@ export default function UserContextProvider(props: UserContextProviderProps) {
 
       const user: User = await response.json()
       setUser(user)
-    } catch (error) {
-      console.error(error)
+    } catch (err) {
     } finally {
       setLoadingUser(false)
     }

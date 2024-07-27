@@ -5,7 +5,7 @@ import { Booking } from "@/lib/types/Booking"
 import { timestampToReadableDate } from "@/lib/utils"
 import Link from "next/link"
 import Copy from "../ui/copy"
-import { Timestamp } from "firebase/firestore"
+import { Timestamp } from "firebase-admin/firestore"
 
 export default function Hero({ bookings }: { bookings: Booking[] }) {
   const now = new Date()

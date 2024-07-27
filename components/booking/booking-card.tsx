@@ -4,7 +4,7 @@ import BookingModal from "./booking-modal"
 import BookingPoster from "./booking-poster"
 import BookingDate from "./booking-date"
 import BookingAccess from "./booking-access"
-import { Timestamp } from "firebase/firestore"
+import { Timestamp } from "firebase-admin/firestore"
 
 interface BookingCardProps {
   booking: Booking
