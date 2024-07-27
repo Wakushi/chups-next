@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import ShowList from "@/components/show/shows-list"
 import { fetchShows } from "@/services/shows.service"
 import { playfairDisplay } from "@/styles/fonts"
