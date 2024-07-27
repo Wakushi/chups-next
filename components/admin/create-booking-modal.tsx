@@ -40,7 +40,6 @@ import {
 } from "../ui/select"
 import { Auditorium } from "@/lib/types/Auditorium"
 import { Booking } from "@/lib/types/Booking"
-import { Timestamp } from "firebase-admin/firestore"
 import { generateImage } from "@/services/media.service"
 import { Label } from "../ui/label"
 import { FaImage } from "react-icons/fa"
@@ -139,7 +138,7 @@ function BookingForm() {
 
     const newBooking: Omit<Booking, "id"> = {
       title,
-      date: Timestamp.fromDate(date),
+      date: { seconds: Date.now() / 1000, nanoseconds: 0 },
       time: `${time?.hour}h${time?.minute}`,
       image: imageUrl,
       childPrice,
