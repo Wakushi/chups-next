@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import AdminBookingList from "@/components/admin/booking-list"
 import { convertTimestampToObject } from "@/lib/utils"
 import { fetchBookings } from "@/services/bookings.service"
@@ -11,7 +12,7 @@ export default async function BookingsPage() {
     ...booking,
     date: convertTimestampToObject(booking.date as Timestamp),
   }))
-  
+
   return (
     <div className="py-20 px-4">
       <h1 className={`${playfairDisplay.className} text-3xl mb-6`}>

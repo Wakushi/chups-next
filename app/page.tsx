@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import { BookButton } from "@/components/buttons"
 import Hero from "../components/landing/hero"
 import AgendaSection from "@/components/landing/agenda-section"

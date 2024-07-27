@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import BookingList from "@/components/booking/booking-list"
 import { convertTimestampToObject } from "@/lib/utils"
 import { fetchBookings } from "@/services/bookings.service"
