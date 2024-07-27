@@ -1,18 +1,19 @@
 import { db } from "../firebase"
+import { adminDb } from "../firebase-admin"
 import {
-  addDoc,
   collection,
   deleteDoc,
   doc,
   getDoc,
   getDocs,
   query,
-  setDoc,
   updateDoc,
   where,
   writeBatch,
 } from "firebase/firestore"
 import { UserBooking, UserBookingStatus } from "@/lib/types/UserBooking"
+import { convertTimestampToObject } from "@/lib/utils"
+import { Timestamp } from "firebase-admin/firestore"
 
 const USER_BOOKING_COLLECTION = "user-bookings"
 const UNCONFIRMED_USER_BOOKING_COLLECTION = "unconfirmed-user-bookings"
@@ -21,10 +22,9 @@ export async function createUnconfirmedUserBooking(
   userBooking: Omit<UserBooking, "id">
 ): Promise<{ success: boolean; error?: any }> {
   try {
-    await addDoc(
-      collection(db, UNCONFIRMED_USER_BOOKING_COLLECTION),
-      userBooking
-    )
+    await adminDb
+      .collection(UNCONFIRMED_USER_BOOKING_COLLECTION)
+      .add(userBooking)
     return { success: true }
   } catch (error) {
     console.log(error)
@@ -40,15 +40,29 @@ export async function getUnconfirmedUserBookingByConfirmationId(
     where("confirmationId", "==", confirmationId)
   )
 
-  let unconfirmedBooking: UserBooking | null = null
+  const unconfirmedBookings: UserBooking[] = []
 
   const querySnapshot = await getDocs(q)
 
   querySnapshot.forEach((doc) => {
-    unconfirmedBooking = { id: doc.id, ...doc.data() } as UserBooking
+    unconfirmedBookings.push({
+      id: doc.id,
+      ...doc.data(),
+    } as UserBooking)
   })
 
-  return unconfirmedBooking
+  const formattedUnconfirmedBookings = unconfirmedBookings.map(
+    (unconfirmedBooking) => ({
+      ...unconfirmedBooking,
+      bookingDate: convertTimestampToObject(
+        unconfirmedBooking.bookingDate as Timestamp
+      ),
+    })
+  )
+
+  return formattedUnconfirmedBookings.length
+    ? formattedUnconfirmedBookings[0]
+    : null
 }
 
 export async function fetchUserBookings(): Promise<UserBooking[]> {
@@ -60,7 +74,6 @@ export async function fetchUserBookings(): Promise<UserBooking[]> {
       ...doc.data(),
     } as UserBooking)
   })
-  console.log("Fetched user bookings: ", userBookings)
   return userBookings.sort((a, b) => {
     if (
       a.status === UserBookingStatus.DONE &&
@@ -76,7 +89,7 @@ export async function createUserBooking(
   userBooking: Omit<UserBooking, "id">
 ): Promise<{ success: boolean; error?: any }> {
   try {
-    await addDoc(collection(db, USER_BOOKING_COLLECTION), userBooking)
+    await adminDb.collection(USER_BOOKING_COLLECTION).add(userBooking)
     return { success: true }
   } catch (error) {
     console.log(error)
@@ -89,13 +102,16 @@ export async function updateUserBookingStatus(
   newStatus: UserBookingStatus
 ): Promise<{ success: boolean; data?: UserBooking; error?: any }> {
   try {
-    const docRef = doc(db, USER_BOOKING_COLLECTION, userBooking.id!)
-    await updateDoc(docRef, {
+    const docRef = adminDb
+      .collection(USER_BOOKING_COLLECTION)
+      .doc(userBooking.id!)
+
+    await docRef.update({
       status: newStatus,
     })
 
-    const updatedDoc = await getDoc(docRef)
-    if (updatedDoc.exists()) {
+    const updatedDoc = await docRef.get()
+    if (updatedDoc.exists) {
       return { success: true, data: updatedDoc.data() as UserBooking }
     } else {
       throw new Error("Document not found after update.")
@@ -110,10 +126,12 @@ export async function updateManyUserBookingsStatus(
   userBookings: UserBooking[],
   status: UserBookingStatus
 ): Promise<{ success: boolean; error?: any }> {
-  const batch = writeBatch(db)
+  const batch = adminDb.batch()
 
   userBookings.forEach((userBooking) => {
-    const userBookingRef = doc(db, USER_BOOKING_COLLECTION, userBooking.id!)
+    const userBookingRef = adminDb
+      .collection(USER_BOOKING_COLLECTION)
+      .doc(userBooking.id!)
     batch.update(userBookingRef, { status })
   })
 
@@ -142,12 +160,27 @@ export async function deleteUnconfirmedUserBooking(
   confirmedUserBookingId: string
 ): Promise<{ success: boolean; error?: any }> {
   try {
-    await deleteDoc(
-      doc(db, UNCONFIRMED_USER_BOOKING_COLLECTION, confirmedUserBookingId)
-    )
+    await adminDb
+      .collection(UNCONFIRMED_USER_BOOKING_COLLECTION)
+      .doc(confirmedUserBookingId)
+      .delete()
     return { success: true }
   } catch (error) {
     console.error(error)
-    return { success: false }
+    return { success: false, error }
   }
 }
+
+// export async function deleteUnconfirmedUserBooking(
+//   confirmedUserBookingId: string
+// ): Promise<{ success: boolean; error?: any }> {
+//   try {
+//     await deleteDoc(
+//       doc(db, UNCONFIRMED_USER_BOOKING_COLLECTION, confirmedUserBookingId)
+//     )
+//     return { success: true }
+//   } catch (error) {
+//     console.error(error)
+//     return { success: false }
+//   }
+// }

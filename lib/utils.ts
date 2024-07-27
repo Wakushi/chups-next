@@ -1,5 +1,5 @@
 import { type ClassValue, clsx } from "clsx"
-import { Timestamp } from "firebase/firestore"
+import { Timestamp } from "firebase-admin/firestore"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {

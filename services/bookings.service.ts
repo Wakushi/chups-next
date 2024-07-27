@@ -6,13 +6,13 @@ import {
   doc,
   getDocFromCache,
   getDocs,
-  Timestamp,
 } from "firebase/firestore"
 import { getBookingTemplate, sendMail } from "./mail.service"
 import { UserBookingStatus } from "@/lib/types/UserBooking"
 import { timestampToReadableDate } from "@/lib/utils"
 import { v4 as uuidv4 } from "uuid"
 import { createUnconfirmedUserBooking } from "./user-booking.service"
+import { Timestamp } from "firebase-admin/firestore"
 
 const BOOKING_COLLECTION = "bookings"
 

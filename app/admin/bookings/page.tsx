@@ -2,7 +2,7 @@ import AdminBookingList from "@/components/admin/booking-list"
 import { convertTimestampToObject } from "@/lib/utils"
 import { fetchBookings } from "@/services/bookings.service"
 import { playfairDisplay } from "@/styles/fonts"
-import { Timestamp } from "firebase/firestore"
+import { Timestamp } from "firebase-admin/firestore"
 
 export default async function BookingsPage() {
   const bookings = await fetchBookings()

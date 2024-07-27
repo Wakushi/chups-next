@@ -9,7 +9,7 @@ import BookingPricing from "./booking-pricing"
 import { useState } from "react"
 import LoaderHive from "../ui/loader-hive/loader-hive"
 import clsx from "clsx"
-import { Timestamp } from "firebase/firestore"
+import { Timestamp } from "firebase-admin/firestore"
 
 interface BookingModalProps {
   booking: Booking

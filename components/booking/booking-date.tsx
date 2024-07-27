@@ -1,5 +1,5 @@
 import { timestampToReadableDate } from "@/lib/utils"
-import { Timestamp } from "firebase/firestore"
+import { Timestamp } from "firebase-admin/firestore"
 
 export default function BookingDate({
   date,

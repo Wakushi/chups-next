@@ -2,7 +2,7 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Button } from "../ui/button"
 import { ArrowUpDown } from "lucide-react"
-import { Timestamp } from "firebase/firestore"
+import { Timestamp } from "firebase-admin/firestore"
 import { timestampToReadableDate } from "@/lib/utils"
 import { Checkbox } from "../ui/checkbox"
 import { Booking } from "@/lib/types/Booking"

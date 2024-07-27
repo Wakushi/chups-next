@@ -1,9 +1,16 @@
 import BookingList from "@/components/booking/booking-list"
+import { convertTimestampToObject } from "@/lib/utils"
 import { fetchBookings } from "@/services/bookings.service"
 import { playfairDisplay } from "@/styles/fonts"
+import { Timestamp } from "firebase-admin/firestore"
 
 export default async function CalendarPage() {
   const bookings = await fetchBookings()
+
+  const formattedBookings = bookings.map((booking) => ({
+    ...booking,
+    date: convertTimestampToObject(booking.date as Timestamp),
+  }))
 
   return (
     <div className="py-20 md:py-[8rem] px-4">
@@ -19,7 +26,7 @@ export default async function CalendarPage() {
           Découvrez toutes nos dates
         </p>
       </div>
-      <BookingList bookings={bookings} />
+      <BookingList bookings={formattedBookings} />
     </div>
   )
 }
