@@ -1,24 +1,17 @@
 import { Booking } from "@/lib/types/Booking"
-import { db } from "../firebase"
-import {
-  addDoc,
-  collection,
-  doc,
-  getDocFromCache,
-  getDocs,
-} from "firebase/firestore"
 import { getBookingTemplate, sendMail } from "./mail.service"
 import { UserBookingStatus } from "@/lib/types/UserBooking"
 import { timestampToReadableDate } from "@/lib/utils"
 import { v4 as uuidv4 } from "uuid"
 import { createUnconfirmedUserBooking } from "./user-booking.service"
 import { Timestamp } from "firebase-admin/firestore"
+import { adminDb } from "@/firebase-admin"
 
 const BOOKING_COLLECTION = "bookings"
 
 export async function fetchBookings(): Promise<Booking[]> {
   const bookings: Booking[] = []
-  const querySnapshot = await getDocs(collection(db, BOOKING_COLLECTION))
+  const querySnapshot = await adminDb.collection(BOOKING_COLLECTION).get()
   querySnapshot.forEach((doc) => {
     bookings.push({
       id: doc.id,
@@ -31,12 +24,17 @@ export async function fetchBookings(): Promise<Booking[]> {
 export async function getBookingById(
   bookingId: string
 ): Promise<Booking | null> {
-  const docRef = doc(db, BOOKING_COLLECTION, bookingId)
+  const docRef = adminDb.collection(BOOKING_COLLECTION).doc(bookingId)
   try {
-    const doc = await getDocFromCache(docRef)
-    return doc.data() as Booking
+    const doc = await docRef.get()
+    if (!doc.exists) {
+      console.log("No such document!")
+      return null
+    } else {
+      return doc.data() as Booking
+    }
   } catch (e) {
-    console.log("Error getting cached document:", e)
+    console.log("Error getting document:", e)
     return null
   }
 }
@@ -45,7 +43,7 @@ export async function createBooking(
   booking: Omit<Booking, "id">
 ): Promise<{ success: boolean; error?: any }> {
   try {
-    await addDoc(collection(db, BOOKING_COLLECTION), booking)
+    await adminDb.collection(BOOKING_COLLECTION).add(booking)
     return { success: true }
   } catch (error) {
     console.log(error)

@@ -1,22 +1,22 @@
-import { db } from "../firebase"
 import { adminDb } from "../firebase-admin"
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  updateDoc,
-  where,
-  writeBatch,
-} from "firebase/firestore"
 import { UserBooking, UserBookingStatus } from "@/lib/types/UserBooking"
 import { convertTimestampToObject } from "@/lib/utils"
 import { Timestamp } from "firebase-admin/firestore"
 
 const USER_BOOKING_COLLECTION = "user-bookings"
 const UNCONFIRMED_USER_BOOKING_COLLECTION = "unconfirmed-user-bookings"
+
+export async function createUserBooking(
+  userBooking: Omit<UserBooking, "id">
+): Promise<{ success: boolean; error?: any }> {
+  try {
+    await adminDb.collection(USER_BOOKING_COLLECTION).add(userBooking)
+    return { success: true }
+  } catch (error) {
+    console.log(error)
+    return { success: false, error }
+  }
+}
 
 export async function createUnconfirmedUserBooking(
   userBooking: Omit<UserBooking, "id">
@@ -35,39 +35,34 @@ export async function createUnconfirmedUserBooking(
 export async function getUnconfirmedUserBookingByConfirmationId(
   confirmationId: string
 ): Promise<UserBooking | null> {
-  const q = query(
-    collection(db, UNCONFIRMED_USER_BOOKING_COLLECTION),
-    where("confirmationId", "==", confirmationId)
+  const q = adminDb
+    .collection(UNCONFIRMED_USER_BOOKING_COLLECTION)
+    .where("confirmationId", "==", confirmationId)
+    .limit(1)
+
+  const querySnapshot = await q.get()
+
+  if (querySnapshot.empty) {
+    return null
+  }
+
+  const doc = querySnapshot.docs[0]
+
+  const unconfirmedBooking = {
+    id: doc.id,
+    ...doc.data(),
+  } as UserBooking
+
+  unconfirmedBooking.bookingDate = convertTimestampToObject(
+    unconfirmedBooking.bookingDate as Timestamp
   )
 
-  const unconfirmedBookings: UserBooking[] = []
-
-  const querySnapshot = await getDocs(q)
-
-  querySnapshot.forEach((doc) => {
-    unconfirmedBookings.push({
-      id: doc.id,
-      ...doc.data(),
-    } as UserBooking)
-  })
-
-  const formattedUnconfirmedBookings = unconfirmedBookings.map(
-    (unconfirmedBooking) => ({
-      ...unconfirmedBooking,
-      bookingDate: convertTimestampToObject(
-        unconfirmedBooking.bookingDate as Timestamp
-      ),
-    })
-  )
-
-  return formattedUnconfirmedBookings.length
-    ? formattedUnconfirmedBookings[0]
-    : null
+  return unconfirmedBooking
 }
 
 export async function fetchUserBookings(): Promise<UserBooking[]> {
   const userBookings: UserBooking[] = []
-  const querySnapshot = await getDocs(collection(db, USER_BOOKING_COLLECTION))
+  const querySnapshot = await adminDb.collection(USER_BOOKING_COLLECTION).get()
   querySnapshot.forEach((doc) => {
     userBookings.push({
       id: doc.id,
@@ -83,18 +78,6 @@ export async function fetchUserBookings(): Promise<UserBooking[]> {
     }
     return -1
   })
-}
-
-export async function createUserBooking(
-  userBooking: Omit<UserBooking, "id">
-): Promise<{ success: boolean; error?: any }> {
-  try {
-    await adminDb.collection(USER_BOOKING_COLLECTION).add(userBooking)
-    return { success: true }
-  } catch (error) {
-    console.log(error)
-    return { success: false, error }
-  }
 }
 
 export async function updateUserBookingStatus(
@@ -148,7 +131,10 @@ export async function deleteUserBooking(
   userBookingId: string
 ): Promise<{ success: boolean; error?: any }> {
   try {
-    await deleteDoc(doc(db, USER_BOOKING_COLLECTION, userBookingId))
+    await adminDb
+      .collection(USER_BOOKING_COLLECTION)
+      .doc(userBookingId)
+      .delete()
     return { success: true }
   } catch (error) {
     console.error(error)
@@ -170,17 +156,3 @@ export async function deleteUnconfirmedUserBooking(
     return { success: false, error }
   }
 }
-
-// export async function deleteUnconfirmedUserBooking(
-//   confirmedUserBookingId: string
-// ): Promise<{ success: boolean; error?: any }> {
-//   try {
-//     await deleteDoc(
-//       doc(db, UNCONFIRMED_USER_BOOKING_COLLECTION, confirmedUserBookingId)
-//     )
-//     return { success: true }
-//   } catch (error) {
-//     console.error(error)
-//     return { success: false }
-//   }
-// }

@@ -1,15 +1,17 @@
-import { doc, getDoc, setDoc } from "firebase/firestore"
-import { db } from "@/firebase"
 import { User } from "@/lib/types/User"
 import { hashPassword } from "@/lib/crypto"
+import { adminDb } from "@/firebase-admin"
+
+const USER_COLLECTION = "users"
 
 export async function createUser(formData: FormData) {
   const email = formData.get("email") as string
   const password = formData.get("password") as string
   const name = formData.get("name") as string
   const role = "user"
+
   try {
-    await setDoc(doc(db, "users", email), {
+    await adminDb.collection(USER_COLLECTION).add({
       name,
       email,
       password: await hashPassword(password),
@@ -22,10 +24,22 @@ export async function createUser(formData: FormData) {
 }
 
 export async function getUserByEmail(email: string): Promise<User | null> {
-  const docRef = doc(db, "users", email)
-  const docSnap = await getDoc(docRef)
-  if (docSnap.exists()) {
-    return docSnap.data() as User
+  const q = adminDb
+    .collection(USER_COLLECTION)
+    .where("email", "==", email)
+    .limit(1)
+
+  const querySnapshot = await q.get()
+
+  if (querySnapshot.empty) {
+    return null
   }
-  return null
+
+  const doc = querySnapshot.docs[0]
+  const user = {
+    id: doc.id,
+    ...doc.data(),
+  } as User
+
+  return user
 }

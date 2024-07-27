@@ -1,10 +1,11 @@
 import { Show } from "@/lib/types/Show"
-import { db } from "../firebase"
-import { collection, getDocs } from "firebase/firestore"
+import { adminDb } from "@/firebase-admin"
+
+const SHOW_COLLECTION = "shows"
 
 export async function fetchShows() {
   const shows: Show[] = []
-  const querySnapshot = await getDocs(collection(db, "shows"))
+  const querySnapshot = await adminDb.collection(SHOW_COLLECTION).get()
   querySnapshot.forEach((doc) => {
     shows.push({
       id: doc.id,

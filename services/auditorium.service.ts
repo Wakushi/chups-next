@@ -1,12 +1,11 @@
-import { db } from "../firebase"
+import { adminDb } from "@/firebase-admin"
 import { Auditorium } from "@/lib/types/Auditorium"
-import { collection, getDocs } from "firebase/firestore"
 
 const AUDITORIUM_COLLECTION = "auditorium"
 
 export async function fetchAuditoriums(): Promise<Auditorium[]> {
   const auditoriums: Auditorium[] = []
-  const querySnapshot = await getDocs(collection(db, AUDITORIUM_COLLECTION))
+  const querySnapshot = await adminDb.collection(AUDITORIUM_COLLECTION).get()
   querySnapshot.forEach((doc) => {
     auditoriums.push({
       id: doc.id,
