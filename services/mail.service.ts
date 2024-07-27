@@ -38,7 +38,6 @@ export function getBookingTemplate({
   totalPrice: number
 }): string {
   const confirmUrl = `${process.env.NEXT_PUBLIC_APP_URL}/confirm-booking?id=${confirmationId}&email=${email}`
-  console.log('confirmUrl: ', confirmUrl)
 
   return `
   <html>
