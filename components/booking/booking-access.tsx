@@ -8,7 +8,7 @@ export default function BookingAccess({
   locationurl: string
 }) {
   return (
-    <Button variant="secondary" className="md:w-full">
+    <Button variant="secondary" className="flex-1 md:w-full">
       <Link
         href={locationurl}
         target="_blank"

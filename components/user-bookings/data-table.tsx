@@ -319,11 +319,14 @@ export function DataTable<TData, TValue>({
 }
 
 const columnsLabels = {
+  title: "Spectacle",
+  city: "Ville",
   email: "Email",
   name: "Nom",
   adultTickets: "Places adultes",
   childTickets: "Places enfants",
   totalPrice: "Prix total",
   date: "Date",
+  bookingDate: "Réservé le",
   status: "Statut",
 }

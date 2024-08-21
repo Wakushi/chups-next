@@ -1,4 +1,3 @@
-import { Timestamp } from "firebase-admin/firestore"
 import { Auditorium } from "./Auditorium"
 
 export type Booking = {
@@ -13,4 +12,5 @@ export type Booking = {
   city: string
   locationUrl: string
   auditorium?: Auditorium
+  externalBookingUrl?: string
 }

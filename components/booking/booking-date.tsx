@@ -9,7 +9,7 @@ export default function BookingDate({
   time: string
 }) {
   return (
-    <p className="text-sm md:text-lg font-extralight">
+    <p className="text-sm md:text-lg font-extralight flex items-baseline gap-2">
       {timestampToReadableDate(date, "long")} à {time}
     </p>
   )
