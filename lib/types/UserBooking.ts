@@ -4,6 +4,7 @@ import { Booking } from "./Booking"
 export type UserBooking = Booking & {
   email: string
   name: string
+  firstName: string
   adultTickets: number
   childTickets: number
   totalPrice: number

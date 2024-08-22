@@ -18,7 +18,7 @@ export default function Navlink({ title, href, onClick }: NavlinkProps) {
       <Link
         href={href}
         className={clsx(
-          `${playfairDisplay.className} text-[2rem] lg:text-[1.5rem] uppercase flex justify-between items-center`,
+          `${playfairDisplay.className} text-[2rem] lg:text-[1.5rem] uppercase flex justify-between items-center hover:text-brand`,
           {
             "text-brand": pathname === href,
           }

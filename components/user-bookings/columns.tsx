@@ -109,6 +109,29 @@ export const columns: ColumnDef<UserBooking>[] = [
     },
   },
   {
+    accessorKey: "firstName",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Prénom
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const firstName: string = row.getValue("firstName")
+      return (
+        <div className="pl-4 font-medium flex items-center gap-2">
+          <span>{firstName}</span>
+          <Copy contentToCopy={firstName} />
+        </div>
+      )
+    },
+  },
+  {
     accessorKey: "name",
     header: ({ column }) => {
       return (
@@ -131,7 +154,6 @@ export const columns: ColumnDef<UserBooking>[] = [
       )
     },
   },
-
   {
     accessorKey: "email",
     header: ({ column }) => {
@@ -346,6 +368,7 @@ export const columns: ColumnDef<UserBooking>[] = [
       }
 
       async function deleteUserBooking(): Promise<void> {
+        setIsDeleteDialogOpen(false)
         setLoading(true)
         try {
           await fetch(
@@ -403,38 +426,6 @@ export const columns: ColumnDef<UserBooking>[] = [
                 </DropdownMenuItem>
               )}
               <Separator />
-              <AlertDialogTrigger asChild>
-                <DropdownMenuItem
-                  className="text-red-600 cursor-pointer p-2"
-                  onSelect={(event) => {
-                    event.preventDefault()
-                    setIsDeleteDialogOpen(true)
-                  }}
-                >
-                  <FaTrash className="mr-2" />
-                  Supprimer
-                </DropdownMenuItem>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Êtes-vous sûr ?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    Cette action est irréversible et supprimera la réservation.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Annuler</AlertDialogCancel>
-                  <Button
-                    variant="destructive"
-                    onClick={() => {
-                      deleteUserBooking()
-                      setIsDeleteDialogOpen(false)
-                    }}
-                  >
-                    Supprimer
-                  </Button>
-                </AlertDialogFooter>
-              </AlertDialogContent>
             </AlertDialog>
           </DropdownMenuContent>
         </DropdownMenu>

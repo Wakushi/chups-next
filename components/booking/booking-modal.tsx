@@ -13,9 +13,10 @@ import { Timestamp } from "firebase-admin/firestore"
 
 interface BookingModalProps {
   booking: Booking
+  heroView?: boolean
 }
 
-export default function BookingModal({ booking }: BookingModalProps) {
+export default function BookingModal({ booking, heroView }: BookingModalProps) {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
 
@@ -95,7 +96,14 @@ export default function BookingModal({ booking }: BookingModalProps) {
       }}
     >
       <DialogTrigger asChild>
-        <Button className="md:w-full flex-1">Réserver</Button>
+        <Button
+          className={clsx("md:w-full flex-1", {
+            "bg-transparent text-white border border-white min-h-[40px] max-h-[40px] w-[110px] max-w-[200px] mx-auto uppercase font-bold":
+              heroView,
+          })}
+        >
+          Réserver
+        </Button>
       </DialogTrigger>
       <DialogContent
         className={clsx("h-[100dvh] md:max-h-[80%] rounded overflow-auto p-4", {

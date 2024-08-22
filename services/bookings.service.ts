@@ -52,12 +52,14 @@ export async function createBooking(
 }
 
 export async function bookShow({
+  firstName,
   email,
   name,
   adultTickets,
   childTickets,
   show,
 }: {
+  firstName: string
   email: string
   name: string
   adultTickets: number
@@ -65,7 +67,7 @@ export async function bookShow({
   show: Booking
 }): Promise<{ success: boolean }> {
   try {
-    if (!name || !email || !adultTickets) {
+    if (!firstName || !name || !email || !adultTickets) {
       throw new Error("Missing required fields")
     }
 
@@ -97,6 +99,7 @@ export async function bookShow({
       image,
       email,
       name,
+      firstName,
       adultTickets,
       childTickets,
       totalPrice,

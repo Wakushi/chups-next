@@ -15,6 +15,9 @@ import { Booking } from "@/lib/types/Booking"
 import clsx from "clsx"
 
 const formSchema = z.object({
+  firstName: z
+    .string()
+    .min(2, { message: "Prénom trop court, 2 caractères minimum." }),
   name: z.string().min(2, { message: "Nom trop court, 2 caractères minimum." }),
   email: z.string().email({ message: "Email invalide." }),
   adultTickets: z.coerce.number(),
@@ -35,6 +38,7 @@ export default function BookingForm({
   const bookingForm = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      firstName: "",
       name: "",
       email: "",
       adultTickets: 1,
@@ -45,8 +49,9 @@ export default function BookingForm({
   async function onSubmit(formValues: z.infer<typeof formSchema>) {
     setIsSubmitting(true)
     try {
-      const { name, email, adultTickets, childTickets } = formValues
+      const { firstName, name, email, adultTickets, childTickets } = formValues
       const payload = {
+        firstName,
         name,
         email,
         adultTickets,
@@ -82,6 +87,27 @@ export default function BookingForm({
         onSubmit={bookingForm.handleSubmit(onSubmit)}
         className="flex flex-col gap-2"
       >
+        <FormField
+          control={bookingForm.control}
+          name="firstName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Prénom *</FormLabel>
+              <FormControl>
+                <Input
+                  style={{
+                    backgroundColor: "transparent",
+                    border: "transparent",
+                    borderBottom: "1px solid #fff",
+                    borderRadius: "0",
+                  }}
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={bookingForm.control}
           name="name"

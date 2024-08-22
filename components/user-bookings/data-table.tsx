@@ -32,6 +32,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { Input } from "../ui/input"
@@ -123,6 +135,29 @@ export function DataTable<TData, TValue>({
     }
   }
 
+  async function deleteSelected(): Promise<void> {
+    const selectedUserBookings = table
+      .getFilteredSelectedRowModel()
+      .rows.map((r) => r.original as UserBooking)
+
+    selectedUserBookings.forEach(async (booking) => {
+      try {
+        await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_API_URL}/booking/user-booking?id=${booking.id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        router.refresh()
+      } catch (error) {
+        console.error(error)
+      }
+    })
+  }
+
   function MarkAsButtons() {
     const selected = table
       .getFilteredSelectedRowModel()
@@ -157,6 +192,30 @@ export function DataTable<TData, TValue>({
           </Button>
         )}
       </>
+    )
+  }
+
+  function DeleteAlertDialog() {
+    return (
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button variant="outline">Supprimer</Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Êtes-vous sûr ?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Cette action est irréversible et supprimera la réservation.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Annuler</AlertDialogCancel>
+            <AlertDialogAction onClick={deleteSelected}>
+              Supprimer
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     )
   }
 
@@ -229,6 +288,7 @@ export function DataTable<TData, TValue>({
           ) : (
             <MarkAsButtons />
           )}
+          <DeleteAlertDialog />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
@@ -323,6 +383,7 @@ const columnsLabels = {
   city: "Ville",
   email: "Email",
   name: "Nom",
+  firstName: "Prénom",
   adultTickets: "Places adultes",
   childTickets: "Places enfants",
   totalPrice: "Prix total",

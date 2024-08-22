@@ -8,6 +8,7 @@ import { useContext } from "react"
 import { UserContext } from "@/providers/UserContext"
 import { User } from "@/lib/types/User"
 import { LogoutButton } from "./buttons"
+import { FaFacebook, FaInstagram } from "react-icons/fa"
 
 export default function Header() {
   const { user, loadingUser } = useContext(UserContext)
@@ -47,11 +48,23 @@ export default function Header() {
 function GuestNavigation() {
   return (
     <div className="flex items-center gap-2">
-      <div className="hidden lg:flex">
+      <div className="hidden lg:flex items-center">
+        <Navlink title="Accueil" href="/" />
         <Navlink title="Calendrier" href="/calendar" />
         <Navlink title="Spectacles" href="/shows" />
         <Navlink title="Contact" href="/contact" />
         <Navlink title="FAQ" href="/faq" />
+        <div className="flex items-center">
+          <Link
+            href="https://www.facebook.com/p/Les-Chups-100091876850435/"
+            target="_blank"
+          >
+            <FaFacebook className="text-2xl mr-8 cursor-pointer hover:text-brand" />
+          </Link>
+          <Link href="https://www.instagram.com/chupsles" target="_blank">
+            <FaInstagram className="text-2xl mr-8 cursor-pointer hover:text-brand" />
+          </Link>
+        </div>
       </div>
       <HeaderMenu />
     </div>
@@ -63,6 +76,7 @@ function AdminNavigation({ user }: { user: User }) {
   return (
     <div className="flex items-center gap-2">
       <div className="hidden lg:flex">
+        <Navlink title="Accueil" href="/" />
         <Navlink title="Réservations" href="/admin/user-bookings" />
         <Navlink title="Dates" href="/admin/bookings" />
         <LogoutButton logOut={logOut} />

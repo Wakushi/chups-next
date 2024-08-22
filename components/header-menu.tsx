@@ -8,6 +8,8 @@ import { Separator } from "./ui/separator"
 import { User } from "@/lib/types/User"
 import { UserContext } from "@/providers/UserContext"
 import { LogoutButton } from "./buttons"
+import { FaFacebook, FaInstagram } from "react-icons/fa"
+import Link from "next/link"
 
 export default function HeaderMenu({ user }: { user?: User }) {
   const { logOut } = useContext(UserContext)
@@ -58,10 +60,26 @@ export default function HeaderMenu({ user }: { user?: User }) {
                 <Navlink title="Contact" href="/contact" onClick={toggleMenu} />
                 <Separator />
                 <Navlink title="FAQ" href="/faq" onClick={toggleMenu} />
+                <div className="flex items-center justify-center mt-8">
+                  <Link
+                    href="https://www.facebook.com/p/Les-Chups-100091876850435/"
+                    target="_blank"
+                  >
+                    <FaFacebook className="text-2xl mr-8 cursor-pointer hover:text-brand" />
+                  </Link>
+                  <Link
+                    href="https://www.instagram.com/chupsles"
+                    target="_blank"
+                  >
+                    <FaInstagram className="text-2xl mr-8 cursor-pointer hover:text-brand" />
+                  </Link>
+                </div>
               </>
             )}
             {user?.role === "admin" && (
               <>
+                <Navlink title="Accueil" href="/" onClick={toggleMenu} />
+                <Separator />
                 <Navlink
                   title="Réservations"
                   href="/admin/user-bookings"
