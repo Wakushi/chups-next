@@ -37,6 +37,8 @@ async function checkPassword(
   hashedPassword: string,
   password: string
 ): Promise<boolean> {
+  console.log(password) // dummy test
+  console.log(hashedPassword)
   return bcrypt.compare(password, hashedPassword)
 }
 
