@@ -17,7 +17,9 @@ export default function LoginForm() {
 
     const formData = new FormData(e.target as HTMLFormElement)
     const { email, password } = Object.fromEntries(formData.entries())
-    login(email.toString(), password.toString())
+    await login(email.toString(), password.toString())
+
+    setLoading(false)
   }
 
   return (

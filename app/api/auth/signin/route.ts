@@ -20,10 +20,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     const user = await getUserByEmail(email)
 
+    console.log(user)
+
     if (!user) {
       return NextResponse.json(
         {
-          message: "Email ou mot de passe incorrect",
+          message: "Email non trouvé, veuillez réessayer",
         },
         {
           status: 400,
@@ -32,6 +34,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
 
     const isValidPassword = await checkPassword(user.password, password)
+
+    console.log(isValidPassword)
 
     if (!isValidPassword) {
       return NextResponse.json(
