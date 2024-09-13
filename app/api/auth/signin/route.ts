@@ -1,4 +1,5 @@
-import { checkPassword, createUserJwtToken } from "@/lib/crypto"
+import { checkPassword } from "@/lib/crypto"
+import { createUserJwtToken } from "@/lib/jwt"
 import { getUserByEmail } from "@/services/user.service"
 import { NextRequest, NextResponse } from "next/server"
 
@@ -44,7 +45,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       )
     }
 
-    const token = createUserJwtToken(user)
+    const token = await createUserJwtToken(user)
 
     const response = NextResponse.json({ user })
     response.cookies.set({

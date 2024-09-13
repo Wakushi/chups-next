@@ -1,4 +1,4 @@
-import { verifyJWT } from "@/lib/crypto"
+import { verifyJWT } from "@/lib/jwt"
 import { getUserByEmail } from "@/services/user.service"
 import { NextRequest, NextResponse } from "next/server"
 
@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
       )
     }
 
-    const payload = verifyJWT(token)
+    const payload = await verifyJWT(token)
     const user = await getUserByEmail(payload.email)
 
     if (!user) {

@@ -13,6 +13,17 @@ import { FaFacebook, FaInstagram } from "react-icons/fa"
 export default function Header() {
   const { user, loadingUser } = useContext(UserContext)
 
+  const Navigation = () => {
+    switch (user?.role) {
+      case "admin":
+        return <AdminNavigation user={user} />
+      case "user":
+        return <MemberNavigation user={user} />
+      default:
+        return <GuestNavigation />
+    }
+  }
+
   return (
     <>
       <Link href="/" className="flex items-center gap-2">
@@ -32,15 +43,7 @@ export default function Header() {
           LES CHUP'S
         </div>
       </Link>
-      {!loadingUser && (
-        <div className="flex fade-in-top">
-          {user && user.role === "admin" ? (
-            <AdminNavigation user={user} />
-          ) : (
-            <GuestNavigation />
-          )}
-        </div>
-      )}
+      {!loadingUser && <Navigation />}
     </>
   )
 }
@@ -79,6 +82,21 @@ function AdminNavigation({ user }: { user: User }) {
         <Navlink title="Accueil" href="/" />
         <Navlink title="Réservations" href="/admin/user-bookings" />
         <Navlink title="Dates" href="/admin/bookings" />
+        <Navlink title="Documents" href="/member/downloads" />
+        <LogoutButton logOut={logOut} />
+      </div>
+      <HeaderMenu user={user} />
+    </div>
+  )
+}
+
+function MemberNavigation({ user }: { user: User }) {
+  const { logOut } = useContext(UserContext)
+  return (
+    <div className="flex items-center gap-2">
+      <div className="hidden lg:flex">
+        <Navlink title="Accueil" href="/" />
+        <Navlink title="Documents" href="/member/downloads" />
         <LogoutButton logOut={logOut} />
       </div>
       <HeaderMenu user={user} />

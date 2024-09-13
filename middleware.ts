@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { RateLimiterMemory } from "rate-limiter-flexible"
+import { verifyJWT } from "./lib/jwt"
 
 const rateLimiter = new RateLimiterMemory({
   points: 10,
@@ -10,6 +11,7 @@ const rateLimiter = new RateLimiterMemory({
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const url = request.nextUrl.clone()
+
   const authCookie = request.cookies.get(process.env.TOKEN_COOKIE as string)
   const token = authCookie?.value
 
@@ -18,19 +20,45 @@ export async function middleware(request: NextRequest) {
       await rateLimiter.consume(request.ip)
     }
 
-    if (pathname.includes("/admin")) {
-      if (!token) {
+    if (token) {
+      const decodedToken = await verifyJWT(token)
+
+      if (pathname.startsWith("/admin")) {
+        if (decodedToken.userType !== "admin") {
+          url.pathname = "/"
+          return NextResponse.redirect(url)
+        }
+      } else if (pathname.startsWith("/member")) {
+        if (
+          decodedToken.userType !== "admin" &&
+          decodedToken.userType !== "user"
+        ) {
+          url.pathname = "/"
+          return NextResponse.redirect(url)
+        }
+      }
+    } else {
+      if (pathname.startsWith("/admin") || pathname.startsWith("/member")) {
         url.pathname = "/"
         return NextResponse.redirect(url)
       }
     }
 
     return NextResponse.next()
-  } catch (rateLimiterRes) {
-    return new NextResponse("Too many requests", { status: 429 })
+  } catch (error) {
+    if (error instanceof Error && "consume" in error) {
+      return new NextResponse("Too many requests", { status: 429 })
+    }
+    console.error("Middleware error:", error)
+    return new NextResponse("Internal Server Error", { status: 500 })
   }
 }
 
 export const config = {
-  matcher: ["/api/booking/user-booking", "/api/contact", "/admin/:path*"],
+  matcher: [
+    "/api/booking/user-booking",
+    "/api/contact",
+    "/admin/:path*",
+    "/member/:path*",
+  ],
 }

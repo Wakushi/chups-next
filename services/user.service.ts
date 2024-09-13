@@ -4,18 +4,12 @@ import { adminDb } from "@/firebase-admin"
 
 const USER_COLLECTION = "users"
 
-export async function createUser(formData: FormData) {
-  const email = formData.get("email") as string
-  const password = formData.get("password") as string
-  const name = formData.get("name") as string
-  const role = "user"
+export async function createUser(user: User) {
 
   try {
     await adminDb.collection(USER_COLLECTION).add({
-      name,
-      email,
-      password: await hashPassword(password),
-      role,
+      ...user,
+      password: await hashPassword(user.password),
     })
   } catch (error) {
     console.error("Failed to create user:", error)

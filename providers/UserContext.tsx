@@ -40,19 +40,16 @@ export default function UserContextProvider(props: UserContextProviderProps) {
   }, [])
 
   async function login(email: string, password: string) {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/signin`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      }
-    )
+    const response = await fetch("api/auth/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
 
     if (!response.ok) {
       const { message } = await response.json()
@@ -68,9 +65,22 @@ export default function UserContextProvider(props: UserContextProviderProps) {
       return
     }
 
-    const { user } = await response.json()
+    const data = await response.json()
+    const user = data.user as User
+
     setUser(user)
-    router.push("/admin/user-bookings")
+
+    switch (user.role) {
+      case "user":
+        router.push("/member/downloads")
+        break
+      case "admin":
+        router.push("/admin/user-bookings")
+        break
+      default:
+        router.push("/")
+        break
+    }
   }
 
   async function loginWithToken() {

@@ -55,6 +55,7 @@ import {
 } from "@/lib/types/UserBooking"
 import { useRouter } from "next/navigation"
 import LoaderSmall from "../ui/loader-small/loader-small"
+import { User } from "@/lib/types/User"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -77,8 +78,6 @@ export function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = useState({})
 
-  const bookingStatus = Object.values(UserBookingStatus)
-
   const table = useReactTable({
     data,
     columns,
@@ -97,43 +96,6 @@ export function DataTable<TData, TValue>({
       rowSelection,
     },
   })
-
-  const selectedRowsAmount = table.getFilteredSelectedRowModel().rows.length
-
-  async function updateManyStatus(newStatus: UserBookingStatus): Promise<void> {
-    setLoading(true)
-
-    const selectedUserBookings = table
-      .getFilteredSelectedRowModel()
-      .rows.map((r) => r.original as UserBooking)
-      .filter((r) => r.status !== newStatus)
-
-    if (!selectedUserBookings.length) {
-      setLoading(false)
-      return
-    }
-
-    try {
-      await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/booking/user-booking/status`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            userBookings: selectedUserBookings,
-            status: newStatus,
-          }),
-        }
-      )
-      router.refresh()
-    } catch (error) {
-      console.error(error)
-    } finally {
-      setLoading(false)
-    }
-  }
 
   async function deleteSelected(): Promise<void> {
     const selectedUserBookings = table
@@ -158,48 +120,13 @@ export function DataTable<TData, TValue>({
     })
   }
 
-  function MarkAsButtons() {
-    const selected = table
-      .getFilteredSelectedRowModel()
-      .rows.map((r) => r.original as UserBooking)
-
-    const hasUntreated = selected.some(
-      (userBooking) => userBooking.status === UserBookingStatus.PENDING
-    )
-
-    const hasTreated = selected.some(
-      (userBooking) => userBooking.status === UserBookingStatus.DONE
-    )
-
-    return (
-      <>
-        {hasUntreated && (
-          <Button
-            variant="outline"
-            onClick={() => updateManyStatus(UserBookingStatus.DONE)}
-          >
-            Marquer {selectedRowsAmount ? selectedRowsAmount : ""} comme
-            "Traitée"
-          </Button>
-        )}
-        {hasTreated && (
-          <Button
-            variant="outline"
-            onClick={() => updateManyStatus(UserBookingStatus.PENDING)}
-          >
-            Marquer {selectedRowsAmount ? selectedRowsAmount : ""} comme "À
-            traiter"
-          </Button>
-        )}
-      </>
-    )
-  }
-
   function DeleteAlertDialog() {
     return (
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant="outline">Supprimer</Button>
+          <Button variant="outline" className="flex-1 w-full">
+            Supprimer
+          </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -219,103 +146,95 @@ export function DataTable<TData, TValue>({
     )
   }
 
+  function TableFilters() {
+    const bookingStatus = Object.values(UserBookingStatus)
+
+    return (
+      <div className="flex flex-wrap items-center w-full gap-2">
+        <Input
+          placeholder="Nom"
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("name")?.setFilterValue(event.target.value)
+          }
+          className="max-w-[200px]"
+        />
+        <Input
+          placeholder="Spectacle"
+          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("title")?.setFilterValue(event.target.value)
+          }
+          className="max-w-[200px]"
+        />
+        <Select
+          value={
+            (table.getColumn("status")?.getFilterValue() as string) ?? "all"
+          }
+          onValueChange={(value) => {
+            table
+              .getColumn("status")
+              ?.setFilterValue(value === "all" ? undefined : value)
+          }}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Statut" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Tous les statuts </SelectItem>
+            {bookingStatus.map((status) => (
+              <SelectItem key={status} value={status}>
+                {UserBookingStatusLabel[status]}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    )
+  }
+
   return (
     <>
-      <h3 className="px-2 text-lg opacity-70">Filtres</h3>
-      <div className="flex items-center justify-between p-2">
-        <div className="flex items-center w-full gap-2">
-          <Input
-            placeholder="Nom"
-            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("name")?.setFilterValue(event.target.value)
-            }
-            className="max-w-[200px]"
-          />
-          <Input
-            placeholder="Email"
-            value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("email")?.setFilterValue(event.target.value)
-            }
-            className="max-w-[200px]"
-          />
-          <Input
-            placeholder="Spectacle"
-            value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("title")?.setFilterValue(event.target.value)
-            }
-            className="max-w-[200px]"
-          />
-          <Input
-            placeholder="Salle"
-            value={(table.getColumn("city")?.getFilterValue() as string) ?? ""}
-            onChange={(event) =>
-              table.getColumn("city")?.setFilterValue(event.target.value)
-            }
-            className="max-w-[200px]"
-          />
-          <Select
-            value={
-              (table.getColumn("status")?.getFilterValue() as string) ?? "all"
-            }
-            onValueChange={(value) => {
-              table
-                .getColumn("status")
-                ?.setFilterValue(value === "all" ? undefined : value)
-            }}
-          >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Statut" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Tous les statuts </SelectItem>
-              {bookingStatus.map((status) => (
-                <SelectItem key={status} value={status}>
-                  {UserBookingStatusLabel[status]}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+      <div className="px-4">
+        <div className="flex items-center justify-between gap-2">
+          <TableFilters />
+          <div className="flex flex-wrap items-center gap-2 self-end justify-end">
+            {loading ? (
+              <div className="w-[400px] flex justify-center">
+                <LoaderSmall />
+              </div>
+            ) : (
+              <DeleteAlertDialog />
+            )}
 
-        <div className="flex items-center gap-2">
-          {loading ? (
-            <div className="w-[400px] flex justify-center">
-              <LoaderSmall />
-            </div>
-          ) : (
-            <MarkAsButtons />
-          )}
-          <DeleteAlertDialog />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="ml-auto">
-                Colonnes
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {table
-                .getAllColumns()
-                .filter((column) => column.getCanHide())
-                .map((column) => {
-                  if (column.id === "actions") return null
-                  return (
-                    <DropdownMenuCheckboxItem
-                      key={column.id}
-                      className="capitalize"
-                      checked={column.getIsVisible()}
-                      onCheckedChange={(value) =>
-                        column.toggleVisibility(!!value)
-                      }
-                    >
-                      {columnsLabels[column.id as keyof typeof columnsLabels]}
-                    </DropdownMenuCheckboxItem>
-                  )
-                })}
-            </DropdownMenuContent>
-          </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="flex-1 w-full">
+                  Colonnes
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {table
+                  .getAllColumns()
+                  .filter((column) => column.getCanHide())
+                  .map((column) => {
+                    if (column.id === "actions") return null
+                    return (
+                      <DropdownMenuCheckboxItem
+                        key={column.id}
+                        className="capitalize"
+                        checked={column.getIsVisible()}
+                        onCheckedChange={(value) =>
+                          column.toggleVisibility(!!value)
+                        }
+                      >
+                        {columnsLabels[column.id as keyof typeof columnsLabels]}
+                      </DropdownMenuCheckboxItem>
+                    )
+                  })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </div>
       <div className="rounded-md">
@@ -325,14 +244,16 @@ export function DataTable<TData, TValue>({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
+                    <>
+                      <TableHead key={header.id}>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                      </TableHead>
+                    </>
                   )
                 })}
               </TableRow>

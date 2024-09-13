@@ -1,4 +1,4 @@
-import { verifyJWT } from "@/lib/crypto"
+import { verifyJWT } from "@/lib/jwt"
 import { bookShow } from "@/services/bookings.service"
 import {
   deleteUserBooking,
@@ -87,7 +87,7 @@ async function hasAdminRole(request: NextRequest): Promise<boolean> {
     return false
   }
 
-  const payload = verifyJWT(token)
+  const payload = await verifyJWT(token)
   const user = await getUserByEmail(payload.email)
 
   if (!user || user.role !== "admin") {
