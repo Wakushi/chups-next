@@ -83,7 +83,7 @@ export function DataTable<TData, TValue>({
             className="max-w-[200px]"
           />
           <Input
-            placeholder="Salle"
+            placeholder="Ville"
             value={(table.getColumn("city")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("city")?.setFilterValue(event.target.value)
