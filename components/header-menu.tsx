@@ -25,6 +25,21 @@ export default function HeaderMenu({ user }: { user?: User }) {
     logOut()
   }
 
+  const MenuNavigation = () => {
+    switch (user?.role) {
+      case "admin":
+        return (
+          <AdminNavigationMenu toggleMenu={toggleMenu} onLogOut={onLogOut} />
+        )
+      case "user":
+        return (
+          <MemberNavigationMenu toggleMenu={toggleMenu} onLogOut={onLogOut} />
+        )
+      default:
+        return <GuestNavigationMenu toggleMenu={toggleMenu} />
+    }
+  }
+
   return (
     <div className="lg:hidden">
       <div className="relative z-10" onClick={toggleMenu}>
@@ -40,64 +55,84 @@ export default function HeaderMenu({ user }: { user?: User }) {
         )}
       >
         <nav className="w-full">
-          <ul className="flex flex-col justify-center gap-6">
-            {!user && (
-              <>
-                <Navlink title="Accueil" href="/" onClick={toggleMenu} />
-                <Separator />
-                <Navlink
-                  title="Calendrier"
-                  href="/calendar"
-                  onClick={toggleMenu}
-                />
-                <Separator />
-                <Navlink
-                  title="Spectacles"
-                  href="/shows"
-                  onClick={toggleMenu}
-                />
-                <Separator />
-                <Navlink title="Contact" href="/contact" onClick={toggleMenu} />
-                <Separator />
-                <Navlink title="FAQ" href="/faq" onClick={toggleMenu} />
-                <div className="flex items-center justify-center mt-8">
-                  <Link
-                    href="https://www.facebook.com/p/Les-Chups-100091876850435/"
-                    target="_blank"
-                  >
-                    <FaFacebook className="text-2xl mr-8 cursor-pointer hover:text-brand" />
-                  </Link>
-                  <Link
-                    href="https://www.instagram.com/chupsles"
-                    target="_blank"
-                  >
-                    <FaInstagram className="text-2xl mr-8 cursor-pointer hover:text-brand" />
-                  </Link>
-                </div>
-              </>
-            )}
-            {user?.role === "admin" && (
-              <>
-                <Navlink title="Accueil" href="/" onClick={toggleMenu} />
-                <Separator />
-                <Navlink
-                  title="Réservations"
-                  href="/admin/user-bookings"
-                  onClick={toggleMenu}
-                />
-                <Separator />
-                <Navlink
-                  title="Dates"
-                  href="/admin/bookings"
-                  onClick={toggleMenu}
-                />
-                <Separator />
-                <LogoutButton logOut={onLogOut} />
-              </>
-            )}
+          <ul className="flex flex-col justify-center gap-4">
+            <MenuNavigation />
           </ul>
         </nav>
       </div>
     </div>
+  )
+}
+
+function GuestNavigationMenu({ toggleMenu }: { toggleMenu: () => void }) {
+  return (
+    <>
+      <Navlink title="Accueil" href="/" onClick={toggleMenu} />
+      <Separator />
+      <Navlink title="Calendrier" href="/calendar" onClick={toggleMenu} />
+      <Separator />
+      <Navlink title="Spectacles" href="/shows" onClick={toggleMenu} />
+      <Separator />
+      <Navlink title="Contact" href="/contact" onClick={toggleMenu} />
+      <Separator />
+      <Navlink title="FAQ" href="/faq" onClick={toggleMenu} />
+      <Separator />
+      <Navlink title="Login" href="/login" onClick={toggleMenu} />
+      <div className="flex items-center justify-center mt-8">
+        <Link
+          href="https://www.facebook.com/p/Les-Chups-100091876850435/"
+          target="_blank"
+        >
+          <FaFacebook className="text-2xl mr-8 cursor-pointer hover:text-brand" />
+        </Link>
+        <Link href="https://www.instagram.com/chupsles" target="_blank">
+          <FaInstagram className="text-2xl mr-8 cursor-pointer hover:text-brand" />
+        </Link>
+      </div>
+    </>
+  )
+}
+
+function AdminNavigationMenu({
+  toggleMenu,
+  onLogOut,
+}: {
+  toggleMenu: () => void
+  onLogOut: () => void
+}) {
+  return (
+    <>
+      <Navlink title="Accueil" href="/" onClick={toggleMenu} />
+      <Separator />
+      <Navlink
+        title="Réservations"
+        href="/admin/user-bookings"
+        onClick={toggleMenu}
+      />
+      <Separator />
+      <Navlink title="Dates" href="/admin/bookings" onClick={toggleMenu} />
+      <Separator />
+      <LogoutButton logOut={onLogOut} />
+    </>
+  )
+}
+
+function MemberNavigationMenu({
+  toggleMenu,
+  onLogOut,
+}: {
+  toggleMenu: () => void
+  onLogOut: () => void
+}) {
+  return (
+    <>
+      <Navlink title="Accueil" href="/" onClick={toggleMenu} />
+      <Navlink
+        title="Documents"
+        href="/member/downloads"
+        onClick={toggleMenu}
+      />
+      <LogoutButton logOut={onLogOut} />
+    </>
   )
 }

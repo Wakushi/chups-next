@@ -57,6 +57,7 @@ function GuestNavigation() {
         <Navlink title="Spectacles" href="/shows" />
         <Navlink title="Contact" href="/contact" />
         <Navlink title="FAQ" href="/faq" />
+        <Navlink title="Login" href="/login" />
         <div className="flex items-center">
           <Link
             href="https://www.facebook.com/p/Les-Chups-100091876850435/"
