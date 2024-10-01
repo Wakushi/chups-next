@@ -9,6 +9,7 @@ import { UserContext } from "@/providers/UserContext"
 import { User } from "@/lib/types/User"
 import { LogoutButton } from "./buttons"
 import { FaFacebook, FaInstagram } from "react-icons/fa"
+import MusicButton from "./music-player"
 
 export default function Header() {
   const { user, loadingUser } = useContext(UserContext)
@@ -59,6 +60,7 @@ function GuestNavigation() {
         <Navlink title="FAQ" href="/faq" />
         <Navlink title="Login" href="/login" />
         <div className="flex items-center">
+          <MusicButton />
           <Link
             href="https://www.facebook.com/p/Les-Chups-100091876850435/"
             target="_blank"

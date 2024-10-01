@@ -10,6 +10,7 @@ import { UserContext } from "@/providers/UserContext"
 import { LogoutButton } from "./buttons"
 import { FaFacebook, FaInstagram } from "react-icons/fa"
 import Link from "next/link"
+import MusicButton from "./music-player"
 
 export default function HeaderMenu({ user }: { user?: User }) {
   const { logOut } = useContext(UserContext)
@@ -79,6 +80,7 @@ function GuestNavigationMenu({ toggleMenu }: { toggleMenu: () => void }) {
       <Separator />
       <Navlink title="Login" href="/login" onClick={toggleMenu} />
       <div className="flex items-center justify-center mt-8">
+        <MusicButton />
         <Link
           href="https://www.facebook.com/p/Les-Chups-100091876850435/"
           target="_blank"
