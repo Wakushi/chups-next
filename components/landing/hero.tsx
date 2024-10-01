@@ -1,11 +1,5 @@
 import { playfairDisplay } from "@/styles/fonts"
-import {
-  FaExternalLinkAlt,
-  FaFacebook,
-  FaInstagram,
-  FaPhoneAlt,
-} from "react-icons/fa"
-import { MdEmail } from "react-icons/md"
+import { FaExternalLinkAlt } from "react-icons/fa"
 import { Booking } from "@/lib/types/Booking"
 import { timestampToReadableDate } from "@/lib/utils"
 import Link from "next/link"
@@ -30,6 +24,12 @@ export default function Hero({ bookings }: { bookings: Booking[] }) {
     return incommingShows[0].title === incommingShows[1].title
   }
 
+  function getSameShowDates(show: Booking): Booking[] {
+    return bookings.filter(
+      (b) => b.location === show.location && b.title === show.title
+    )
+  }
+
   if (!incommingShows || !incommingShows.length) {
     return (
       <div className="p-4 flex items-center justify-center flex-col gap-1 w-auto min-h-[100vh] bg-hero-image bg-cover bg-center">
@@ -51,23 +51,44 @@ export default function Hero({ bookings }: { bookings: Booking[] }) {
       >
         {incommingShows[0].title}
       </h2>
-      <div className="flex gap-2 lg:w-[80%]">
-        {incommingShows.splice(0, isSameShow() ? 2 : 1).map((show) => {
-          return <HeroBookingDate show={show} />
+      <div className="flex items-center gap-2 lg:w-[80%]">
+        {incommingShows.splice(0, isSameShow() ? 2 : 1).map((show, i) => {
+          return (
+            <HeroBookingDate
+              key={`booking-date-${i}`}
+              show={show}
+              getSameShowDates={getSameShowDates}
+            />
+          )
         })}
       </div>
     </div>
   )
 }
 
-function HeroBookingDate({ show }: { show: Booking }) {
-  const { date, location, time, city, externalBookingUrl } = show
+function HeroBookingDate({
+  show,
+  getSameShowDates,
+}: {
+  show: Booking
+  getSameShowDates: (show: Booking) => Booking[]
+}) {
+  getSameShowDates(show)
+
+  const { location, city, externalBookingUrl } = show
   return (
     <div className="flex-1 flex flex-col w-1/2 min-h-[220px] justify-between lg:justify-normal lg:gap-8">
       <div className="flex flex-col lg:gap-2">
-        <p className="text-center md:text-xl lg:text-[2rem] lg:mb-4 drop-shadow-3xl">
-          {timestampToReadableDate(date as Timestamp)} à {time}
-        </p>
+        <div className="flex flex-col">
+          {getSameShowDates(show).map((show, i) => (
+            <p
+              key={`show-date-${i}`}
+              className="text-center md:text-xl lg:text-[2rem] lg:mb-4 drop-shadow-3xl"
+            >
+              {timestampToReadableDate(show.date as Timestamp)} à {show.time}
+            </p>
+          ))}
+        </div>
         <h3
           className={`${playfairDisplay.className} text-center text-bold uppercase text-lg md:text-2xl lg:text-[2.5rem] drop-shadow-3xl`}
         >
@@ -82,7 +103,7 @@ function HeroBookingDate({ show }: { show: Booking }) {
       </div>
       {externalBookingUrl ? (
         <Link
-          className="flex uppercase font-bold max-w-[200px] bg-transparent text-white border border-white mx-auto items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 md:w-full"
+          className="flex uppercase font-bold max-w-[200px] text-white border border-white mx-auto items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 md:w-full"
           href={externalBookingUrl}
           target="_blank"
         >

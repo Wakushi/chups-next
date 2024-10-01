@@ -8,10 +8,14 @@ import { Timestamp } from "firebase-admin/firestore"
 export default async function CalendarPage() {
   const bookings = await fetchBookings()
 
-  const formattedBookings = bookings.map((booking) => ({
-    ...booking,
-    date: convertTimestampToObject(booking.date as Timestamp),
-  }))
+  const now = Date.now()
+
+  const formattedBookings = bookings
+    .map((booking) => ({
+      ...booking,
+      date: convertTimestampToObject(booking.date as Timestamp),
+    }))
+    .filter((b) => b.date.seconds * 1000 > now)
 
   return (
     <div className="py-20 md:py-[8rem] px-4">
