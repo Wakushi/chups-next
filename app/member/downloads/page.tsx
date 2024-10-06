@@ -34,7 +34,7 @@ const signInFiles: DownloadFile[] = [
 
 const dateFiles: DownloadFile[] = [
   {
-    name: "Planning des cours",
+    name: "Planning des répétitions / cours",
     url: "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/2024-2025%20Planning%20cours.pdf?alt=media&token=169ef0b7-76f9-437d-8b6e-e5a79419a14b",
   },
 ]
@@ -48,7 +48,7 @@ const musicalFiles: DownloadFile[] = [
 
 export default function MemberDownloadsPage() {
   return (
-    <div className="pt-20 px-4 md:px-8 pb-8 flex flex-col gap-4 md:gap-8">
+    <div className="pt-20 px-4 md:px-8 pb-8 flex flex-col gap-6 md:gap-8">
       <div className="flex flex-col">
         <h1 className="font-bold text-2xl">Documents adhérant</h1>
         <p className="text-sm text-slate-300">
