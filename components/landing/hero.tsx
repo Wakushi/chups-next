@@ -16,12 +16,14 @@ export default function Hero({ bookings }: { bookings: Booking[] }) {
     })
     .splice(0, 2)
 
-  function isSameShow(): boolean {
+  function areSameShows(): boolean {
     if (incommingShows.length < 2) {
       return true
     }
+    const showA = incommingShows[0]
+    const showB = incommingShows[1]
 
-    return incommingShows[0].title === incommingShows[1].title
+    return showA.title === showB.title && showA.location === showB.location
   }
 
   function getSameShowDates(show: Booking): Booking[] {
@@ -52,11 +54,12 @@ export default function Hero({ bookings }: { bookings: Booking[] }) {
         {incommingShows[0].title}
       </h2>
       <div className="flex items-center gap-2 lg:w-[80%]">
-        {incommingShows.splice(0, isSameShow() ? 2 : 1).map((show, i) => {
+        {incommingShows.splice(0, 2).map((show, i) => {
           return (
             <HeroBookingDate
               key={`booking-date-${i}`}
               show={show}
+              sameShows={areSameShows()}
               getSameShowDates={getSameShowDates}
             />
           )
@@ -68,9 +71,11 @@ export default function Hero({ bookings }: { bookings: Booking[] }) {
 
 function HeroBookingDate({
   show,
+  sameShows,
   getSameShowDates,
 }: {
   show: Booking
+  sameShows: boolean
   getSameShowDates: (show: Booking) => Booking[]
 }) {
   getSameShowDates(show)
@@ -79,16 +84,24 @@ function HeroBookingDate({
   return (
     <div className="flex-1 flex flex-col w-1/2 min-h-[220px] justify-between lg:justify-normal lg:gap-8">
       <div className="flex flex-col lg:gap-2">
-        <div className="flex flex-col">
-          {getSameShowDates(show).map((show, i) => (
-            <p
-              key={`show-date-${i}`}
-              className="text-center md:text-xl lg:text-[2rem] lg:mb-4 drop-shadow-3xl"
-            >
+        {sameShows ? (
+          <div className="flex flex-col">
+            <p className="text-center md:text-xl lg:text-[2rem] lg:mb-4 drop-shadow-3xl">
               {timestampToReadableDate(show.date as Timestamp)} à {show.time}
             </p>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div className="flex flex-col">
+            {getSameShowDates(show).map((s, i) => (
+              <p
+                key={`show-date-${i}`}
+                className="text-center md:text-xl lg:text-[2rem] lg:mb-4 drop-shadow-3xl"
+              >
+                {timestampToReadableDate(s.date as Timestamp)} à {s.time}
+              </p>
+            ))}
+          </div>
+        )}
         <h3
           className={`${playfairDisplay.className} text-center text-bold uppercase text-lg md:text-2xl lg:text-[2.5rem] drop-shadow-3xl`}
         >
