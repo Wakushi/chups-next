@@ -187,8 +187,8 @@ export function DataTable<TData, TValue>({
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Tous les statuts </SelectItem>
-                {bookingStatus.map((status) => (
-                  <SelectItem key={status} value={status}>
+                {bookingStatus.map((status, i) => (
+                  <SelectItem key={"status" + i} value={status}>
                     {UserBookingStatusLabel[status]}
                   </SelectItem>
                 ))}
@@ -218,7 +218,7 @@ export function DataTable<TData, TValue>({
                     if (column.id === "actions") return null
                     return (
                       <DropdownMenuCheckboxItem
-                        key={column.id}
+                        key={"checkboxitems" + column.id}
                         className="capitalize"
                         checked={column.getIsVisible()}
                         onCheckedChange={(value) =>
@@ -238,7 +238,7 @@ export function DataTable<TData, TValue>({
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={"headergroup" + headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
                     <>
@@ -260,11 +260,14 @@ export function DataTable<TData, TValue>({
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
-                  key={row.id}
+                  key={"table-row" + row.id}
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="justify-center">
+                    <TableCell
+                      key={"cell" + cell.id}
+                      className="justify-center"
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
