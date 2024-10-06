@@ -26,10 +26,9 @@ import { useState } from "react"
 import LoaderSmall from "../ui/loader-small/loader-small"
 import { Timestamp } from "firebase-admin/firestore"
 import { timestampToReadableDate } from "@/lib/utils"
-import { FaInfoCircle, FaTrash } from "react-icons/fa"
+import { FaInfoCircle } from "react-icons/fa"
 import { Checkbox } from "../ui/checkbox"
 import BookingPoster from "../booking/booking-poster"
-import { Separator } from "../ui/separator"
 import {
   Dialog,
   DialogContent,
@@ -294,6 +293,7 @@ export const columns: ColumnDef<UserBooking>[] = [
       )
     },
     cell: ({ row }) => {
+      const router = useRouter()
       const [checked, setChecked] = useState<boolean>(row.getValue("cheque"))
       const [loading, setLoading] = useState<boolean>(false)
 
@@ -318,6 +318,7 @@ export const columns: ColumnDef<UserBooking>[] = [
             }
           )
 
+          router.refresh()
           setChecked(usesCheque)
         } catch (error) {
           console.error(error)
@@ -372,6 +373,7 @@ export const columns: ColumnDef<UserBooking>[] = [
       )
     },
     cell: ({ row }) => {
+      const router = useRouter()
       const [checked, setChecked] = useState<boolean>(row.getValue("cash"))
       const [loading, setLoading] = useState<boolean>(false)
 
@@ -396,6 +398,7 @@ export const columns: ColumnDef<UserBooking>[] = [
             }
           )
 
+          router.refresh()
           setChecked(usesCash)
         } catch (error) {
           console.error(error)
@@ -448,6 +451,7 @@ export const columns: ColumnDef<UserBooking>[] = [
       )
     },
     cell: ({ row }) => {
+      const router = useRouter()
       const [comment, setComment] = useState<string>(
         row.getValue("comment") || ""
       )
@@ -481,6 +485,7 @@ export const columns: ColumnDef<UserBooking>[] = [
             setComment("")
           }
 
+          router.refresh()
           setIsDialogOpen(false)
         } catch (error) {
           console.error(error)
@@ -511,7 +516,7 @@ export const columns: ColumnDef<UserBooking>[] = [
               {loading ? (
                 <LoaderSmall />
               ) : (
-                <>
+                <div className="w-full flex flex-col gap-1">
                   <Button onClick={() => handleSave("add")}>Enregistrer</Button>
                   <Button
                     variant="destructive"
@@ -519,7 +524,7 @@ export const columns: ColumnDef<UserBooking>[] = [
                   >
                     Effacer
                   </Button>
-                </>
+                </div>
               )}
             </DialogContent>
           </Dialog>

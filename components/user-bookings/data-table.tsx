@@ -32,18 +32,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { Input } from "../ui/input"
@@ -53,8 +41,7 @@ import {
   UserBookingStatus,
   UserBookingStatusLabel,
 } from "@/lib/types/UserBooking"
-import { useRouter } from "next/navigation"
-import LoaderSmall from "../ui/loader-small/loader-small"
+import ExportButton from "./excel-export-button"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -65,8 +52,6 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
-  const router = useRouter()
-  const [loading, setLoading] = useState<boolean>(false)
   const [sorting, setSorting] = useState<SortingState>([
     {
       id: "date",
@@ -95,55 +80,6 @@ export function DataTable<TData, TValue>({
       rowSelection,
     },
   })
-
-  async function deleteSelected(): Promise<void> {
-    const selectedUserBookings = table
-      .getFilteredSelectedRowModel()
-      .rows.map((r) => r.original as UserBooking)
-
-    selectedUserBookings.forEach(async (booking) => {
-      try {
-        await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_API_URL}/booking/user-booking?id=${booking.id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        router.refresh()
-      } catch (error) {
-        console.error(error)
-      }
-    })
-  }
-
-  function DeleteAlertDialog() {
-    return (
-      <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <Button variant="outline" className="flex-1 w-full">
-            Supprimer
-          </Button>
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Êtes-vous sûr ?</AlertDialogTitle>
-            <AlertDialogDescription>
-              Cette action est irréversible et supprimera la réservation.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Annuler</AlertDialogCancel>
-            <AlertDialogAction onClick={deleteSelected}>
-              Supprimer
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-    )
-  }
 
   const bookingStatus = Object.values(UserBookingStatus)
 
@@ -196,14 +132,7 @@ export function DataTable<TData, TValue>({
             </Select>
           </div>
           <div className="flex flex-wrap items-center gap-2 self-end justify-end">
-            {loading ? (
-              <div className="w-[400px] flex justify-center">
-                <LoaderSmall />
-              </div>
-            ) : (
-              <DeleteAlertDialog />
-            )}
-
+            <ExportButton data={data as UserBooking[]} />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="flex-1 w-full">
@@ -306,6 +235,9 @@ const columnsLabels = {
   childTickets: "Places enfants",
   totalPrice: "Prix total",
   date: "Date",
+  cheque: "Chèque",
+  cash: "Espèces",
+  comment: "Observations",
   bookingDate: "Réservé le",
   status: "Statut",
 }
