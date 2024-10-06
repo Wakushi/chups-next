@@ -33,7 +33,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { Input } from "../ui/input"
 import { DataTablePagination } from "../ui/data-table-pagination"
 import {
@@ -42,6 +42,8 @@ import {
   UserBookingStatusLabel,
 } from "@/lib/types/UserBooking"
 import ExportButton from "./excel-export-button"
+import { Checkbox } from "../ui/checkbox"
+import { Label } from "../ui/label"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -61,9 +63,24 @@ export function DataTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = useState({})
+  const [showOldShows, setShowOldShows] = useState(false)
+
+  const filteredData = useMemo(() => {
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+
+    return showOldShows
+      ? data
+      : data.filter((booking) => {
+          const bookingDate = new Date(
+            (booking as UserBooking).date.seconds * 1000
+          )
+          return bookingDate >= today
+        })
+  }, [data, showOldShows])
 
   const table = useReactTable({
-    data,
+    data: filteredData,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -130,9 +147,23 @@ export function DataTable<TData, TValue>({
                 ))}
               </SelectContent>
             </Select>
+            <div className="flex items-center gap-1">
+              <Checkbox
+                id="oldShows"
+                checked={showOldShows}
+                onCheckedChange={(checked) =>
+                  setShowOldShows(checked as boolean)
+                }
+              />
+              <Label htmlFor="oldShows" className="cursor-pointer">
+                Afficher réservations passées
+              </Label>
+            </div>
           </div>
           <div className="flex flex-wrap items-center gap-2 self-end justify-end">
-            <ExportButton data={data as UserBooking[]} />
+            {!!filteredData.length && (
+              <ExportButton data={filteredData as UserBooking[]} />
+            )}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="flex-1 w-full">
