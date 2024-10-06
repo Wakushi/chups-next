@@ -55,7 +55,6 @@ import {
 } from "@/lib/types/UserBooking"
 import { useRouter } from "next/navigation"
 import LoaderSmall from "../ui/loader-small/loader-small"
-import { User } from "@/lib/types/User"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -146,58 +145,56 @@ export function DataTable<TData, TValue>({
     )
   }
 
-  function TableFilters() {
-    const bookingStatus = Object.values(UserBookingStatus)
-
-    return (
-      <div className="flex flex-wrap items-center w-full gap-2">
-        <Input
-          placeholder="Nom"
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
-          }
-          className="max-w-[200px]"
-        />
-        <Input
-          placeholder="Spectacle"
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
-          }
-          className="max-w-[200px]"
-        />
-        <Select
-          value={
-            (table.getColumn("status")?.getFilterValue() as string) ?? "all"
-          }
-          onValueChange={(value) => {
-            table
-              .getColumn("status")
-              ?.setFilterValue(value === "all" ? undefined : value)
-          }}
-        >
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Statut" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Tous les statuts </SelectItem>
-            {bookingStatus.map((status) => (
-              <SelectItem key={status} value={status}>
-                {UserBookingStatusLabel[status]}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-    )
-  }
+  const bookingStatus = Object.values(UserBookingStatus)
 
   return (
     <>
       <div className="px-4">
         <div className="flex items-center justify-between gap-2">
-          <TableFilters />
+          <div className="flex flex-wrap items-center w-full gap-2">
+            <Input
+              placeholder="Nom"
+              value={
+                (table.getColumn("name")?.getFilterValue() as string) ?? ""
+              }
+              onChange={(event) =>
+                table.getColumn("name")?.setFilterValue(event.target.value)
+              }
+              className="max-w-[200px]"
+            />
+            <Input
+              placeholder="Spectacle"
+              value={
+                (table.getColumn("title")?.getFilterValue() as string) ?? ""
+              }
+              onChange={(event) =>
+                table.getColumn("title")?.setFilterValue(event.target.value)
+              }
+              className="max-w-[200px]"
+            />
+            <Select
+              value={
+                (table.getColumn("status")?.getFilterValue() as string) ?? "all"
+              }
+              onValueChange={(value) => {
+                table
+                  .getColumn("status")
+                  ?.setFilterValue(value === "all" ? undefined : value)
+              }}
+            >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Statut" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Tous les statuts </SelectItem>
+                {bookingStatus.map((status) => (
+                  <SelectItem key={status} value={status}>
+                    {UserBookingStatusLabel[status]}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
           <div className="flex flex-wrap items-center gap-2 self-end justify-end">
             {loading ? (
               <div className="w-[400px] flex justify-center">
