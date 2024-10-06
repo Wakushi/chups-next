@@ -13,17 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu"
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import { AlertDialog } from "@/components/ui/alert-dialog"
 import {
   HoverCard,
   HoverCardContent,
@@ -170,8 +160,8 @@ export const columns: ColumnDef<UserBooking>[] = [
     cell: ({ row }) => {
       const email: string = row.getValue("email")
       return (
-        <div className="pl-4 font-medium flex items-center gap-2">
-          <span>{email}</span>
+        <div className="pl-4 w-[200px] font-medium flex items-center gap-2 overflow-hidden text-ellipsis">
+          <span className="truncate">{email}</span>
           <Copy contentToCopy={email} />
         </div>
       )
@@ -194,9 +184,8 @@ export const columns: ColumnDef<UserBooking>[] = [
       const userBooking = row.original
       const date: Timestamp = row.getValue("date")
       return (
-        <div className="pl-4 font-medium flex items-center gap-2">
+        <div className="pl-4 w-[120px] font-medium flex items-center gap-2">
           <span>{timestampToReadableDate(date, "short")}</span>
-
           <HoverCard>
             <HoverCardTrigger>
               <FaInfoCircle className="cursor-pointer" />
@@ -302,6 +291,13 @@ export const columns: ColumnDef<UserBooking>[] = [
         <div className="pl-4 font-medium flex items-center gap-2">
           <span>{timestampToReadableDate(bookingDate, "short")}</span>
         </div>
+      )
+    },
+    sortingFn: (rowA, rowB, columnId) => {
+      const dateA = rowA.getValue(columnId) as Timestamp
+      const dateB = rowB.getValue(columnId) as Timestamp
+      return (
+        dateA.seconds - dateB.seconds || dateA.nanoseconds - dateB.nanoseconds
       )
     },
   },
