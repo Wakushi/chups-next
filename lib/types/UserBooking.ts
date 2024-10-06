@@ -1,4 +1,3 @@
-import { Timestamp } from "firebase-admin/firestore"
 import { Booking } from "./Booking"
 
 export type UserBooking = Booking & {
@@ -11,6 +10,9 @@ export type UserBooking = Booking & {
   bookingDate: { seconds: number; nanoseconds: number }
   status: UserBookingStatus
   confirmationId?: string
+  cheque?: boolean
+  cash?: boolean
+  comment?: string
 }
 
 export enum UserBookingStatus {

@@ -20,7 +20,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
 import { Button } from "../ui/button"
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, Edit, MoreHorizontal } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import LoaderSmall from "../ui/loader-small/loader-small"
@@ -30,6 +30,14 @@ import { FaInfoCircle, FaTrash } from "react-icons/fa"
 import { Checkbox } from "../ui/checkbox"
 import BookingPoster from "../booking/booking-poster"
 import { Separator } from "../ui/separator"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog"
+import { Textarea } from "../ui/textarea"
 
 export const columns: ColumnDef<UserBooking>[] = [
   {
@@ -273,6 +281,253 @@ export const columns: ColumnDef<UserBooking>[] = [
     },
   },
   {
+    accessorKey: "cheque",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Chèque
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const [checked, setChecked] = useState<boolean>(row.getValue("cheque"))
+      const [loading, setLoading] = useState<boolean>(false)
+
+      async function updatePaysInCheque(usesCheque: boolean): Promise<void> {
+        const userBooking = row.original
+        setLoading(true)
+
+        try {
+          await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_API_URL}/booking/user-booking`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userBooking: {
+                  ...userBooking,
+                  cheque: usesCheque,
+                },
+              }),
+            }
+          )
+
+          setChecked(usesCheque)
+        } catch (error) {
+          console.error(error)
+        } finally {
+          setLoading(false)
+        }
+      }
+
+      return (
+        <div className="justify-center flex items-center w-[100px]">
+          {loading ? (
+            <div className="scale-50">
+              <LoaderSmall />
+            </div>
+          ) : (
+            <Checkbox
+              checked={checked}
+              onCheckedChange={(checked: boolean) =>
+                updatePaysInCheque(checked)
+              }
+            />
+          )}
+        </div>
+      )
+    },
+    sortingFn: (rowA, rowB, columnId) => {
+      const usesChequeA = rowA.getValue(columnId) as boolean
+      const usesChequeB = rowB.getValue(columnId) as boolean
+
+      if (!usesChequeA && usesChequeB) {
+        return -1
+      }
+
+      if (usesChequeA && !usesChequeB) {
+        return 1
+      }
+
+      return 0
+    },
+  },
+  {
+    accessorKey: "cash",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Espèces
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const [checked, setChecked] = useState<boolean>(row.getValue("cash"))
+      const [loading, setLoading] = useState<boolean>(false)
+
+      async function updatePaysInCash(usesCash: boolean): Promise<void> {
+        const userBooking = row.original
+        setLoading(true)
+
+        try {
+          await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_API_URL}/booking/user-booking`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userBooking: {
+                  ...userBooking,
+                  cash: usesCash,
+                },
+              }),
+            }
+          )
+
+          setChecked(usesCash)
+        } catch (error) {
+          console.error(error)
+        } finally {
+          setLoading(false)
+        }
+      }
+
+      return (
+        <div className="justify-center flex items-center w-[100px]">
+          {loading ? (
+            <div className="scale-50">
+              <LoaderSmall />
+            </div>
+          ) : (
+            <Checkbox
+              checked={checked}
+              onCheckedChange={(checked: boolean) => updatePaysInCash(checked)}
+            />
+          )}
+        </div>
+      )
+    },
+    sortingFn: (rowA, rowB, columnId) => {
+      const usesCashA = rowA.getValue(columnId) as boolean
+      const usesCashB = rowB.getValue(columnId) as boolean
+
+      if (!usesCashA && usesCashB) {
+        return -1
+      }
+
+      if (usesCashA && !usesCashB) {
+        return 1
+      }
+
+      return 0
+    },
+  },
+  {
+    accessorKey: "comment",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Observations
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => {
+      const [comment, setComment] = useState<string>(
+        row.getValue("comment") || ""
+      )
+      const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
+      const [loading, setLoading] = useState<boolean>(false)
+
+      const truncatedComment =
+        comment.length > 50 ? `${comment.substring(0, 50)}...` : comment
+
+      const handleSave = async (mode: "add" | "delete" = "add") => {
+        const userBooking = row.original
+        setLoading(true)
+        try {
+          await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_API_URL}/booking/user-booking`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userBooking: {
+                  ...userBooking,
+                  comment: mode === "add" ? comment : "",
+                },
+              }),
+            }
+          )
+
+          if (mode === "delete") {
+            setComment("")
+          }
+
+          setIsDialogOpen(false)
+        } catch (error) {
+          console.error(error)
+        } finally {
+          setLoading(false)
+        }
+      }
+
+      return (
+        <div className="pl-4 w-[200px] font-medium flex items-center gap-2">
+          <span className="truncate">{truncatedComment || "..."}</span>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Edit className="h-4 w-4" />
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Modifier le commentaire</DialogTitle>
+              </DialogHeader>
+              <Textarea
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Entrez votre commentaire ici..."
+                rows={5}
+              />
+              {loading ? (
+                <LoaderSmall />
+              ) : (
+                <>
+                  <Button onClick={() => handleSave("add")}>Enregistrer</Button>
+                  <Button
+                    variant="destructive"
+                    onClick={() => handleSave("delete")}
+                  >
+                    Effacer
+                  </Button>
+                </>
+              )}
+            </DialogContent>
+          </Dialog>
+        </div>
+      )
+    },
+  },
+  {
     accessorKey: "bookingDate",
     header: ({ column }) => {
       return (
@@ -350,30 +605,11 @@ export const columns: ColumnDef<UserBooking>[] = [
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                userBooking,
-                status: newStatus,
+                userBooking: {
+                  ...userBooking,
+                  status: newStatus,
+                },
               }),
-            }
-          )
-          router.refresh()
-        } catch (error) {
-          console.error(error)
-        } finally {
-          setLoading(false)
-        }
-      }
-
-      async function deleteUserBooking(): Promise<void> {
-        setIsDeleteDialogOpen(false)
-        setLoading(true)
-        try {
-          await fetch(
-            `${process.env.NEXT_PUBLIC_BASE_API_URL}/booking/user-booking?id=${userBooking.id}`,
-            {
-              method: "DELETE",
-              headers: {
-                "Content-Type": "application/json",
-              },
             }
           )
           router.refresh()
@@ -421,7 +657,6 @@ export const columns: ColumnDef<UserBooking>[] = [
                   Marquer comme "Traitée"
                 </DropdownMenuItem>
               )}
-              <Separator />
             </AlertDialog>
           </DropdownMenuContent>
         </DropdownMenu>

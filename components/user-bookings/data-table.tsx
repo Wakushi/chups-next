@@ -237,12 +237,12 @@ export function DataTable<TData, TValue>({
       <div className="rounded-md">
         <Table>
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={"headergroup" + headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <>
-                      <TableHead key={header.id}>
+            {table.getHeaderGroups().map((headerGroup, i) => {
+              return (
+                <TableRow key={"headergroup" + headerGroup.id + i}>
+                  {headerGroup.headers.map((header, i) => {
+                    return (
+                      <TableHead key={header.id + i}>
                         {header.isPlaceholder
                           ? null
                           : flexRender(
@@ -250,11 +250,11 @@ export function DataTable<TData, TValue>({
                               header.getContext()
                             )}
                       </TableHead>
-                    </>
-                  )
-                })}
-              </TableRow>
-            ))}
+                    )
+                  })}
+                </TableRow>
+              )
+            })}
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (

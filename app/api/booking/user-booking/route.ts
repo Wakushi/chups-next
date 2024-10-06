@@ -2,7 +2,7 @@ import { verifyJWT } from "@/lib/jwt"
 import { bookShow } from "@/services/bookings.service"
 import {
   deleteUserBooking,
-  updateUserBookingStatus,
+  updateUserBooking,
 } from "@/services/user-booking.service"
 import { getUserByEmail } from "@/services/user.service"
 import { NextRequest, NextResponse } from "next/server"
@@ -33,11 +33,8 @@ export async function PUT(req: NextRequest, res: NextResponse) {
 
   try {
     const body = await req.json()
-    const { userBooking, status } = body
-    const { success, data, error } = await updateUserBookingStatus(
-      userBooking,
-      status
-    )
+    const { userBooking } = body
+    const { success, data, error } = await updateUserBooking(userBooking)
 
     if (success && data) {
       return NextResponse.json(data)

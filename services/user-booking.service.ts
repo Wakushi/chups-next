@@ -80,18 +80,15 @@ export async function fetchUserBookings(): Promise<UserBooking[]> {
   })
 }
 
-export async function updateUserBookingStatus(
-  userBooking: UserBooking,
-  newStatus: UserBookingStatus
+export async function updateUserBooking(
+  userBooking: UserBooking
 ): Promise<{ success: boolean; data?: UserBooking; error?: any }> {
   try {
     const docRef = adminDb
       .collection(USER_BOOKING_COLLECTION)
       .doc(userBooking.id!)
 
-    await docRef.update({
-      status: newStatus,
-    })
+    await docRef.update(userBooking)
 
     const updatedDoc = await docRef.get()
     if (updatedDoc.exists) {
