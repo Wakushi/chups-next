@@ -2,6 +2,7 @@ import React, { ReactElement } from "react"
 import { IoMdDownload } from "react-icons/io"
 import { IoCalendarSharp, IoDocumentTextOutline } from "react-icons/io5"
 import { MdOutlineAppRegistration } from "react-icons/md"
+import { FaTheaterMasks } from "react-icons/fa"
 
 interface DownloadFile {
   name: string
@@ -38,9 +39,16 @@ const dateFiles: DownloadFile[] = [
   },
 ]
 
+const musicalFiles: DownloadFile[] = [
+  {
+    name: "Bonheur en famille - 1ère partie",
+    url: "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Bonheur%20en%20famille%20V5%20premiere%20partie.docx?alt=media&token=1fadc473-b02a-416c-bc69-637697fd8108",
+  },
+]
+
 export default function MemberDownloadsPage() {
   return (
-    <div className="pt-20 px-4 md:px-8 flex flex-col gap-4 md:gap-8">
+    <div className="pt-20 px-4 md:px-8 pb-8 flex flex-col gap-4 md:gap-8">
       <div className="flex flex-col">
         <h1 className="font-bold text-2xl">Documents adhérant</h1>
         <p className="text-sm text-slate-300">
@@ -49,16 +57,22 @@ export default function MemberDownloadsPage() {
       </div>
       <div className="flex flex-col gap-4 md:flex-row md:gap-8">
         <DownloadList
-          title="Inscription"
-          icon={<MdOutlineAppRegistration />}
-          description="Documents requis pour votre inscription."
-          files={signInFiles}
+          title="Textes"
+          icon={<FaTheaterMasks />}
+          description="Textes théâtre et chants"
+          files={musicalFiles}
         />
         <DownloadList
           title="Planning"
           icon={<IoCalendarSharp />}
           description="Documents liés à l'organisation et aux dates."
           files={dateFiles}
+        />
+        <DownloadList
+          title="Inscription"
+          icon={<MdOutlineAppRegistration />}
+          description="Documents requis pour votre inscription."
+          files={signInFiles}
         />
       </div>
     </div>
