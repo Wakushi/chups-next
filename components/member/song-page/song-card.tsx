@@ -9,6 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { useState } from "react"
 
 interface SongCardProps {
   song: Song
@@ -17,6 +18,8 @@ interface SongCardProps {
 }
 
 export function SongCard({ song, isPlaying, onPlayPause }: SongCardProps) {
+  const [isAccordionOpened, setIsAccordionOpened] = useState<boolean>(false)
+
   return (
     <Card className="bg-slate-800/50 w-full border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300">
       <CardContent className="pt-6">
@@ -45,10 +48,14 @@ export function SongCard({ song, isPlaying, onPlayPause }: SongCardProps) {
           </div>
         </div>
         {!!song.lyrics_html?.__html && (
-          <Accordion type="single" collapsible>
+          <Accordion
+            type="single"
+            collapsible
+            onValueChange={(v) => setIsAccordionOpened(!!v)}
+          >
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-sm">
-                Voir les paroles
+                {isAccordionOpened ? "Cacher" : "Voir"} les paroles
               </AccordionTrigger>
               <AccordionContent>
                 <div dangerouslySetInnerHTML={song.lyrics_html}></div>

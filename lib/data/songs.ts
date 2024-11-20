@@ -1589,7 +1589,177 @@ const RAW_SONGS: Song[] = [
     instrumental_url: "",
     isFavorite: true,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.verse {
+    margin: 20px 0;
+}
+.singer {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.subtitle {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+.italian {
+    font-style: italic;
+}
+.echo {
+    font-size: 0.9em;
+    margin-left: 20px;
+}
+</style>
+
+<div class="lyrics">
+    <div class="title">RIEN QUE DES MOTS</div>
+    <div class="subtitle">(TI AMO)</div>
+
+    <div class="verse">
+        <div class="singer">[Maelle]</div>
+        Ti Amo<br>
+        Redis-moi<br>
+        Ti Amo
+        <div class="singer">[Nathan]</div>
+        <span class="echo">(Ti Amo) (Ti Amo)</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Maelle]</div>
+        Garde-moi, Ti Amo
+        <div class="singer">[Nathan]</div>
+        <span class="echo">(Ti Amo)</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Maelle]</div>
+        Même si je sais que je ne suis pas ton unique et que tu l'aimes…….<br>
+        Aussi Que la vie est……..<br>
+        Ainsi<br>
+        Ti Amo, c'est………<br>
+        Mon cri Entends-moi-même dans le silence dans lequel j'ai plongé ma vie.<br>
+        Sans toi<br>
+        Je ne serais…….<br>
+        Plus moi Je l'envie et………<br>
+        Je t'aime Comme l'oiseau déploie ses ailes tu t'envoles vers elle.
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Nathan]</div>
+        <span class="italian">L'amoré ka letto si fa</span>
+        <div class="singer">[Maelle]</div>
+        <span class="echo">(Ti Amo) (Ti Amo)</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Nathan]</div>
+        <span class="italian">Rendimi l'atra métà</span>
+        <div class="singer">[Maelle]</div>
+        <span class="echo">(Ti Amo) (Ti Amo)</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Nathan]</div>
+        <span class="italian">Ogninitorno da lei</span>
+        <div class="singer">[Maelle]</div>
+        <span class="echo">(Ti Amo)</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Nathan]</div>
+        <span class="italian">Primo maggio, Su coraggio yo<br>
+        Ti amo, E kiedo perdono<br>
+        Ricordi ki sono<br>
+        Apri la porta a un guerriero<br>
+        Di carta igienica</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Maelle]</div>
+        Ti amo de tout mon être<br>
+        Mon cœur, mon corps et ma tête<br>
+        Je crains toujours tes "peut-être"
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Nathan]</div>
+        <span class="italian">Dammiil sonno<br>
+        Din bambino, ké ta…<br>
+        Sognia</span>
+        <div class="singer">[Maelle]</div>
+        <span class="echo">(Je rêve)</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Nathan]</div>
+        <span class="italian">Cavallié si…<br>
+        Gira</span>
+        <div class="singer">[Maelle]</div>
+        <span class="echo">(Que tu reviennes)</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Nathan]</div>
+        <span class="italian">E un po'di la…<br>
+        Voro Fammia bracciareuna donna<br>
+        ké stira cantando poi</span>
+    </div>
+
+    <div class="verse">
+        Ti amo, je t'ai dans la peau<br>
+        Je ferais tout ce qu'il faut<br>
+        Pour effacer tes défauts<br>
+        Toutes ses promesses<br>
+        Rien que des mots
+    </div>
+
+    <div class="verse">
+        <span class="italian">Ti amo e chiedo perdono<br>
+        Ricordi chi sono</span><br>
+        Ti amo, ti amo, ti amo, ti amo, ti amo
+    </div>
+
+    <div class="verse">
+        Ti amo de tout mon être<br>
+        Mon cœur, mon corps et ma tête<br>
+        Je crains toujours tes "peut-être"<br>
+        <span class="italian">Dammi il sonno di un bambino</span>
+    </div>
+
+    <div class="verse">
+        <span class="italian">Che ti sogna (sogna)<br>
+        Cavalli e si gira (gira)<br>
+        E un po' di lavoro<br>
+        Fammi abbracciare una donna che stira cantando e poi</span>
+    </div>
+
+    <div class="verse">
+        Ti amo, je t'ai dans la peau<br>
+        Je ferais tout ce qu'il faut<br>
+        Pour effacer tes défauts<br>
+        Toutes ses promesses<br>
+        Rien que des mots
+    </div>
+
+    <div class="verse">
+        Ti amo, ti amo, ti amo, ti amo, ti amo<br>
+        Ti amo, ti amo, ti amo, ti amo, ti amo<br>
+        Ti amo, ti amo, ti amo, ti amo, ti amo<br>
+        Ti amo, ti amo, ti amo, ti amo, ti amo<br>
+        Ti amo
+    </div>
+</div>`,
     },
   },
   {
@@ -1604,7 +1774,149 @@ const RAW_SONGS: Song[] = [
     instrumental_url: "",
     isFavorite: true,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.verse {
+    margin: 20px 0;
+}
+.singer {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+.ensemble {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.instrumental {
+    text-align: center;
+    font-style: italic;
+    margin: 20px 0;
+}
+.martine {
+    font-style: italic;
+}
+.echo {
+    margin-left: 20px;
+}
+</style>
+
+<div class="lyrics">
+    <div class="title">Les Nouveaux Romantiques</div>
+
+    <div class="instrumental">Instrumental</div>
+
+    <div class="verse">
+        <div class="singer">[Martine R]</div>
+        <span class="martine">
+        Il a l'émotion<br>
+        De notre génération<br>
+        Il a des chansons<br>
+        Et le courage de Danton<br>
+        Pour lui je peux faire<br>
+        L'Atlantique en solitaire<br>
+        Sa vie est la mienne<br>
+        Et c'est pour ça que je l'aime
+        </span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Sophie]</div>
+        On est en romance<br>
+        Cœur contre cœur bien branché<br>
+        On est en fréquence<br>
+        Sur la ligne de nos idées<br>
+        On est en instance<br>
+        De vouloir tout partager<br>
+        Aucun théorème<br>
+        Et c'est pour ça que l'on s'aime
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Martine R]</div>
+        <span class="martine">On s'écrit téléphonique</span><br>
+        <div class="singer">[Sophie]</div>
+        <span class="echo">Nous les nouveaux romantiques</span><br>
+        <div class="singer">[Martine R]</div>
+        <span class="martine">Actuel et nostalgique</span><br>
+        <div class="singer">[Sophie]</div>
+        <span class="echo">Étonnamment romantique</span><br>
+        <div class="singer">[Martine R]</div>
+        <span class="martine">Dans les boites à musique</span>
+    </div>
+
+    <div class="ensemble">
+        Les Roméos s'abandonnent<br>
+        C'est triste Vérone<br>
+        J'aime l'amour que tu me donnes
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Martine R]</div>
+        <span class="martine">Boul'vard périphérique</span><br>
+        <div class="singer">[Sophie]</div>
+        <span class="echo">Sur nos motos héroïques</span><br>
+        <div class="singer">[Martine R]</div>
+        <span class="martine">Symphonie mécanique</span><br>
+        <div class="singer">[Sophie]</div>
+        <span class="echo">Nous les nouveaux romantiques</span><br>
+        <div class="singer">[Martine R]</div>
+        <span class="martine">C'est un look un physique</span>
+    </div>
+
+    <div class="ensemble">
+        Que Roméo me pardonne<br>
+        C'est fini Vérone<br>
+        laisse tomber y a plus personne
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Martine R]</div>
+        <span class="martine">
+        La dolce vita<br>
+        C'est se retrouver chez nous<br>
+        La romantica<br>
+        C'est avec toi jusqu'au bout
+        </span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Sophie]</div>
+        La passionnatta<br>
+        C'est les aveux les plus doux<br>
+        Aucun théorème<br>
+        Et c'est pour ça que l'on s'aime
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Martine R]</div>
+        <span class="martine">On s'écrit téléphonique</span><br>
+        <div class="singer">[Sophie]</div>
+        <span class="echo">Nous les nouveaux romantiques</span><br>
+        <div class="singer">[Martine R]</div>
+        <span class="martine">Actuel et nostalgie</span><br>
+        <div class="singer">[Sophie]</div>
+        <span class="echo">Etonnamment romantique</span><br>
+        <div class="singer">[Martine R]</div>
+        <span class="martine">Dans les boites à musique</span>
+    </div>
+
+    <div class="ensemble">
+        Les Roméos s'abandonnent<br>
+        C'est triste Vérone<br>
+        J'aime l'amour que tu me donnes
+    </div>
+</div>`,
     },
   },
   {
@@ -1620,7 +1932,186 @@ const RAW_SONGS: Song[] = [
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F12.%20Mourir%20demain%20(Instrumental).mp3?alt=media&token=7d825298-c129-4501-b66c-ab1780bc5a41",
     isFavorite: false,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.verse {
+    margin: 20px 0;
+}
+.singer {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+.ensemble {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.astrid {
+    font-style: italic;
+}
+.instrumental {
+    text-align: center;
+    font-style: italic;
+    margin: 20px 0;
+}
+.duet {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.duet-part {
+    flex: 1;
+}
+</style>
+
+<div class="lyrics">
+    <div class="title">Mourir demain</div>
+
+    <div class="verse">
+        <div class="singer">[Emmanuel]</div>
+        Il y a ceux qui prendraient un avion<br>
+        D'autres qui s'enfermeraient chez eux,<br>
+        Les yeux fermés<br>
+        Toi, qu'est-ce que tu f'rais ?<br>
+        Toi, qu'est-ce que tu ferais ?
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Astrid]</div>
+        <span class="astrid">
+        Il y en a qui voudrait revoir la mer<br>
+        D'autres qui voudraient encore faire l'amour,<br>
+        Une dernière fois<br>
+        Toi, tu ferais quoi ?<br>
+        Et toi, tu ferais quoi ?
+        </span>
+    </div>
+
+    <div class="ensemble">
+        Si on devait…. Mourir demain….<br>
+        Qu'est-ce qu'on ferait de plus ?<br>
+        Qu'est-ce qu'on ferait de moins ?<br>
+        Si on devait…. Mourir demain….
+    </div>
+
+    <div class="duet">
+        <div class="duet-part">
+            <div class="singer">[Emmanuel]</div>
+            Moi, je t'aimerais….
+        </div>
+        <div class="duet-part">
+            <div class="singer">[Astrid]</div>
+            <span class="astrid">Moi, je t'aimerai ai ais….</span>
+        </div>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Emmanuel]</div>
+        Je t'aimerais<br>
+        Il y en a qui ref'raient leur passé<br>
+        Certains qui voudraient boire et faire la fête<br>
+        Jusqu'au matin<br>
+        D'autres qui prieraient...<br>
+        D'autres qui prieraient...
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Astrid]</div>
+        <span class="astrid">
+        Ceux qui s'en fichent et se donn'raient du plaisir<br>
+        Et d'autres qui voudraient encore partir…<br>
+        Avant la fin…<br>
+        Toi, qu'est-ce que tu f'rais ?<br>
+        Et toi, qu'est-ce que tu ferais ?
+        </span>
+    </div>
+
+    <div class="ensemble">
+        Si on devait…. Mourir demain….<br>
+        Qu'est-ce qu'on ferait de plus ?<br>
+        Qu'est-ce qu'on ferait de moins ?<br>
+        Si on devait…. Mourir demain….
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Emmanuel] [Astrid]</div>
+        Moi, Je t'aimerais…. <span class="astrid">Moi, Je t'aimerais….</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Emmanuel] [Astrid]</div>
+        <span class="astrid">Moi, je t'aimerai ai ai…ais… Je t'aimerais….</span>
+    </div>
+
+    <div class="ensemble">
+        Oh oh oh !<br>
+        Oh oh oh !<br>
+        Oh oh oh !<br>
+        Oh oh oh oh !
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Astrid]</div>
+        <span class="astrid">Et toi, dis-moi, est-ce que tu m'aimeras ?</span>
+    </div>
+
+    <div class="ensemble">
+        Jusqu'à demain et tous les jours d'après<br>
+        Que rien, non rien, ne s'arrêtera jamais<br>
+        Si on devait…. Mourir demain….
+    </div>
+
+    <div class="duet">
+        <div class="duet-part">
+            <div class="singer">[Emmanuel]</div>
+            Moi, Je t'aimerais….
+        </div>
+        <div class="duet-part">
+            <div class="singer">[Astrid]</div>
+            <span class="astrid">Moi, Je t'aimerais….</span>
+        </div>
+    </div>
+
+    <div class="instrumental">Musique</div>
+
+    <div class="ensemble">
+        Est-ce qu'on ferait, du mal, du bien….<br>
+        Si on avait jusqu'à demain pour vivre<br>
+        Tout ce qu'on a rêvé (à l'unisson)<br>
+        Si on devait…. Mourir demain….
+    </div>
+
+    <div class="duet">
+        <div class="duet-part">
+            <div class="singer">[Emmanuel]</div>
+            Moi, Je t'aimerais….
+        </div>
+        <div class="duet-part">
+            <div class="singer">[Astrid]</div>
+            <span class="astrid">Moi, Je t'aimerais….</span>
+        </div>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Emmanuel]</div>
+        <span class="astrid">Je t'aimerai ai ai ai ai ais…..</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Astrid]</div>
+        <span class="astrid">Je t'aimerais</span>
+    </div>
+</div>`,
     },
   },
   {
@@ -1635,7 +2126,126 @@ const RAW_SONGS: Song[] = [
     instrumental_url: "",
     isFavorite: true,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.verse {
+    margin: 20px 0;
+}
+.singer {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+.ensemble {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.instrumental {
+    text-align: center;
+    font-style: italic;
+    margin: 20px 0;
+}
+.backing {
+    font-style: italic;
+    font-size: 0.9em;
+    margin-left: 20px;
+}
+.exclamation {
+    font-style: italic;
+}
+.chant {
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+</style>
+
+<div class="lyrics">
+    <div class="title">PROUD MARY</div>
+
+    <div class="chant">
+        ROLLING.... ROLLING..... ROLLING ON THE RIVER
+    </div>
+
+    <div class="verse">
+        <div class="singer">[ASTRID/MAXIME]</div>
+        Left a good job in the city<br>
+        Working for the man every night and day<br>
+        And I never lost one minute of sleeping<br>
+        Worrying 'bout the way that things might have been<br>
+        <br>
+        Big wheel keep on turning<br>
+        Proud Mary keep on burning<br>
+        And we're rolling, Rolling yeah<br>
+        Rolling on the river<br>
+        We're rolling, Rolling yeah<br>
+        Rolling on the river.......
+    </div>
+
+    <div class="instrumental">Instrumental rapide</div>
+
+    <div class="verse">
+        <div class="singer">[ASTRID]</div>
+        Left a good job in the city<br>
+        Working for the man every night and day<br>
+        And I never lost one minute of sleeping<br>
+        Worrying 'bout the way that things might have been<br>
+        <br>
+        Big wheel keep on turning<br>
+        Proud Mary keep on burning<br>
+        And we're rolling, Rolling yeah<br>
+        Rolling on the river........<br>
+        we're rolling, Rolling yeah<br>
+        Rolling on the river........
+    </div>
+
+    <div class="verse">
+        <div class="chant">Dou dou dou dou dou dou dou dou dou dou dou</div>
+        <span class="exclamation">Alright !</span>
+    </div>
+
+    <div class="verse">
+        Oh ! Cleaned a lot of plates in Memphis<br>
+        Ya know I pumped a lot of 'tane down in New Orleans<br>
+        But I never saw the good side of the city<br>
+        Until I hitched a ride on the riverboat queen
+    </div>
+
+    <div class="verse">
+        <div class="singer">[ASTRID / MAXIME]</div>
+        Big wheel keep on turning <span class="backing">(Turning)</span><br>
+        Proud Mary keep on burning <span class="backing">(Burning)</span><br>
+        And we're rolling <span class="backing">(Rolling)</span><br>
+        Rolling yeah <span class="backing">(Rolling)</span><br>
+        Rolling on the river <span class="backing">(Rolling on the river)</span><br>
+        I Said we're rolling <span class="backing">(Rolling)</span><br>
+        Rolling yeah <span class="backing">(Rolling)</span><br>
+        Rolling on the river <span class="backing">(Rolling on the river)</span>
+    </div>
+
+    <div class="verse">
+        <div class="chant">Dou dou dou dou dou dou dou dou dou dou dou</div>
+        <span class="exclamation">Alright !</span>
+    </div>
+
+    <div class="verse">
+        Rolling, Rolling, Rolling on the river<br>
+        I said rolling, Rolling, Rolling on the river<br>
+        Rolling, Rolling, Rolling on the river<br>
+        Rolling, Rolling, Rolling on the river<br>
+        Yeaaaaaaah...... Uh-huh
+    </div>
+</div>`,
     },
   },
   {
@@ -1651,7 +2261,123 @@ const RAW_SONGS: Song[] = [
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F14.%20Beau%20(Instrumental).mp3?alt=media&token=178a9bc9-a38e-4dd9-88d2-254ea2933c2c",
     isFavorite: true,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.verse {
+    margin: 20px 0;
+}
+.singer {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.ensemble {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+</style>
+
+<div class="lyrics">
+    <div class="title">Beau</div>
+
+    <div class="verse">
+        <div class="singer">[Emerick]</div>
+        Assis sur le trottoir la soirée n'est pas belle<br>
+        Il est sûrement trop tard pour qu'elle prenne mon appel<br>
+        Je laisserai un message pour avoir des nouvelles<br>
+        Elle l'écoutera tout bas et le gardera pour elle
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Maelle]</div>
+        Cette nuit j'suis dans ma vie, elle en est tellement loin<br>
+        Ses yeux rivés sur lui et sa peau sous ses mains<br>
+        Assis sur le trottoir, c'est plus du tout pareil<br>
+        Ce soir, j'envie celui qui veillera son réveil
+    </div>
+
+    <div class="ensemble">
+        <div class="singer">[Emerick]</div>
+        Si tu savais comme c'est beau<br>
+        <div class="singer">[Elfy]</div>
+        Si tu voyais comme c'est beau<br>
+        <div class="singer">[Maelle]</div>
+        J'ai vu son reflet dans l'eau<br>
+        <div class="singer">[Ensemble]</div>
+        Si tu savais comme c'est beau
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Elfy]</div>
+        Assise en face de moi, elle me regarde à peine<br>
+        Quelque chose dans sa voix sonne comme un cœur qui saigne<br>
+        Elle reçoit ce message qui soudain la rend belle<br>
+        La lumière de l'écran, le sourire qu'il révèle
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Emerick]</div>
+        Cette nuit elle pense à lui, elle dit qu'elle n'y peut rien<br>
+        J'me bats contre un souvenir en lui tenant la main<br>
+        Assise en face de moi, c'est plus du tout pareil<br>
+        Ce soir, j'envie celui qui lui manque au réveil
+    </div>
+
+    <div class="ensemble">
+        <div class="singer">[Emerick]</div>
+        Si tu savais comme c'est beau<br>
+        <div class="singer">[Elfy]</div>
+        Si tu voyais comme c'est beau<br>
+        <div class="singer">[Maelle]</div>
+        J'ai vu son reflet dans l'eau<br>
+        <div class="singer">[Ensemble]</div>
+        Si tu savais comme c'est beau
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Emerick]</div>
+        Elle a laissé son cœur entre nous<br>
+        Entre nous et le reste
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Elfy]</div>
+        Elle a laissé son cœur à genoux<br>
+        Sur le sol, des promesses
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Maelle]</div>
+        Elle a laissé son cœur entre nous<br>
+        Elle nous laisse le pire et le reste elle s'en fout
+    </div>
+
+    <div class="ensemble">
+        <div class="singer">[Emerick]</div>
+        Si tu savais comme c'est beau<br>
+        <div class="singer">[Elfy]</div>
+        Si tu voyais comme c'est beau<br>
+        <div class="singer">[Maelle]</div>
+        J'ai vu son reflet dans l'eau<br>
+        <div class="singer">[Ensemble]</div>
+        Si tu savais comme c'est beau<br>
+        Si tu savais comme c'est beau<br>
+        Si tu voyais comme c'est beau
+    </div>
+</div>`,
     },
   },
   {
@@ -1666,7 +2392,183 @@ const RAW_SONGS: Song[] = [
     instrumental_url: "",
     isFavorite: true,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.verse {
+    margin: 20px 0;
+}
+.singer {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.ensemble {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+.duet {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.duet-part {
+    flex: 1;
+}
+.finale {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+</style>
+
+<div class="lyrics">
+    <div class="title">Je suis fou</div>
+
+    <div class="verse">
+        <div class="singer">[Liam]</div>
+        Certains pensaient qu'ils étaient seuls<br>
+        Abandonnés, là, sur le seuil<br>
+        On veut changer tout ça mais Oh-là-là
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Jade]</div>
+        Certains voudraient qu'on se déchire<br>
+        Pour des billets, pour un empire<br>
+        On veut changer tout ça mais Oh-là-là<br>
+        Oh-là-là
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Ava]</div>
+        Et toi ! Qui a troqué le "Je" contre le "Nous"<br>
+        Qui donnerait le monde aux sans-le-sou<br>
+        Ici-bas, tu es fou
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Linoa]</div>
+        Et toi ! Qui tends la main vers celui qui n'a rien<br>
+        Sans en vouloir à celui qui a tout<br>
+        Si pour ça, tu es fou
+    </div>
+
+    <div class="ensemble">
+        Je suis fou<br>
+        Je suis fou<br>
+        Je suis fou
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Linoa]</div>
+        Certains pensaient qu'ils dérangeaient<br>
+        Trop différents, trop à côté<br>
+        On veut changer tout ça mais oh-là-là
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Liam]</div>
+        Et oublie les gens qui nous séparent<br>
+        Il est temps qu'on se répare<br>
+        Que tous les fous se préparent<br>
+        Sur la ligne de départ
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Jade]</div>
+        Parlez pas de complot<br>
+        Et l'autre, et l'autre, il a bon dos<br>
+        On va déjà se changer soi, oh-là-là
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Ava]</div>
+        Et toi ! Qui a troqué le "Je" contre le "Nous"<br>
+        Qui donnerait le monde aux sans-le-sou<br>
+        Ici-bas, tu es fou
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Liam]</div>
+        Et toi ! Qui tends la main vers celui qui n'a rien<br>
+        Sans en vouloir à celui qui a tout<br>
+        Si pour ça, tu es fou
+    </div>
+
+    <div class="ensemble">
+        Je suis fou<br>
+        Je suis fou<br>
+        Je suis fou
+    </div>
+
+    <div class="duet">
+        <div class="duet-part">
+            <div class="singer">[Liam + Ava]</div>
+            On va se changer soi
+        </div>
+        <div class="duet-part">
+            <div class="singer">[Jade + Linoa]</div>
+            On va se changer
+        </div>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Liam]</div>
+        Et toi ! Qui a troqué le "Je" contre le "Nous"
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Jade]</div>
+        Qui donnerait le monde aux sans-le-sou<br>
+        Ici-bas, tu es fou
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Ava]</div>
+        Et toi ! Qui tends la main vers celui qui n'a rien
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Linoa]</div>
+        Sans en vouloir à celui qui a tout<br>
+        Si pour ça, tu es fou
+    </div>
+
+    <div class="ensemble">
+        Je suis fou<br>
+        Je suis fou<br>
+        Je suis fou
+    </div>
+
+    <div class="duet">
+        <div class="duet-part">
+            <div class="singer">[Liam + Ava]</div>
+            On va se changer soi
+        </div>
+        <div class="duet-part">
+            <div class="singer">[Jade + Linoa]</div>
+            On va se changer
+        </div>
+    </div>
+
+    <div class="ensemble">
+        <div class="finale">Je suis fou !!!</div>
+    </div>
+</div>`,
     },
   },
   {
@@ -1682,7 +2584,126 @@ const RAW_SONGS: Song[] = [
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F16.%20En%20cloque%20%5BBDFab%20karaoke%5D.mp3?alt=media&token=fbe3d64d-fcbc-4230-8eb0-3971dea833a3",
     isFavorite: false,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.verse {
+    margin: 20px 0;
+}
+.singer {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+.instrumental {
+    text-align: center;
+    font-style: italic;
+    margin: 20px 0;
+}
+.ensemble {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 20px 0;
+}
+</style>
+
+<div class="lyrics">
+    <div class="title">En cloque</div>
+
+    <div class="verse">
+        <div class="singer">[Martine B]</div>
+        Elle a mis sur l'mur, au d'ssus du berceau<br>
+        Une photo d'Arthur Rimbaud<br>
+        Vec ses ch'veux en brosse, elle trouve qu'il est beau<br>
+        Dans la chambre du gosse, bravo !
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Brigitte]</div>
+        Déjà les p'tits anges sur le papier teint<br>
+        J'trouvais ça étrange, j'dis rien<br>
+        Elles me font marrer ses idées loufoques<br>
+        Depuis qu'elle est en cloque
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Murielle]</div>
+        Elle s'réveille la nuit, veut bouffer des fraises<br>
+        Elle a des envies balèzes<br>
+        Moi j'suis aux p'tits soins, je m'défonce en huit<br>
+        Pour qu'elle manque de rien ma p'tite
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Martine B]</div>
+        C'est comme si je pissais dans un violoncelle<br>
+        Comme si j'existais plus pour elle<br>
+        Je m'retrouve planté, tout seul dans mon froc<br>
+        Depuis qu'elle est en cloque
+    </div>
+
+    <div class="instrumental">Instrumental</div>
+
+    <div class="verse">
+        <div class="singer">[Murielle]</div>
+        Le soir elle tricotte en buvant d'la verveine<br>
+        Moi j'démelle ses p'lottes de laine<br>
+        Elle use les miroirs à s'regarder d'dans<br>
+        A s'trouver bizarre, tout l'temps
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Martine B]</div>
+        J'lui dis qu'elle est belle comme un fruit trop mûr<br>
+        Elle croit qu'je fous d'elle, c'est sûr<br>
+        Faut bien dire c'qui est, moi aussi j'débloque<br>
+        Depuis qu'elle est en cloque
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Brigitte]</div>
+        Faut qu'j'retire mes grolles quand j'rentre dans la chambre<br>
+        Du p'tit rossignol qu'elle couve<br>
+        C'est qu'son p'tit bonhomme qu'arrive en décembre<br>
+        Elle le protège comme une louve
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Murielle]</div>
+        Même le chat pépère elle en dit du mal<br>
+        Sous prétexte qu'y perd ses poils<br>
+        Elle veut plus l'voir traîner autour du paddock<br>
+        Depuis qu'elle est en cloque
+    </div>
+
+    <div class="instrumental">Instrumental</div>
+
+    <div class="verse">
+        <div class="singer">[Martine B]</div>
+        Quand j'promène mes mains d'l'autre côté d'son dos<br>
+        J'sens comme des coups d'poings, ça bouge<br>
+        J'lui dis "t'es un jardin, une fleur, un ruisseau"<br>
+        Alors elle devient toute rouge
+    </div>
+
+    <div class="ensemble">
+        Parfois c'qui m'désole, c'qui m'fait du chagrin<br>
+        Quand je r'garde son ventre et l'mien<br>
+        C'est qu'même si j'devenais pédé comme un phoque<br>
+        Moi j's'rai jamais en cloque
+    </div>
+</div>`,
     },
   },
   {
@@ -1698,7 +2719,147 @@ const RAW_SONGS: Song[] = [
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F17.%201987%20(Instrumental).mp3?alt=media&token=f05a1efa-1d21-4efc-b6c3-119892c2dcab",
     isFavorite: true,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.verse {
+    margin: 20px 0;
+}
+.singer {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+.instrumental {
+    text-align: center;
+    font-style: italic;
+    margin: 20px 0;
+}
+.ensemble {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 20px 0;
+    color: #fff;
+}
+</style>
+
+<div class="lyrics">
+    <div class="title">1987</div>
+
+    <div class="verse">
+        <div class="singer">[Kylian]</div>
+        Tu t'souviens ?<br>
+        Les couleurs sur les baskets<br>
+        Les crayons dans les cassettes<br>
+        Je rembobine,<br>
+        Tu t'souviens<br>
+        Tous ces rêves plein nos disquettes<br>
+        À Paris c'était les States….<br>
+        1987
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Emerick]</div>
+        Il y a certains jours où je reprends mon skate<br>
+        Et je vais faire un tour en 1987…<br>
+        Il y a certains jours dans lesquels je me jette<br>
+        Et je suis de retour en 1987…<br>
+        Tu sais, de tous ces jours,<br>
+        Y a rien que je regrette<br>
+        Mais parfois je retourne en 1987….<br>
+        En 87
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Lou]</div>
+        Tu t'souviens ?<br>
+        Les survêt et les houpettes<br>
+        Sabrina et 7 sur 7<br>
+        Dans la cuisine c'était rien<br>
+        Que douze mois sur la planète<br>
+        L'URSS, INXS<br>
+        On chantait "I want your sex"
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Emerick]</div>
+        Il y a certains jours où je reprends mon skate<br>
+        Et je vais faire un tour en 1987…
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Kylian]</div>
+        Il y a certains jours dans lesquels je me jette<br>
+        Et je suis de retour en 1987…
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Lou]</div>
+        Tu sais, de tous ces jours,<br>
+        Y a rien que je regrette<br>
+        Mais parfois je retourne en 1987….<br>
+        En '87
+    </div>
+
+    <div class="instrumental">Instrumental</div>
+
+    <div class="verse">
+        <div class="singer">[Emerick]</div>
+        Tu verras bien qu'un jour<br>
+        Une chanson dans la tête<br>
+        Tu l'auras à ton tour, ton 1987…
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Kylian]</div>
+        Tu verras bien qu'un jour<br>
+        Une chanson dans la tête<br>
+        Tu auras à ton tour ton 1987…<br>
+        C'est tout ce que je te souhaite
+    </div>
+
+    <div class="instrumental">Instrumental</div>
+
+    <div class="verse">
+        <div class="singer">[Lou]</div>
+        Tu auras à ton tour ton 1987…<br>
+        C'est tout ce que je te souhaite
+    </div>
+
+    <div class="instrumental">Pause instrumental</div>
+
+    <div class="verse">
+        <div class="singer">[Kylian]</div>
+        Tu auras à ton tour ton 1987…
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Emerick]</div>
+        C'est tout ce que je te souhaite
+    </div>
+
+    <div class="instrumental">Pause instrumental</div>
+
+    <div class="verse">
+        <div class="singer">[Lou]</div>
+        Tu auras à ton tour ton 1987…
+    </div>
+
+    <div class="ensemble">
+        Tu t'souviens ?
+    </div>
+</div>`,
     },
   },
   {
@@ -1710,10 +2871,141 @@ const RAW_SONGS: Song[] = [
     part: 2,
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F18.%20MAMY%20BLUE.docx?alt=media&token=b8477bd5-2c4f-40cc-ae68-1250310b9e55",
-    instrumental_url: "",
+    instrumental_url:
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F18.%20Mamy%20Blue%20(Version%20instrumentale).mp3?alt=media&token=bbd6ebdd-21e4-473e-ac6a-aa97e0b026eb",
     isFavorite: true,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.verse {
+    margin: 20px 0;
+}
+.singer {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+.chorus {
+    margin: 20px 0;
+}
+.echo {
+    margin-left: 20px;
+    font-style: italic;
+}
+.finale {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+</style>
+
+<div class="lyrics">
+    <div class="title">Mamy Blue</div>
+
+    <div class="chorus">
+        Oh mamy, Oh mamy, mamy blue, Oh mamy blue<br>
+        <div class="singer">[Astrid]</div>
+        Oh mamy, mamy<br>
+        Oh mamy, Oh mamy, mamy blue, Oh mamy blue<br>
+        <div class="singer">[Astrid]</div>
+        Oh mamy, mamy blue<br>
+        Oh mamy, Oh mamy, mamy blue Oh mamy blue<br>
+        <div class="singer">[Astrid]</div>
+        Où es-tu mamy?<br>
+        Oh mamy, Oh mamy, mamy blue, Oh mamy blue
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Astrid]</div>
+        Je suis partie un soir d'été <span class="echo">(Oh mamy)</span><br>
+        Sans dire un mot, sans t'embrasser <span class="echo">(Oh mamy)</span><br>
+        Sans un regard sur le passé, Le passé<br>
+        <span class="echo">(Oh mamy… Blue)</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Nora]</div>
+        Dès que j'ai franchi la frontière <span class="echo">(Oh mamy)</span><br>
+        Le vent soufflait plus fort qu'hier <span class="echo">(Oh mamy)</span><br>
+        Quand j'étais près de toi ma mère, Oh ma mère<br>
+        <span class="echo">(Oh mamy… Blue)</span>
+    </div>
+
+    <div class="chorus">
+        Oh mamy, Oh mamy, mamy blue, Oh mamy blue<br>
+        <div class="singer">[Astrid]</div>
+        Oh mamy, mamy blue<br>
+        Oh mamy, Oh mamy, mamy blue, Oh mamy blue
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Wilnie]</div>
+        Et aujourd'hui je te reviens <span class="echo">(Oh mamy)</span><br>
+        Et, j'ai refait tout le chemin <span class="echo">(Oh mamy)</span><br>
+        Qui m'avait entraînée si loin, Oh si loin<br>
+        <span class="echo">(Oh mamy… Blue)</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Aline]</div>
+        Tu n'es plus là pour me sourire <span class="echo">(Oh mamy)</span><br>
+        Me réchauffer, me recueillir <span class="echo">(Oh mamy)</span><br>
+        Et je n'ai plus qu'à repartir, Repartir<br>
+        <span class="echo">(Oh mamy… Blue)</span>
+    </div>
+
+    <div class="chorus">
+        Oh mamy, Oh mamy, mamy blue, Oh mamy blue<br>
+        <div class="singer">[Astrid]</div>
+        Oh mamy, mamy blue<br>
+        Oh mamy, Oh mamy, mamy blue, Oh mamy blue
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Astrid]</div>
+        La maison a fermé ses yeux <span class="echo">(Oh mamy)</span><br>
+        Le chat et les chiens sont très vieux <span class="echo">(Oh mamy)</span><br>
+        <div class="singer">[Nora]</div>
+        Et ils viennent me dire adieu, Adieu<br>
+        <span class="echo">(Oh mamy… Blue)</span>
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Wilnie]</div>
+        Je ne reviendrai plus jamais <span class="echo">(Oh mamy)</span><br>
+        <div class="singer">[Aline]</div>
+        Dans ce village que j'aimais <span class="echo">(Oh mamy)</span><br>
+        Où tu reposes à tout jamais, Désormais<br>
+        <span class="echo">(Oh mamy… Blue)</span>
+    </div>
+
+    <div class="finale">
+        <div class="singer">[Astrid]</div>
+        Oh mamy, Oh mamy, mamy blue, Oh mamy blue <span class="echo">(Oh mamy, mamy)</span><br>
+        Oh mamy, <span class="echo">(Oh mamy)</span><br>
+        Oh mamy, mamy blue Oh mamy blue <span class="echo">(Oh mamy, mamy)</span><br>
+        Oh mamy, Oh mamy, mamy blue Oh mamy blue <span class="echo">(Où es-tu mamy blue?)</span><br>
+        Oh mamy <span class="echo">(Oh mamy, Oh mamy, mamy blue, Oh mamy blue)</span><br>
+        Oh mamy, mamy, mamy<br>
+        Oh mamy, <span class="echo">(Oh mamy)</span><br>
+        Oh mamy, mamy blue Oh mamy blue<br>
+        Oh mamy, mamy blue yeah<br>
+        Oh mamy, Oh mamy mamy blue Oh mamy <span class="echo">(Oh mamy, Oh mamy, mamy……)</span><br>
+        Bluueee!
+    </div>
+</div>`,
     },
   },
   {
@@ -1725,10 +3017,137 @@ const RAW_SONGS: Song[] = [
     part: 2,
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F19.%20LILY.docx?alt=media&token=539952b3-1428-49de-b41e-18c13eef77fa",
-    instrumental_url: "",
+    instrumental_url:
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F19.%20Lily.mp3?alt=media&token=7f532fbe-5d7b-442e-9c9f-94f0bb88207a",
     isFavorite: false,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.verse {
+    margin: 20px 0;
+}
+.singer {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+.ensemble {
+    font-weight: bold;
+    font-style: italic;
+    margin: 20px 0;
+    color: #fff;
+}
+</style>
+
+<div class="lyrics">
+    <div class="title">Lily</div>
+
+    <div class="verse">
+        <div class="singer">[Elfy]</div>
+        On la trouvait plutôt jolie, Lily<br>
+        Elle arrivait des Somalies, Lily<br>
+        Dans un bateau plein d'émigrés<br>
+        Qui venaient tous de leur plein gré<br>
+        Vider les poubelles à Paris
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Caroline]</div>
+        Elle croyait qu'on était égaux, Lily<br>
+        Au pays d'Voltaire et d'Hugo, Lily<br>
+        Mais, pour Debussy, en revanche<br>
+        Il faut deux noires pour une blanche<br>
+        Ça fait un sacré distinguo
+    </div>
+
+    <div class="ensemble">
+        Elle aimait tant la liberté, Lily<br>
+        Elle rêvait de fraternité, Lily<br>
+        Un hôtelier, rue Secrétan<br>
+        Lui a précisé, en arrivant<br>
+        Qu'on ne recevait que des Blancs
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Anne]</div>
+        Elle a déchargé des cageots, Lily<br>
+        Elle s'est tapée les sales boulots, Lily<br>
+        Elle crie pour vendre des choux-fleurs<br>
+        Dans la rue, ses frères de couleur<br>
+        L'accompagnent au marteau-piqueur
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Caroline]</div>
+        Et quand on l'appelait Blanche-Neige, Lily<br>
+        Elle se laissait plus prendre au piège, Lily<br>
+        Elle trouvait ça très amusant<br>
+        Même s'il fallait serrer les dents<br>
+        Ils auraient été trop contents
+    </div>
+
+    <div class="ensemble">
+        Elle aima un beau blond frisé, Lily<br>
+        Qui était tout prêt à l'épouser, Lily<br>
+        Mais, la belle-famille lui dit<br>
+        "Nous n'sommes pas racistes pour deux sous…<br>
+        Mais on veut pas de ça chez nous"
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Elfy]</div>
+        Elle a essayé l'Amérique, Lily<br>
+        Ce grand pays démocratique, Lily<br>
+        Elle aurait pas cru sans le voir<br>
+        Que la couleur du désespoir<br>
+        Là-bas, aussi ce fût le noir
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Caroline]</div>
+        Mais, dans un meeting à Memphis, Lily<br>
+        Elle a vu Angela Davis, Lily<br>
+        Qui lui dit "viens, ma petite sœur"<br>
+        "En s'unissant, on a moins peur"<br>
+        "Des loups qui guettent le trappeur"
+    </div>
+
+    <div class="ensemble">
+        Et c'est pour conjurer sa peur, Lily<br>
+        Qu'elle lève aussi un poing rageur, Lily<br>
+        Au milieu de tous ces gugus<br>
+        Qui foutent le feu aux autobus<br>
+        Interdits aux gens de couleur
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Anne]</div>
+        Mais, dans ton combat quotidien, Lily<br>
+        Tu connaîtras un type bien, Lily<br>
+        Et l'enfant qui naîtra, un jour<br>
+        Aura la couleur de l'amour<br>
+        Contre laquelle on ne peut rien
+    </div>
+
+    <div class="ensemble">
+        On la trouvait plutôt jolie, Lily<br>
+        Elle arrivait des Somalies, Lily<br>
+        Dans un bateau plein d'émigrés<br>
+        Qui venaient tous de leur plein gré<br>
+        Vider les poubelles à Paris
+    </div>
+</div>`,
     },
   },
   {
@@ -1740,10 +3159,98 @@ const RAW_SONGS: Song[] = [
     part: 2,
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F20.%20E%CC%81LISA.docx?alt=media&token=899e6551-67e8-4b12-9395-c93e7f68fd0a",
-    instrumental_url: "",
+    instrumental_url:
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F20.%20Elisa%20%20%5BBDFab%20karaoke%5D.mp3?alt=media&token=27972fcb-bd3a-494b-817c-ecb1e72f881a",
     isFavorite: true,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.verse {
+    margin: 20px 0;
+}
+.singer {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+.instrumental {
+    text-align: center;
+    font-style: italic;
+    margin: 20px 0;
+}
+.ensemble {
+    font-weight: bold;
+    font-style: italic;
+    margin: 20px 0;
+    color: #fff;
+}
+</style>
+
+<div class="lyrics">
+    <div class="title">Élisa</div>
+
+    <div class="verse">
+        <div class="singer">[Maxime]</div>
+        Elisa, Elisa, Elisa, saute-moi au cou<br>
+        Elisa, Elisa, Elisa, cherche-moi des poux<br>
+        Enfonce bien tes ongles<br>
+        Et tes doigts délicats<br>
+        Dans la jungle<br>
+        De mes cheveux, Lisa
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Patricia]</div>
+        Elisa, Elisa, Elisa, saute-moi au cou<br>
+        Elisa, Elisa, Elisa, cherche-moi des poux<br>
+        Fais-moi quelques anglaises<br>
+        Et la raie au milieu<br>
+        On a treize<br>
+        Quatorze ans à nous deux
+    </div>
+
+    <div class="verse">
+        <div class="singer">[Wilnie]</div>
+        Elisa, Elisa, Elisa, les autres on s'en fout<br>
+        Elisa, Elisa, Elisa rien que toi, moi, nous<br>
+        Tes vingt ans, mes quarante<br>
+        Si tu crois que cela<br>
+        Me tourmente<br>
+        Ah non vraiment, Lisa
+    </div>
+
+    <div class="instrumental">Instrumental</div>
+
+    <div class="verse">
+        <div class="singer">[Maxime]</div>
+        Elisa, Elisa, Elisa saute-moi au cou<br>
+        Elisa, Elisa, Elisa, cherche-moi des poux<br>
+        Enfonce bien tes ongles<br>
+        Et tes doigts délicats<br>
+        Dans la jungle<br>
+        De mes cheveux, Lisa
+    </div>
+
+    <div class="ensemble">
+        Elisa, Elisa, Elisa saute-moi au cou<br>
+        Elisa, Elisa, Elisa, cherche-moi des poux<br>
+        Enfonce bien tes ongles<br>
+        Et tes doigts délicats<br>
+        Dans la jungle<br>
+        De mes cheveux, Lisa
+    </div>
+</div>`,
     },
   },
   {
@@ -1759,7 +3266,141 @@ const RAW_SONGS: Song[] = [
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F21.%20Gimme-gimme-gimme%20(Version%20coupe%CC%81e).mp3?alt=media&token=bc1d4de6-c233-4353-a58b-8c172dda5063",
     isFavorite: false,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: white;
+}
+.verse {
+  margin: 20px 0;
+}
+.singer {
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+.response {
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-left: 20px;
+}
+.ensemble {
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.instrumental {
+  font-style: italic;
+  margin: 15px 0;
+}
+</style>
+
+<div class="lyrics">
+  <div class="title">Gimme Gimme Gimme</div>
+
+  <div class="instrumental">Long Instrumental</div>
+
+  <div class="ensemble">Ensemble: Half-past twelve</div>
+
+  <div class="singer">Lou:</div>
+  <div class="verse">And I'm watching the late show in my flat all alone<br>
+  How I hate to spend the evening on my own</div>
+
+  <div class="ensemble">Ensemble: Autumn winds</div>
+
+  <div class="singer">Alexandra:</div>
+  <div class="verse">Blowing outside the window as I look around the room<br>
+  And it makes me so depressed to see the gloom</div>
+
+  <div class="singer">Maryline:</div>
+  <div class="verse">There's not a soul out there<br>
+  No one to hear my prayer</div>
+
+  <div class="ensemble">Ensemble:</div>
+  <div class="verse">Gimme, gimme, gimme a man after midnight....</div>
+  
+  <div class="singer">Lou:</div>
+  <div class="response">Won't somebody help me chase the shadows away?</div>
+
+  <div class="ensemble">Ensemble:</div>
+  <div class="verse">Gimme, gimme, gimme a man after midnight....</div>
+
+  <div class="singer">Alexandra:</div>
+  <div class="response">Take me through the darkness to the break of the day</div>
+
+  <div class="instrumental">Instrumental</div>
+
+  <div class="ensemble">Ensemble: Movie stars</div>
+
+  <div class="singer">Sophie:</div>
+  <div class="verse">Find the end of the rainbow with a fortune to win<br>
+  It's so different from the world I'm living in</div>
+
+  <div class="ensemble">Ensemble: Tired of TV</div>
+
+  <div class="singer">Maryline:</div>
+  <div class="verse">I open the window and I gaze into the night<br>
+  But there's nothing there to see, no one in sight</div>
+
+  <div class="singer">Lou:</div>
+  <div class="verse">There's not a soul out there<br>
+  No one to hear my prayer</div>
+
+  <div class="ensemble">Ensemble:</div>
+  <div class="verse">Gimme, gimme, gimme a man after midnight....</div>
+
+  <div class="singer">Lou + Alexandra:</div>
+  <div class="response">Won't somebody help me chase the shadows away?</div>
+
+  <div class="ensemble">Ensemble:</div>
+  <div class="verse">Gimme, gimme, gimme a man after midnight....</div>
+
+  <div class="singer">Sophie + Maryline:</div>
+  <div class="response">Take me through the darkness to the break of the day</div>
+
+  <div class="ensemble">Ensemble:</div>
+  <div class="verse">Gimme, gimme, gimme a man after midnight....<br>
+  Oh oh oh ...<br>
+  Gimme, gimme, gimme a man after midnight....<br>
+  Oh oh oh ...</div>
+
+  <div class="instrumental">Instrumental</div>
+
+  <div class="singer">Lou + Maryline:</div>
+  <div class="verse">There's not a soul out there<br>
+  No one to hear my prayer</div>
+
+  <div class="ensemble">Ensemble:</div>
+  <div class="verse">Gimme, gimme, gimme a man after midnight....</div>
+
+  <div class="singer">Lou:</div>
+  <div class="response">Won't somebody help me chase the shadows away?</div>
+
+  <div class="ensemble">Ensemble:</div>
+  <div class="verse">Gimme, gimme, gimme a man after midnight....</div>
+
+  <div class="singer">Alexandra:</div>
+  <div class="response">Take me through the darkness to the break of the day</div>
+
+  <div class="ensemble">Ensemble:</div>
+  <div class="verse">Gimme, gimme, gimme a man after midnight....</div>
+
+  <div class="singer">Sophie:</div>
+  <div class="response">Won't somebody help me chase the shadows away?</div>
+
+  <div class="ensemble">Ensemble:</div>
+  <div class="verse">Gimme, gimme, gimme a man after midnight....</div>
+
+  <div class="singer">Maryline:</div>
+  <div class="response">Take me through the darkness to the break of the day</div>
+</div>`,
     },
   },
   {
@@ -1771,10 +3412,285 @@ const RAW_SONGS: Song[] = [
     part: 2,
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F22.%20YMCA.docx?alt=media&token=00152f50-1a41-47f4-9ad8-aafa5847820c",
-    instrumental_url: "",
+    instrumental_url:
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F22.%20YMCA%20(Karaoke%20Version).mp3?alt=media&token=e46a7519-3639-4d13-94ce-fff9d52a5afc",
     isFavorite: true,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: white;
+}
+.verse {
+  margin: 20px 0;
+}
+.singer {
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+.backing {
+  font-style: italic;
+  margin-left: 20px;
+  opacity: 0.9;
+}
+.chorus {
+  font-weight: bold;
+  margin: 20px 0;
+}
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.duet {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.duet-part {
+  flex: 1;
+}
+</style>
+
+<div class="lyrics">
+  <div class="title">Y.M.C.A.</div>
+
+  <div class="duet">
+    <div class="duet-part">
+      <div class="backing">Les 3 gars:</div>
+      <div class="verse">
+        (Young man)<br>
+        (Young man)<br>
+        (Young man)<br>
+        (Need to be unhappy)
+      </div>
+    </div>
+    <div class="duet-part">
+      <div class="singer">Maxime:</div>
+      <div class="verse">
+        There's no need to feel down I said,<br>
+        Pick yourself off the ground I said,<br>
+        Cause you're in a new town, There's no
+      </div>
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="duet-part">
+      <div class="backing">Les 3 gars:</div>
+      <div class="verse">
+        (Young man)<br>
+        (Young man)<br>
+        (Stay there)<br>
+        (Ways to have a good time)
+      </div>
+    </div>
+    <div class="duet-part">
+      <div class="singer">J. Michel:</div>
+      <div class="verse">
+        There's a place you can go I said,<br>
+        When you're short on your dough You can<br>
+        And I'm sure you will find Many
+      </div>
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="duet-part">
+      <div class="singer">Maxime:</div>
+      <div class="chorus">
+        It's fun to stay at the
+      </div>
+    </div>
+    <div class="duet-part">
+      <div class="backing">Les 3 gars:</div>
+      <div class="chorus">
+        (Y.M.C.A.)<br>
+      </div>
+    </div>
+  </div>
+
+  <div class="chorus">
+    It's fun to stay at the (Y.M.C.A.)<br>
+    They have everything For young men to enjoy<br>
+    You can hang out with all the boys<br>
+    It's fun to stay at the (Y.M.C.A.)<br>
+    It's fun to stay at the (Y.M.C.A.)
+  </div>
+
+  <div class="singer">J. Michel:</div>
+  <div class="verse">
+    You can get yourself clean<br>
+    You can have a good meal<br>
+    You can do whatever you feel
+  </div>
+
+  <div class="duet">
+    <div class="duet-part">
+      <div class="backing">Les 3 gars:</div>
+      <div class="verse">
+        (Young man)<br>
+        (Young man)<br>
+        (Young man)<br>
+        (Got to know this one thing)
+      </div>
+    </div>
+    <div class="duet-part">
+      <div class="singer">Grégory:</div>
+      <div class="verse">
+        Are you listening to me? I said,<br>
+        What do you want to be? I said,<br>
+        You can make real your dreams But you've
+      </div>
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="duet-part">
+      <div class="backing">Les 3 gars:</div>
+      <div class="verse">
+        (No man)<br>
+        (Young man)<br>
+        (Go there)<br>
+        (I'm sure they can help you today)
+      </div>
+    </div>
+    <div class="duet-part">
+      <div class="singer">Nathan:</div>
+      <div class="verse">
+        Does it all by himself I said,<br>
+        Put your pride on the shelf And just<br>
+        To the Y.M.C.A.
+      </div>
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="duet-part">
+      <div class="singer">Gregory:</div>
+      <div class="chorus">
+        It's fun to stay at the
+      </div>
+    </div>
+    <div class="duet-part">
+      <div class="backing">Les 3 gars:</div>
+      <div class="chorus">
+        (Y.M.C.A.)
+      </div>
+    </div>
+  </div>
+
+  <div class="chorus">
+    It's fun to stay at the (Y.M.C.A.)<br>
+    They have everything For young men to enjoy<br>
+    You can hang out with all the boys<br>
+    It's fun to stay at the (Y.M.C.A.)<br>
+    It's fun to stay at the (Y.M.C.A.)
+  </div>
+
+  <div class="singer">Nathan:</div>
+  <div class="verse">
+    You can get yourself clean<br>
+    You can have a good meal<br>
+    You can do whatever you feel
+  </div>
+
+  <div class="duet">
+    <div class="duet-part">
+      <div class="backing">Les 3 gars:</div>
+      <div class="verse">
+        (Young man)<br>
+        (I was)<br>
+        (No man)<br>
+        (The whole world was so jive)
+      </div>
+    </div>
+    <div class="duet-part">
+      <div class="singer">Maxime:</div>
+      <div class="verse">
+        I was once in your shoes I said,<br>
+        Down and out with the blues I felt,<br>
+        Cared if I were alive I felt
+      </div>
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="duet-part">
+      <div class="backing">Les 3 gars:</div>
+      <div class="verse">
+        (That's when)<br>
+        (Young man)<br>
+        (Place there)<br>
+        (Stop you back on your way)
+      </div>
+    </div>
+    <div class="duet-part">
+      <div class="singer">J. Michel:</div>
+      <div class="verse">
+        Someone came up to me And said,<br>
+        Take a walk up the street There's a<br>
+        Called the Y.M.C.A. They can't
+      </div>
+    </div>
+  </div>
+
+  <div class="chorus">
+    It's fun to stay at the (Y.M.C.A.)<br>
+    It's fun to stay at the (Y.M.C.A.)<br>
+    They have everything<br>
+    For young men to enjoy<br>
+    You can hang out with all the boys
+  </div>
+
+  <div class="chorus">(Y.M.C.A.)</div>
+
+  <div class="duet">
+    <div class="duet-part">
+      <div class="singer">Gregory:</div>
+      <div class="chorus">It's fun to stay at the</div>
+    </div>
+    <div class="duet-part">
+      <div class="backing">Les 3 gars:</div>
+      <div class="chorus">(Y.M.C.A.)</div>
+    </div>
+  </div>
+
+  <div class="chorus">
+    Young man, young man, there's no need to feel down<br>
+    Young man, young man, pick yourself off the ground
+  </div>
+
+  <div class="chorus">(Y.M.C.A.)</div>
+
+  <div class="duet">
+    <div class="duet-part">
+      <div class="singer">Nathan:</div>
+      <div class="chorus">It's fun to stay at the</div>
+    </div>
+    <div class="duet-part">
+      <div class="backing">Les 3 gars:</div>
+      <div class="chorus">(Y.M.C.A.)</div>
+    </div>
+  </div>
+
+  <div class="chorus">
+    Young man, young man Are you listening to me?<br>
+    Young man, young man What do you want to be?
+  </div>
+
+  <div class="chorus">
+    Y.M.C.A.<br>
+    You buy in at the<br>
+    Y.M.C.A.<br>
+    Young man, young man Does it all by himself<br>
+    Young man, young man Put your pride on the shelf<br>
+    Y.M.C.A.
+  </div>
+</div>`,
     },
   },
   {
@@ -1786,10 +3702,180 @@ const RAW_SONGS: Song[] = [
     part: 2,
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F23.%20LA%20VIE%20DU%20BON%20CO%CC%82TE.docx?alt=media&token=8f6f34b9-a268-4eae-9ecc-e66478c90aa1",
-    instrumental_url: "",
+    instrumental_url:
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F23.%20La%20vie%20du%20bon%20co%CC%82te%CC%81%20(Version%20Instrumental).mp3?alt=media&token=1a68a2dd-84a9-4b52-ad5f-540f46234c6c",
     isFavorite: true,
     lyrics_html: {
-      __html: ``,
+      __html: `<style>
+.lyrics {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: white;
+}
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.intro {
+  font-style: italic;
+  margin: 15px 0;
+  opacity: 0.9;
+}
+.duet {
+  margin: 20px 0;
+}
+.singers {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+.verse {
+  margin-bottom: 20px;
+}
+.solo {
+  margin: 15px 0;
+}
+.ensemble {
+  font-weight: bold;
+  margin: 20px 0;
+}
+.repeat {
+  font-style: italic;
+  margin-left: 20px;
+}
+</style>
+
+<div class="lyrics">
+  <div class="title">La Vie du bon côté</div>
+
+  <div class="intro">
+    [Hey Yaw !] [C'est Keen'V on the mic yaw !]<br>
+    [Lorelei B !] [Faut prendre la vie du bon côté]
+  </div>
+
+  <div class="duet">
+    <div class="singers">Astrid + Emerick:</div>
+    <div class="verse">
+      Ca y'est, j'en ai assez, assez de m'lamenter,<br>
+      J'vais effacer l'passé pour tout recommencer,<br>
+      Me libérer, j'ai décidé d'prendre la vie du bon côté.
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="singers">Alexandra + J. Michel:</div>
+    <div class="verse">
+      Adolescent, souvent, je me sentais complexé.<br>
+      Il suffisait d'un rien pour que je me sente vexé.<br>
+      Les critiques qu'on m'faisait me pénaient et me blessaient.<br>
+      Mais tout ça, c'est du passé.
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="singers">Emmanuel + Aline:</div>
+    <div class="verse">
+      J'ai cessé d'me lamenter pour croquer la vie à pleine dent.<br>
+      J'fais selon mes idées, et j'vis mes envies pleinement.<br>
+      J'ai bien essayé de changer le passé mais veinement,<br>
+      Rien ne changerait ces événements, Nan.
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="singers">Maelle + Elfy:</div>
+    <div class="verse">
+      Ca y'est, j'en ai assez, assez de m'lamenter,<br>
+      J'vais effacer l'passé pour tout recommencer,<br>
+      Me libérer, j'ai décidé d'prendre la vie du bon côté.
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="singers">Nora + Sophie:</div>
+    <div class="verse">
+      Ca y'est, j'en ai assez, assez de m'lamenter,<br>
+      J'vais effacer l'passé pour tout recommencer,<br>
+      Me libérer, j'ai décidé d'prendre la vie du bon côté.
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="singers">Nathan + Gregory:</div>
+    <div class="verse">
+      On a qu'une seule vie, donc profiter est important.<br>
+      J'n'ai pas envie d'nourrir des regrets à 40 ans.<br>
+      On peut pas continuer à exister en portant<br>
+      Le lourd poids des remords d'antan
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="singers">Murielle + Martine B:</div>
+    <div class="verse">
+      J'ai cessé de me lamenter pour croquer la vie à pleine dent<br>
+      C'est selon mes idées et je vis mes envies pleinement<br>
+      J'ai bien essayé de changer le passé mais vainement<br>
+      Rien ne changerait ces événements...
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="singers">Jade + Linoa:</div>
+    <div class="verse">
+      Ca y'est, j'en ai assez, assez de m'lamenter,<br>
+      J'vais effacer l'passé pour tout recommencer,<br>
+      Me libérer, j'ai décidé d'prendre la vie du bon côté.
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="singers">Martine R + Kylian:</div>
+    <div class="verse">
+      Ca y'est, j'en ai assez, assez de m'lamenter,<br>
+      J'vais effacer l'passé pour tout recommencer,<br>
+      Me libérer, j'ai décidé d'prendre la vie du bon côté.
+    </div>
+  </div>
+
+  <div class="duet">
+    <div class="singers">Astrid + Maxime:</div>
+    <div class="verse">
+      Je donne le meilleur de moi-même pour ne pas me lamenter<br>
+      Pour ne pas regretter<br>
+      Je donne le meilleur de moi-même pour ne pas me lamenter<br>
+      Ne pas abandonner<br><br>
+      Je donne le meilleur de moi-même pour ne pas me lamenter<br>
+      Pour ne pas regretter<br>
+      Je donne le meilleur de moi-même pour ne pas me lamenter<br>
+      Ne pas abandonner
+    </div>
+  </div>
+
+  <div class="solo">
+    <div class="singers">Nora 2:</div>
+    <div class="verse">J'y suis arriver donc tu peux y arriver</div>
+  </div>
+
+  <div class="solo">
+    <div class="singers">Lou:</div>
+    <div class="verse">J'y suis arriver donc tu peux y arriver</div>
+  </div>
+
+  <div class="ensemble">
+    <div class="singers">Tous ensemble:</div>
+    <div class="verse">
+      Ca y'est, j'en ai assez, assez de m'lamenter,<br>
+      J'vais effacer l'passé pour tout recommencer,<br>
+      Me libérer, j'ai décidé d'prendre la vie du bon côté.<br><br>
+      Ca y'est, j'en ai assez, assez de m'lamenter,<br>
+      J'vais effacer l'passé pour tout recommencer,<br>
+      Me libérer, j'ai décidé d'prendre la vie du bon côté.
+    </div>
+  </div>
+</div>`,
     },
   },
 ]
