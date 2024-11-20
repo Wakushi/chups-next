@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge"
 import {
   dateFiles,
   DownloadFile,
-  musicalFiles,
+  theaterFiles,
   signInFiles,
 } from "@/lib/data/documents"
 
@@ -35,16 +35,16 @@ export default function MemberDownloadsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <DownloadList
-            title="Textes"
-            icon={<FaTheaterMasks className="text-purple-400" />}
-            description="Textes théâtre et chants"
-            files={musicalFiles}
-          />
-          <DownloadList
             title="Planning"
             icon={<IoCalendarSharp className="text-blue-400" />}
             description="Documents liés à l'organisation et aux dates."
             files={dateFiles}
+          />
+          <DownloadList
+            title="Textes"
+            icon={<FaTheaterMasks className="text-purple-400" />}
+            description="Textes théâtre"
+            files={theaterFiles}
           />
           <DownloadList
             title="Inscription"
