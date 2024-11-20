@@ -2622,7 +2622,7 @@ const RAW_SONGS: Song[] = [
     <div class="title">En cloque</div>
 
     <div class="verse">
-        <div class="singer">[Martine B]</div>
+        <div class="singer">[Brigitte]</div>
         Elle a mis sur l'mur, au d'ssus du berceau<br>
         Une photo d'Arthur Rimbaud<br>
         Vec ses ch'veux en brosse, elle trouve qu'il est beau<br>
@@ -2630,7 +2630,7 @@ const RAW_SONGS: Song[] = [
     </div>
 
     <div class="verse">
-        <div class="singer">[Brigitte]</div>
+        <div class="singer">[Martine B]</div>
         Déjà les p'tits anges sur le papier teint<br>
         J'trouvais ça étrange, j'dis rien<br>
         Elles me font marrer ses idées loufoques<br>
