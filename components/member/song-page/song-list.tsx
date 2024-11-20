@@ -3,30 +3,26 @@ import { SongCard } from "./song-card"
 
 interface SongsListProps {
   songs: Song[]
-  currentlyPlaying: number | null
-  isPlaying: boolean
-  setCurrentlyPlaying: (id: number | null) => void
-  setIsPlaying: (isPlaying: boolean) => void
+  playingSong: Song | null
+  handlePlaySong: (song: Song) => void
 }
 
 export function SongsList({
   songs,
-  currentlyPlaying,
-  isPlaying,
-  setCurrentlyPlaying,
-  setIsPlaying,
+  playingSong,
+  handlePlaySong,
 }: SongsListProps) {
   return (
     <div className="flex flex-wrap gap-4">
       {songs.map((song) => (
         <SongCard
-          key={song.id}
+          key={song.id + song.title}
           song={song}
-          isPlaying={currentlyPlaying === song.id && isPlaying}
-          onPlayPause={() => {
-            setCurrentlyPlaying(currentlyPlaying === song.id ? null : song.id)
-            setIsPlaying(!isPlaying)
-          }}
+          isPlaying={
+            playingSong?.instrumental_url === song.instrumental_url &&
+            !!song.isPlaying
+          }
+          onPlayPause={() => handlePlaySong(song)}
         />
       ))}
     </div>

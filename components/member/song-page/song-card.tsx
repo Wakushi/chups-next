@@ -24,11 +24,14 @@ export function SongCard({ song, isPlaying, onPlayPause }: SongCardProps) {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <AudioPlayer
-              isPlaying={isPlaying}
-              onPlayPause={onPlayPause}
-              duration={song.duration}
-            />
+            {!!song.instrumental_url && (
+              <AudioPlayer
+                isPlaying={isPlaying}
+                onPlayPause={onPlayPause}
+                duration={song.duration}
+                audio={song.audio}
+              />
+            )}
             <DownloadButtons
               lyricsUrl={song.lyrics_url}
               instrumentalUrl={song.instrumental_url}
