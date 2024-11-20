@@ -260,7 +260,7 @@ const RAW_SONGS: Song[] = [
     id: 3,
     title: "Le Dîner",
     artist: "Bénabar",
-    singers: ["Aline", "Emmanuel"],
+    singers: ["Aline", "Emmanuel", "Maxime"],
     duration: 0,
     part: 1,
     lyrics_url:
@@ -436,7 +436,7 @@ const RAW_SONGS: Song[] = [
     id: 4,
     title: "Clic Clic Pan Pan",
     artist: "Yanns",
-    singers: ["Nathan", "Nelyan", "Linoa", "Jade"],
+    singers: ["Nathan", "Nelyan", "Nora", "Jade"],
     duration: 0,
     part: 1,
     lyrics_url:
@@ -997,7 +997,7 @@ const RAW_SONGS: Song[] = [
     id: 8,
     title: "Animaux Fragiles",
     artist: "Ycare-Zaz",
-    singers: ["Nora", "Murielle"],
+    singers: ["Greg", "Murielle"],
     duration: 0,
     part: 1,
     lyrics_url:
@@ -1161,7 +1161,7 @@ const RAW_SONGS: Song[] = [
     id: 9,
     title: "Jamais Content",
     artist: "Allain Souchon",
-    singers: ["Brigitte", "Aline"],
+    singers: ["Brigitte", "Aline", "Nora"],
     duration: 0,
     part: 1,
     lyrics_url:
@@ -2251,7 +2251,7 @@ const RAW_SONGS: Song[] = [
   {
     id: 14,
     title: "Beau",
-    artist: "Joseph Kamel - J. Doré",
+    artist: "Joseph Kamel - Julien Doré",
     singers: ["Emmanuel", "Maelle", "Elfy"],
     duration: 0,
     part: 2,
@@ -2575,7 +2575,7 @@ const RAW_SONGS: Song[] = [
     id: 16,
     title: "En cloque",
     artist: "Renaud",
-    singers: ["Brigitte", "Murielle"],
+    singers: ["Brigitte", "Murielle", "Martine B"],
     duration: 0,
     part: 2,
     lyrics_url:
@@ -2710,7 +2710,7 @@ const RAW_SONGS: Song[] = [
     id: 17,
     title: "1987",
     artist: "Calogero",
-    singers: ["Emerick", "Kylian"],
+    singers: ["Emerick", "Kylian", "Lou"],
     duration: 0,
     part: 2,
     lyrics_url:
@@ -3012,7 +3012,7 @@ const RAW_SONGS: Song[] = [
     id: 19,
     title: "Lily",
     artist: "Pierre Perret",
-    singers: ["Caroline", "Anne", "Mathys"],
+    singers: ["Caroline", "Anne", "Elfy"],
     duration: 0,
     part: 2,
     lyrics_url:
@@ -3257,7 +3257,7 @@ const RAW_SONGS: Song[] = [
     id: 21,
     title: "Gimme Gimme",
     artist: "Abba",
-    singers: ["Emmanuel", "Alexandra", "Maryline", "Sophie"],
+    singers: ["Lou", "Alexandra", "Maryline", "Sophie"],
     duration: 0,
     part: 2,
     lyrics_url:
@@ -3407,7 +3407,7 @@ const RAW_SONGS: Song[] = [
     id: 22,
     title: "YMCA",
     artist: "Village People",
-    singers: ["Maxime", "Jean-Michel", "Nathan", "Grégory"],
+    singers: ["Maxime", "Jean-Michel", "Nathan", "Greg"],
     duration: 0,
     part: 2,
     lyrics_url:

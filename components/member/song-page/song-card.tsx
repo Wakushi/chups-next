@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { useState } from "react"
+import { IoMdTime } from "react-icons/io"
 
 interface SongCardProps {
   song: Song
@@ -33,13 +34,18 @@ export function SongCard({ song, isPlaying, onPlayPause }: SongCardProps) {
           </div>
 
           <div className="flex flex-col gap-4 w-full">
-            {!!song.instrumental_url && (
+            {song.instrumental_url ? (
               <AudioPlayer
                 isPlaying={isPlaying}
                 onPlayPause={onPlayPause}
                 duration={song.duration}
                 audio={song.audio}
               />
+            ) : (
+              <div className="flex items-center gap-1">
+                <IoMdTime />
+                <p className="text-sm">Instrumentale bientôt disponible</p>
+              </div>
             )}
             <DownloadButtons
               lyricsUrl={song.lyrics_url}
