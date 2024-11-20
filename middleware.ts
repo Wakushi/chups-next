@@ -25,7 +25,7 @@ export async function middleware(request: NextRequest) {
 
       if (pathname.startsWith("/admin")) {
         if (decodedToken.userType !== "admin") {
-          url.pathname = "/"
+          url.pathname = "/login"
           return NextResponse.redirect(url)
         }
       } else if (pathname.startsWith("/member")) {
@@ -33,13 +33,13 @@ export async function middleware(request: NextRequest) {
           decodedToken.userType !== "admin" &&
           decodedToken.userType !== "user"
         ) {
-          url.pathname = "/"
+          url.pathname = "/login"
           return NextResponse.redirect(url)
         }
       }
     } else {
       if (pathname.startsWith("/admin") || pathname.startsWith("/member")) {
-        url.pathname = "/"
+        url.pathname = "/login"
         return NextResponse.redirect(url)
       }
     }

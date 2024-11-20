@@ -32,9 +32,7 @@ export default function LoginForm() {
   return (
     <Card className="w-full max-w-md space-y-6 bg-slate-800/50 border-slate-700 backdrop-blur-sm">
       <CardHeader className="text-center space-y-2">
-        <CardTitle
-          className={`${playfairDisplay.className} text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent`}
-        >
+        <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
           Connexion
         </CardTitle>
         <CardDescription className="text-slate-300">

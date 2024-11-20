@@ -72,7 +72,7 @@ export default function UserContextProvider(props: UserContextProviderProps) {
 
     switch (user.role) {
       case "user":
-        router.push("/member/downloads")
+        router.push("/member/songs")
         break
       case "admin":
         router.push("/admin/user-bookings")
