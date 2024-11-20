@@ -65,6 +65,10 @@ export async function getAudioDuration(
       const durationInMs = audioElement.duration
       resolve(durationInMs || 0)
     })
+
+    setTimeout(() => {
+      resolve(0)
+    }, 2000)
   })
 }
 

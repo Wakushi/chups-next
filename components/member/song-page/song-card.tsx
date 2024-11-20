@@ -3,6 +3,12 @@ import { Card, CardContent } from "@/components/ui/card"
 import { SongSingers } from "./singers"
 import { AudioPlayer } from "./audio-player"
 import { DownloadButtons } from "./download-buttons"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 interface SongCardProps {
   song: Song
@@ -38,6 +44,18 @@ export function SongCard({ song, isPlaying, onPlayPause }: SongCardProps) {
             />
           </div>
         </div>
+        {!!song.lyrics_html?.__html && (
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="text-sm">
+                Voir les paroles
+              </AccordionTrigger>
+              <AccordionContent>
+                <div dangerouslySetInnerHTML={song.lyrics_html}></div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        )}
       </CardContent>
     </Card>
   )

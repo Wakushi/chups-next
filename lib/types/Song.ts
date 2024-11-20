@@ -10,4 +10,5 @@ export type Song = {
   isFavorite: boolean
   audio?: HTMLAudioElement
   isPlaying?: boolean
+  lyrics_html?: { __html: string | TrustedHTML }
 }

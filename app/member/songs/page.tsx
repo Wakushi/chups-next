@@ -11,13 +11,15 @@ import { getAudioDuration } from "@/lib/utils"
 export default function SongsPage() {
   const [songs, setSongs] = useState<Song[]>([])
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
 
   const [playingSong, setPlayingSong] = useState<Song | null>(null)
 
   useEffect(() => {
     async function loadSongsAudio() {
+      setLoading(true)
+
       const loadedSongs: Song[] = []
 
       for (let song of RAW_SONGS) {
