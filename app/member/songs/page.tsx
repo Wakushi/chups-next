@@ -40,11 +40,11 @@ export default function SongsPage() {
 
   const filteredSongs = songs.filter(
     (song) =>
-      song.id.toString().includes(searchTerm.toLowerCase()) ||
-      song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      song.artist.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      song.id.toString().includes(searchTerm.trim().toLowerCase()) ||
+      song.title.toLowerCase().includes(searchTerm.trim().toLowerCase()) ||
+      song.artist.toLowerCase().includes(searchTerm.trim().toLowerCase()) ||
       song.singers.some((singer) =>
-        singer.toLowerCase().includes(searchTerm.toLowerCase())
+        singer.toLowerCase().includes(searchTerm.trim().toLowerCase())
       )
   )
 
