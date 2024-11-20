@@ -6,6 +6,13 @@ import { FaArrowAltCircleRight } from "react-icons/fa"
 import { FormEvent, useContext, useState } from "react"
 import { UserContext } from "@/providers/UserContext"
 import LoaderSmall from "../ui/loader-small/loader-small"
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card"
 
 export default function LoginForm() {
   const [loading, setLoading] = useState<boolean>(false)
@@ -23,35 +30,38 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="min-h-[400px] flex items-center justify-center px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 bg-white/80 backdrop-blur-sm rounded-xl shadow-2xl p-8">
-        <div className="text-center">
-          <h1
-            className={`${playfairDisplay.className} text-3xl font-bold tracking-tight text-gray-900`}
-          >
-            Connexion
-          </h1>
-          <p className="mt-2 text-sm text-gray-600">Accédez à l'espace Chups</p>
-        </div>
+    <Card className="w-full max-w-md space-y-6 bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+      <CardHeader className="text-center space-y-2">
+        <CardTitle
+          className={`${playfairDisplay.className} text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent`}
+        >
+          Connexion
+        </CardTitle>
+        <CardDescription className="text-slate-300">
+          Accédez à l'espace Chups
+        </CardDescription>
+      </CardHeader>
 
-        <form onSubmit={signIn} className="mt-8 space-y-6">
+      <CardContent>
+        <form onSubmit={signIn} className="space-y-6">
           <div className="space-y-6">
             <div>
               <label
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-slate-300 mb-2"
                 htmlFor="email"
               >
                 Email
               </label>
-              <div className="mt-1 relative rounded-md shadow-sm">
+              <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <MdAlternateEmail className="h-5 w-5 text-gray-400" />
+                  <MdAlternateEmail className="h-5 w-5 text-slate-400" />
                 </div>
                 <input
-                  className="block w-full text-black pl-10 pr-3 py-2.5 sm:text-sm border border-gray-300 rounded-lg 
-                           focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 
-                           transition-all duration-200 ease-in-out
-                           placeholder:text-gray-400"
+                  className="block w-full pl-10 pr-3 py-2.5 text-sm rounded-lg
+                             bg-slate-900/50 border border-slate-700
+                             text-white placeholder:text-slate-500
+                             focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
+                             transition-all duration-200"
                   id="email"
                   type="email"
                   name="email"
@@ -63,20 +73,21 @@ export default function LoginForm() {
 
             <div>
               <label
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-slate-300 mb-2"
                 htmlFor="password"
               >
                 Mot de passe
               </label>
-              <div className="mt-1 relative rounded-md shadow-sm">
+              <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <MdKey className="h-5 w-5 text-gray-400" />
+                  <MdKey className="h-5 w-5 text-slate-400" />
                 </div>
                 <input
-                  className="block w-full text-black pl-10 pr-3 py-2.5 sm:text-sm border border-gray-300 rounded-lg 
-                           focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 
-                           transition-all duration-200 ease-in-out
-                           placeholder:text-gray-400"
+                  className="block w-full pl-10 pr-3 py-2.5 text-sm rounded-lg
+                             bg-slate-900/50 border border-slate-700
+                             text-white placeholder:text-slate-500
+                             focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20
+                             transition-all duration-200"
                   id="password"
                   type="password"
                   name="password"
@@ -96,17 +107,17 @@ export default function LoginForm() {
             ) : (
               <Button
                 type="submit"
-                variant="secondary"
-                className="group relative w-full flex justify-center py-3 px-4 
-                         border border-transparent text-sm font-medium rounded-lg
-                         text-white bg-indigo-600 hover:bg-indigo-700
-                         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
-                         transition-all duration-200 ease-in-out"
+                className="group relative w-full flex justify-center py-6
+                           bg-gradient-to-r from-blue-500 to-purple-500
+                           hover:from-blue-600 hover:to-purple-600
+                           text-white font-medium rounded-lg
+                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+                           transition-all duration-300"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <FaArrowAltCircleRight
-                    className="h-5 w-5 text-indigo-200 group-hover:text-indigo-100 
-                                                  transition-all duration-200 ease-in-out"
+                    className="h-5 w-5 text-white/70 group-hover:text-white/90
+                               transition-all duration-200"
                   />
                 </span>
                 Se connecter
@@ -114,7 +125,7 @@ export default function LoginForm() {
             )}
           </div>
         </form>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   )
 }

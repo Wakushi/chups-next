@@ -6,6 +6,14 @@ import { MdOutlineAppRegistration } from "react-icons/md"
 import { FaTheaterMasks, FaSearch } from "react-icons/fa"
 import { Input } from "@/components/ui/input"
 import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import {
   dateFiles,
   DownloadFile,
   musicalFiles,
@@ -14,32 +22,37 @@ import {
 
 export default function MemberDownloadsPage() {
   return (
-    <div className="pt-20 px-4 md:px-8 pb-8 flex flex-col gap-6 md:gap-8">
-      <div className="flex flex-col">
-        <h1 className="font-bold text-2xl">Documents adhérant</h1>
-        <p className="text-sm text-slate-300">
-          Téléchargez ici tous vos documents adhérant.
-        </p>
-      </div>
-      <div className="flex flex-col gap-4 md:flex-row md:gap-8">
-        <DownloadList
-          title="Textes"
-          icon={<FaTheaterMasks />}
-          description="Textes théâtre et chants"
-          files={musicalFiles}
-        />
-        <DownloadList
-          title="Planning"
-          icon={<IoCalendarSharp />}
-          description="Documents liés à l'organisation et aux dates."
-          files={dateFiles}
-        />
-        <DownloadList
-          title="Inscription"
-          icon={<MdOutlineAppRegistration />}
-          description="Documents requis pour votre inscription."
-          files={signInFiles}
-        />
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800 pt-20 px-4 md:px-8 pb-8">
+      <div className="max-w-7xl mx-auto flex flex-col gap-8">
+        <div className="text-center md:text-left">
+          <h1 className="font-bold text-3xl md:text-4xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            Documents adhérant
+          </h1>
+          <p className="text-slate-300 mt-2">
+            Téléchargez ici tous vos documents adhérant.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <DownloadList
+            title="Textes"
+            icon={<FaTheaterMasks className="text-purple-400" />}
+            description="Textes théâtre et chants"
+            files={musicalFiles}
+          />
+          <DownloadList
+            title="Planning"
+            icon={<IoCalendarSharp className="text-blue-400" />}
+            description="Documents liés à l'organisation et aux dates."
+            files={dateFiles}
+          />
+          <DownloadList
+            title="Inscription"
+            icon={<MdOutlineAppRegistration className="text-green-400" />}
+            description="Documents requis pour votre inscription."
+            files={signInFiles}
+          />
+        </div>
       </div>
     </div>
   )
@@ -57,50 +70,80 @@ function DownloadList({
   files: DownloadFile[]
 }) {
   const [filteredFiles, setFilteredFiles] = useState<DownloadFile[]>(files)
+  const [searchTerm, setSearchTerm] = useState("")
 
   function handleFileFilter(keyword: string) {
-    setFilteredFiles(() => {
-      return files.filter((file) =>
+    setSearchTerm(keyword)
+    setFilteredFiles(
+      files.filter((file) =>
         file.name.toLowerCase().includes(keyword.toLowerCase())
       )
-    })
+    )
   }
 
   return (
-    <section className="flex flex-col gap-4 lg:w-[400px]">
-      <div className="flex flex-col">
-        <h2 className="font-bold text-xl flex items-center gap-1">
+    <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2 text-xl">
           {icon}
           <span>{title}</span>
-        </h2>
-        <p className="text-sm text-slate-300">{description}</p>
-      </div>
-      <div className="relative">
-        <FaSearch className="absolute text-slate-400 left-2 top-1/2 -translate-y-1/2" />
-        <Input
-          className="border-transparent border-b-white pl-8"
-          placeholder="Rechercher..."
-          onChange={(e) => handleFileFilter(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-col gap-2 max-h-[300px] lg:max-h-[500px] overflow-y-auto">
-        {filteredFiles.map(({ name, url }) => (
-          <a
-            key={name}
-            href={url}
-            target="_blank"
-            className="rounded-md border w-full min-w-[300px] max-w-[500px] p-2 flex justify-between items-center hover:border-white hover:opacity-80 transition-all duration-300"
-          >
-            <div className="flex items-center gap-2">
-              <IoDocumentTextOutline className="text-xl" />
-              <p className="text-sm">{name}</p>
-            </div>
-            <div className="border-2 border-white rounded-full h-[30px] w-[30px] flex items-center justify-center">
-              <IoMdDownload />
-            </div>
-          </a>
-        ))}
-      </div>
-    </section>
+        </CardTitle>
+        <CardDescription>{description}</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-4">
+        <div className="relative">
+          <FaSearch className="absolute text-slate-400 left-3 top-1/2 -translate-y-1/2" />
+          <Input
+            className="pl-10 bg-slate-900/50 border-slate-700 focus:border-slate-500 transition-colors"
+            placeholder="Rechercher..."
+            value={searchTerm}
+            onChange={(e) => handleFileFilter(e.target.value)}
+          />
+        </div>
+
+        <div className="flex flex-col gap-2 max-h-[400px] overflow-y-auto pr-2">
+          {filteredFiles.length === 0 ? (
+            <p className="text-center text-slate-400 py-4">
+              Aucun document trouvé
+            </p>
+          ) : (
+            filteredFiles.map(({ name, url }) => (
+              <a
+                key={name}
+                href={url}
+                target="_blank"
+                className="group relative bg-slate-900/30 rounded-lg p-3 hover:bg-slate-700/30 transition-all duration-300 border border-slate-700 hover:border-slate-600"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="text-slate-400 group-hover:text-white transition-colors">
+                    <IoDocumentTextOutline className="text-xl" />
+                  </div>
+                  <p className="text-sm flex-1 pr-10">{name}</p>
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-700 group-hover:bg-blue-500 p-2 rounded-full transition-all duration-300">
+                    <IoMdDownload className="text-sm" />
+                  </div>
+                </div>
+              </a>
+            ))
+          )}
+        </div>
+
+        <div className="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-700">
+          <span>
+            {filteredFiles.length} document
+            {filteredFiles.length !== 1 ? "s" : ""}
+          </span>
+          {searchTerm && (
+            <Badge
+              variant="secondary"
+              className="bg-slate-700 hover:bg-slate-600 cursor-pointer"
+              onClick={() => handleFileFilter("")}
+            >
+              Réinitialiser
+            </Badge>
+          )}
+        </div>
+      </CardContent>
+    </Card>
   )
 }
