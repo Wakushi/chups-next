@@ -21,9 +21,9 @@ export function SongCard({ song, isPlaying, onPlayPause }: SongCardProps) {
   const [isAccordionOpened, setIsAccordionOpened] = useState<boolean>(false)
 
   return (
-    <Card className="bg-slate-800/50 w-full border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300">
+    <Card className="bg-slate-800/50 w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.33%-1rem)] border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300">
       <CardContent className="pt-6">
-        <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+        <div className="flex flex-col gap-4 items-start justify-between">
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-white">
               {song.id}. {song.title}
@@ -32,7 +32,7 @@ export function SongCard({ song, isPlaying, onPlayPause }: SongCardProps) {
             <SongSingers singers={song.singers} />
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <div className="flex flex-col gap-4 w-full">
             {!!song.instrumental_url && (
               <AudioPlayer
                 isPlaying={isPlaying}

@@ -14,7 +14,7 @@ export function SearchBar({ value, onChange }: SearchBarProps) {
   }
 
   return (
-    <div className="relative">
+    <div className="relative max-w-[600px]">
       <FaSearch className="absolute text-slate-400 left-3 top-1/2 -translate-y-1/2" />
       <Input
         className="pl-10 pr-10 bg-slate-900/50 border-slate-700 focus:border-slate-500 transition-colors"
