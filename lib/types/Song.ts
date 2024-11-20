@@ -3,9 +3,11 @@ export type Song = {
   title: string
   artist: string
   singers: string[]
-  duration: string
+  duration: number
   part: 1 | 2
   lyrics_url: string
   instrumental_url: string
   isFavorite: boolean
+  audio?: HTMLAudioElement
+  isPlaying?: boolean
 }
