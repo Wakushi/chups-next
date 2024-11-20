@@ -31,7 +31,11 @@ export default async function CalendarPage() {
           Découvrez toutes nos dates
         </p>
       </div>
-      <BookingList bookings={formattedBookings} />
+      {formattedBookings.length ? (
+        <BookingList bookings={formattedBookings} />
+      ) : (
+        <p>Aucune date n'est disponible pour le moment.</p>
+      )}
     </div>
   )
 }

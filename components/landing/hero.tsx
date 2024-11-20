@@ -36,8 +36,8 @@ export default function Hero({ bookings }: { bookings: Booking[] }) {
     return (
       <div className="p-4 flex items-center justify-center flex-col gap-1 w-auto min-h-[100vh] bg-hero-image bg-cover bg-center">
         <h2 className="text-center text-2xl md:text-3xl lg:text-[2rem] drop-shadow-3xl leading-[1.2] max-w-[450px]">
-          La troupe de comédie musicale des Chups vous retrouve à la rentrée
-          pour de nouvelles aventures !
+          La troupe de comédie musicale des Chups vous retrouve bientôt pour de
+          nouvelles aventures !
         </h2>
       </div>
     )
