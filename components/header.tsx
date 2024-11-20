@@ -99,6 +99,7 @@ function MemberNavigation({ user }: { user: User }) {
     <div className="flex items-center gap-2">
       <div className="hidden lg:flex">
         <Navlink title="Accueil" href="/" />
+        <Navlink title="Chansons" href="/member/songs" />
         <Navlink title="Documents" href="/member/downloads" />
         <LogoutButton logOut={logOut} />
       </div>

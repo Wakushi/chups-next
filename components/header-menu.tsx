@@ -129,6 +129,7 @@ function MemberNavigationMenu({
   return (
     <>
       <Navlink title="Accueil" href="/" onClick={toggleMenu} />
+      <Navlink title="Chansons" href="/member/songs" onClick={toggleMenu} />
       <Navlink
         title="Documents"
         href="/member/downloads"
