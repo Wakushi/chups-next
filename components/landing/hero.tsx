@@ -40,7 +40,7 @@ export default function Hero({ bookings }: { bookings: Booking[] }) {
       <div className="p-4 flex items-center justify-center flex-col gap-1 w-auto min-h-[100vh] bg-slate-400 overflow-hidden bg-hero-image bg-cover bg-center">
         {poster ? (
           <>
-            <div className="absolute top-0 left-0 w-full h-full bg-white bg-opacity-[0.01] backdrop-blur-sm"></div>
+            <div className="absolute top-0 left-0 w-screen h-screen bg-white bg-opacity-[0.01] backdrop-blur-sm"></div>
             <div className="max-w-[700px] z-[1]">
               <Image
                 src="/images/bonheur-en-famille-poster.jpg"
