@@ -1,4 +1,4 @@
-import { playfairDisplay } from "@/styles/fonts"
+import { neucha } from "@/styles/fonts"
 import Link from "next/link"
 import { IoIosLogOut } from "react-icons/io"
 
@@ -19,7 +19,7 @@ function BookButton() {
 function LogoutButton({ logOut }: { logOut: () => void }) {
   return (
     <li
-      className={`${playfairDisplay.className} text-lg xl:text-xl uppercase flex justify-between items-center gap-2 cursor-pointer`}
+      className={`${neucha.className} text-lg xl:text-xl uppercase shadow-lg flex justify-between items-center gap-2 cursor-pointer`}
       onClick={logOut}
     >
       <span>Déconnexion</span>

@@ -24,7 +24,7 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        brand: "#F9A616",
+        brand: "#FDDF60",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -84,7 +84,7 @@ const config = {
         "fade-in-zoom-2": "fade-in-zoom 3s ease-in-out 500ms forwards",
       },
       backgroundImage: {
-        "hero-image": "url('/images/curtain.webp')",
+        "hero-image": "url('/images/countryside.webp')",
         "about-image": "url('/images/microphone-bg.webp')",
         "contact-image": "url('/images/backstage-bg.webp')",
       },

@@ -44,7 +44,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="py-20 md:py-[6rem] px-4 min-h-[100vh] bg-slate-900">
+    <div className="py-20 md:py-[6rem] px-4 min-h-[100vh] bg-emerald-700">
       <div className="max-w-[600px] flex flex-col gap-4 m-auto">
         <h1
           className={`${playfairDisplay.className} text-3xl md:text-[3rem] md:mb-4`}
@@ -53,7 +53,7 @@ export default function ContactPage() {
         </h1>
         <ContactInfo />
         <h2
-          className={`${playfairDisplay.className} text-2xl drop-shadow-3xl flex items-center gap-2`}
+          className={`${playfairDisplay.className} text-2xl drop-shadow-xl flex items-center gap-2`}
         >
           <span>Laissez nous un message</span>
           <TbMessageCircleHeart />
@@ -70,7 +70,7 @@ function ContactInfo() {
       <div className="flex items-center gap-2 text-xl">
         <Link
           href="tel:0611846005"
-          className="flex items-center gap-2 text-bold text-center drop-shadow-3xl"
+          className="flex items-center gap-2 text-bold text-center drop-shadow-xl"
         >
           <FaPhoneAlt />
           <span>06.11.84.60.05</span>
@@ -80,7 +80,7 @@ function ContactInfo() {
       <div className="flex items-center gap-2 text-xl">
         <Link
           href="mailto:leschups@outlook.fr"
-          className="flex items-center justify-center gap-2 text-bold text-center drop-shadow-3xl"
+          className="flex items-center justify-center gap-2 text-bold text-center drop-shadow-xl"
         >
           <MdEmail />
           <span>leschups@outlook.fr</span>

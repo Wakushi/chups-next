@@ -156,7 +156,7 @@ export default function ContactForm({
             </FormItem>
           )}
         />
-        <p className="text-sm text-center text-slate-500">
+        <p className="text-sm text-center text-slate-200">
           * Champs obligatoires
         </p>
         <Button type="submit" className="mt-4">
