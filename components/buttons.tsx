@@ -19,7 +19,7 @@ function BookButton() {
 function LogoutButton({ logOut }: { logOut: () => void }) {
   return (
     <li
-      className={`${neucha.className} text-lg xl:text-xl uppercase shadow-lg flex justify-between items-center gap-2 cursor-pointer`}
+      className={`${neucha.className} text-lg xl:text-xl uppercase drop-shadow-lg flex justify-between items-center gap-2 cursor-pointer`}
       onClick={logOut}
     >
       <span>Déconnexion</span>
