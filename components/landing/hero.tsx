@@ -41,7 +41,7 @@ export default function Hero({ bookings }: { bookings: Booking[] }) {
         {poster ? (
           <>
             <div className="absolute top-0 left-0 w-screen h-screen bg-white bg-opacity-[0.01] backdrop-blur-sm"></div>
-            <div className="max-w-[700px] z-[1]">
+            <div className="max-w-[550px] max-h-[550px] z-[1]">
               <Image
                 src="/images/bonheur-en-famille-poster.jpg"
                 alt="Affiche 'Bonheur en famille'"
