@@ -1309,7 +1309,8 @@ const RAW_SONGS: Song[] = [
     part: 1,
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F10.%20PARAPLUIE.docx?alt=media&token=764d2ed2-945e-4d68-a107-c926c0217646",
-    instrumental_url: "",
+    instrumental_url:
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F10.%20Parapluie%20(Insrtrumental).mp3?alt=media&token=41a1111f-fb17-411a-a39a-4db67f5e3607",
     isFavorite: true,
     lyrics_html: {
       __html: `<style>
@@ -1453,7 +1454,7 @@ const RAW_SONGS: Song[] = [
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F11.1%20C'EST%20FOU%20COMME%20JE%20T'AIME%20(Sara%20Perche%CC%81).docx?alt=media&token=035f0c6d-bb3e-45be-a91a-07f8a68c46c8",
     instrumental_url:
-      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2Ffoe%CC%81%20instrumentale.mp3?alt=media&token=56eff63d-0cf9-4893-9518-2488da89b9b7",
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F11.%20Foe%CC%81%20-%20C'est%20fou%20comme%20je%20t'aime%20(mix).mp3?alt=media&token=eb8ed3fa-d0f2-4dda-b109-d87216cc455e",
     isFavorite: true,
     lyrics_html: {
       __html: `<style>
@@ -1586,7 +1587,8 @@ const RAW_SONGS: Song[] = [
     part: 1,
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F11.2%20RIEN%20QUE%20DES%20MOTS%20(TI%20AMO).docx?alt=media&token=8d1bae3a-3ade-429e-86a9-2331553ef86d",
-    instrumental_url: "",
+    instrumental_url:
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F11.%20Ti%20amo%20-%20U.Tozzi%20(mix).mp3?alt=media&token=c0178556-75ae-438f-8624-73b29a3f0e72",
     isFavorite: true,
     lyrics_html: {
       __html: `<style>
@@ -1771,7 +1773,8 @@ const RAW_SONGS: Song[] = [
     part: 1,
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F11.3%20LES%20NOUVEAUX%20ROMANTIQUES.docx?alt=media&token=2fd02cd2-e208-4840-bea6-b5f90d4626d7",
-    instrumental_url: "",
+    instrumental_url:
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F11.%20Nouveaux%20romantiques%20(mix).mp3?alt=media&token=6e08c053-88c5-452c-ac8a-e02e09aa52b3",
     isFavorite: true,
     lyrics_html: {
       __html: `<style>
@@ -2123,7 +2126,8 @@ const RAW_SONGS: Song[] = [
     part: 2,
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F13.%20PROUD%20MARY%20(Duo).docx?alt=media&token=9b08279b-6acf-41e0-b87a-04a1eeb970c4",
-    instrumental_url: "",
+    instrumental_url:
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F13.%20Proud%20Mary%20(coupe%CC%81e).mp3?alt=media&token=be21f9ca-7f03-4ac1-807c-edfefbbd6913",
     isFavorite: true,
     lyrics_html: {
       __html: `<style>
@@ -3413,7 +3417,7 @@ const RAW_SONGS: Song[] = [
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F22.%20YMCA.docx?alt=media&token=00152f50-1a41-47f4-9ad8-aafa5847820c",
     instrumental_url:
-      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F22.%20YMCA%20(Karaoke%20Version).mp3?alt=media&token=e46a7519-3639-4d13-94ce-fff9d52a5afc",
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F22.%20YMCA%20(coupe%CC%81e).mp3?alt=media&token=84508f98-b8a1-4c09-937d-06ab1452b6b7",
     isFavorite: true,
     lyrics_html: {
       __html: `<style>

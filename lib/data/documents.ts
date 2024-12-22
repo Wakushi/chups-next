@@ -38,6 +38,10 @@ const theaterFiles: DownloadFile[] = [
     name: "Bonheur en famille - 1ère partie",
     url: "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Bonheur%20en%20famille%20V5%20premiere%20partie.docx?alt=media&token=1fadc473-b02a-416c-bc69-637697fd8108",
   },
+  {
+    name: "Bonheur en famille - 2ème partie",
+    url: "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Bonheur%20en%20famille%20V5%202DE%20partie.docx?alt=media&token=d3b76615-9a4d-4522-8b16-6c7f12a04f6a",
+  },
 ]
 
 export { theaterFiles, dateFiles, signInFiles }
