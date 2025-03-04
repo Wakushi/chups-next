@@ -3164,7 +3164,7 @@ const RAW_SONGS: Song[] = [
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F20.%20E%CC%81LISA.docx?alt=media&token=899e6551-67e8-4b12-9395-c93e7f68fd0a",
     instrumental_url:
-      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F20.%20Elisa%20%20%5BBDFab%20karaoke%5D.mp3?alt=media&token=27972fcb-bd3a-494b-817c-ecb1e72f881a",
+      "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F20.%20Elisa%20(Instrumental).mp3?alt=media&token=f4f7f881-0e91-438e-9a97-6e0fed914a06",
     isFavorite: true,
     lyrics_html: {
       __html: `<style>
