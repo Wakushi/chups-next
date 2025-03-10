@@ -696,7 +696,7 @@ const RAW_SONGS: Song[] = [
     part: 1,
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F6.%20MOI%20SI%20J'ETAIS%20BRETON.docx?alt=media&token=4dcfc5fe-d96a-4e42-af96-f7420a83fbb9",
-    instrumental_url: "",
+    instrumental_url: "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F06.%20Moi%20si%20je%CC%81tais%20Breton.mp3?alt=media&token=22ed68a9-e612-464f-9645-cf849eddb6b4",
     isFavorite: true,
     lyrics_html: {
       __html: `
@@ -2393,7 +2393,7 @@ const RAW_SONGS: Song[] = [
     part: 2,
     lyrics_url:
       "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Textes%20chansons%2F15.%20JE%20SUIS%20FOU.docx?alt=media&token=03bbc0ef-cb9a-44fe-8450-c6d455346e1a",
-    instrumental_url: "",
+    instrumental_url: "https://firebasestorage.googleapis.com/v0/b/chup-s.appspot.com/o/Instrumentales%2F15.%20Je%20suis%20fou%20.mp3?alt=media&token=d120ca45-0b4d-4b6b-afab-a076b806d71a",
     isFavorite: true,
     lyrics_html: {
       __html: `<style>
