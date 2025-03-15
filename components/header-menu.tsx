@@ -86,14 +86,14 @@ function GuestNavigationMenu({ toggleMenu }: { toggleMenu: () => void }) {
           href="https://www.facebook.com/p/Les-Chups-100091876850435/"
           target="_blank"
         >
-          <FaFacebook className="text-2xl mr-8 cursor-pointer hover:text-brand" />
+          <FaFacebook className="text-2xl mr-8 cursor-pointer hover:text-amber-400" />
         </Link>
         <Link
           className="drop-shadow-lg"
           href="https://www.instagram.com/chupsles"
           target="_blank"
         >
-          <FaInstagram className="text-2xl mr-8 cursor-pointer hover:text-brand" />
+          <FaInstagram className="text-2xl mr-8 cursor-pointer hover:text-amber-400" />
         </Link>
       </div>
     </>

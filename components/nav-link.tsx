@@ -18,9 +18,9 @@ export default function Navlink({ title, href, onClick }: NavlinkProps) {
       <Link
         href={href}
         className={clsx(
-          `${neucha.className} text-lg xl:text-xl uppercase drop-shadow-lg flex justify-between items-center hover:text-brand`,
+          `${neucha.className} text-lg xl:text-xl uppercase drop-shadow-lg flex justify-between items-center hover:text-amber-400`,
           {
-            "text-brand": pathname === href,
+            "text-amber-400": pathname === href,
           }
         )}
       >

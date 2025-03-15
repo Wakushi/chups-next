@@ -97,10 +97,13 @@ export default function BookingModal({ booking, heroView }: BookingModalProps) {
     >
       <DialogTrigger asChild>
         <Button
-          className={clsx("md:w-full flex-1", {
-            "bg-transparent text-white border border-white min-h-[40px] max-h-[40px] w-[110px] max-w-[200px] mx-auto uppercase font-bold":
-              heroView,
-          })}
+          className={clsx(
+            "md:w-full flex-1 bg-emerald-700 text-white hover:text-emerald-700",
+            {
+              "text-white border border-white min-h-[40px] max-h-[40px] w-[110px] max-w-[200px] mx-auto uppercase font-bold":
+                heroView,
+            }
+          )}
         >
           Réserver
         </Button>

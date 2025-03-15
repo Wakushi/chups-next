@@ -1,4 +1,4 @@
-import { Inter, Neucha, Playfair_Display } from "next/font/google"
+import { Handlee, Inter, Neucha, Playfair_Display } from "next/font/google"
 export const inter = Inter({ subsets: ["latin"] })
 export const neucha = Neucha({
   subsets: ["latin"],
@@ -9,4 +9,9 @@ export const neucha = Neucha({
 export const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "700"],
+})
+
+export const handlee = Handlee({
+  subsets: ["latin"],
+  weight: ["400"],
 })

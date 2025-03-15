@@ -84,9 +84,10 @@ const config = {
         "fade-in-zoom-2": "fade-in-zoom 3s ease-in-out 500ms forwards",
       },
       backgroundImage: {
-        "hero-image": "url('/images/countryside.webp')",
-        "about-image": "url('/images/microphone-bg.webp')",
+        "hero-image": "url('/images/landscape.avif')",
+        "about-image": "url('/images/table.jpeg')",
         "contact-image": "url('/images/backstage-bg.webp')",
+        "agenda-image": "url('/images/green.jpg')",
       },
       dropShadow: {
         "3xl": "1px 1px 10px rgba(0, 0, 0, 1)",

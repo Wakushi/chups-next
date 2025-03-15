@@ -22,10 +22,10 @@ export default async function Home() {
   return (
     <>
       <Hero bookings={formattedBookings} />
+      <AboutSection />
       {!!formattedBookings.length && (
         <AgendaSection bookings={formattedBookings} />
       )}
-      {/* <AboutSection /> */}
       {!!formattedBookings.length && <BookButton />}
     </>
   )

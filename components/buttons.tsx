@@ -6,7 +6,7 @@ function BookButton() {
   return (
     <Link
       href="/calendar"
-      className="bg-amber-500 uppercase fixed bottom-0 w-full text-white font-bold text-lg lg:text-2xl shadow-md p-2 text-center"
+      className="bg-amber-500 hover:bg-white hover:text-amber-500 transition-all duration-300 uppercase z-[99] fixed bottom-0 w-full text-white font-bold text-lg lg:text-2xl shadow-md p-2 text-center"
       style={{
         borderRadius: "0",
       }}
