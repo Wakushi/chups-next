@@ -52,7 +52,7 @@ export default function CreateBookingModal() {
       <DialogTrigger asChild>
         <Button variant="outline">Ajouter une date</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] max-h-[90vh] overflow-auto">
         <DialogHeader>
           <DialogTitle>Ajouter une nouvelle date</DialogTitle>
         </DialogHeader>
@@ -138,7 +138,7 @@ function BookingForm() {
 
     const newBooking: Omit<Booking, "id"> = {
       title,
-      date: { seconds: Date.now() / 1000, nanoseconds: 0 },
+      date: { seconds: date.getTime() / 1000, nanoseconds: 0 },
       time: `${time?.hour}h${time?.minute}`,
       image: imageUrl,
       childPrice,
