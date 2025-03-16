@@ -109,7 +109,7 @@ export default function BookingModal({ booking, heroView }: BookingModalProps) {
         </Button>
       </DialogTrigger>
       <DialogContent
-        className={clsx("h-[100dvh] md:max-h-[80%] rounded overflow-auto p-4", {
+        className={clsx("h-[100dvh] z-[999]  md:max-h-[80%] rounded overflow-auto p-4", {
           "md:max-h-[400px]": isSuccess,
         })}
       >
