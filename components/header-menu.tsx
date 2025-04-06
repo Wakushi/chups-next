@@ -119,6 +119,12 @@ function AdminNavigationMenu({
       <Separator />
       <Navlink title="Dates" href="/admin/bookings" onClick={toggleMenu} />
       <Separator />
+      <Navlink
+        title="Documents"
+        href="/member/downloads"
+        onClick={toggleMenu}
+      />
+      <Separator />
       <LogoutButton logOut={onLogOut} />
     </>
   )

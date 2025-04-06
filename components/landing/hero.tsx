@@ -36,7 +36,6 @@ export default function Hero({ bookings }: { bookings: Booking[] }) {
           nouvelles aventures !
         </h2>
       )}
-      <FadeDivider />
     </div>
   )
 }
